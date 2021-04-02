@@ -1,6 +1,6 @@
 # MOSARCH
 
-This is the repository of the project titled "Recovery of **MO**dular *S*oftware *ARCH*itectures with Exact and Heuristic Clustering Methods". The repository contains information, documents, data, software tools and other relevant artifacts regarding the project.
+This is the repository of the project titled "Recovery of **MO**dular **S**oftware **ARCH**itectures with Exact and Heuristic Clustering Methods". The repository contains information, documents, data, software tools and other relevant artifacts regarding the project.
 
 ## Project Information
 - Funding: [The Scientific and Technological Research Council of Turkey](https://tubitak.gov.tr/en) (grant #120E488)

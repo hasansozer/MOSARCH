@@ -13,3 +13,5 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 - [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/)
 - [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/)
 
+## External Tools
+ - The [PyDriller](https://github.com/ishepard/pydriller) framework is used for automated analysis of Git repositories.

@@ -3,7 +3,6 @@ from itertools import combinations
 
 source_file_extensions = ['.java', '.c', '.cc', '.cpp', '.h']
 moduleno = {}
-module_count = 0
 
 def get_source_files(file_list):
     return [s for s in file_list if s.filename.endswith(tuple(source_file_extensions))]
@@ -17,7 +16,7 @@ def get_full_paths(file_list):
     return full_paths
 
 def extract_modules(committed_file_list):
-    global module_count
+    module_count = 0
     for file_list in committed_file_list:
         pair_list = combinations(file_list, 2)
         for m1, m2 in pair_list:
@@ -29,6 +28,7 @@ def extract_modules(committed_file_list):
                 module_count += 1
 
 def extract_module_dependencies(committed_file_list):
+    module_count = len(moduleno)
     dsm = [[0 for x in range(module_count)] for y in range(module_count)]
     for file_list in committed_file_list:
         pair_list = combinations(file_list, 2)
@@ -55,7 +55,7 @@ for commit in repo.traverse_commits():
 
 print("extracting modules...")
 extract_modules(committed_files)
-print("number of modules: {}".format(module_count))
+print("number of modules: {}".format(len(moduleno)))
 
 print("analyzing module dependencies...")
 extract_module_dependencies(committed_files)

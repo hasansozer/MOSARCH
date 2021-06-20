@@ -15,3 +15,6 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 
 ## External Tools
  - The [PyDriller](https://github.com/ishepard/pydriller) framework is used for automated analysis of Git repositories.
+
+## Data Formats
+ - All the input files must conform to the [RSF](http://www.rigi.cs.uvic.ca/downloads/rigi/doc/node52.html) format.

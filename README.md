@@ -8,10 +8,14 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 - Start date: 15.03.2021
 - End date: 15.03.2024
 
-## Participants
+## Project Members
 - [Hasan Sozer](https://faculty.ozyegin.edu.tr/hsozer/)
 - [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/)
 - [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/)
+
+## Other Contributers
+- [Esad Simitcioglu](https://github.com/EsadSimitcioglu)
+- [Abdullah Saydemir](https://github.com/Saydemr)
 
 ## External Tools
  - The [PyDriller](https://github.com/ishepard/pydriller) framework is used for automated analysis of Git repositories.

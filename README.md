@@ -4,6 +4,7 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 
 ## Project Information
 - Funding: [The Scientific and Technological Research Council of Turkey](https://tubitak.gov.tr/en) (grant #120E488)
+- Host Institution: [Ozyegin University](https://www.ozyegin.edu.tr/)
 - Industrial partner: [Turkcell Technology](http://www.turkcellteknoloji.com.tr/language/en/)
 - Start date: 15.03.2021
 - End date: 15.03.2024

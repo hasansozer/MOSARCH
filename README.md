@@ -13,7 +13,7 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 - [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/)
 - [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/)
 
-## Other Contributers
+## Other Contributors
 - [Esad Simitcioglu](https://github.com/EsadSimitcioglu)
 - [Abdullah Saydemir](https://github.com/Saydemr)
 

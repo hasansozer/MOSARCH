@@ -5,10 +5,10 @@ Created on Wed Aug  4 19:28:59 2021
 @author: Milad
 """
 import numpy as np
-from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation
+from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, Cumulative
 import copy
 import time
-def GA(inputdata):
+def GAKH(inputdata):
     tic = time.time()
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
     objective = 0
@@ -53,18 +53,37 @@ def GA(inputdata):
         for i in range(len(P)):
              temp.append(P[i]/sum(P))
         P=temp
-        # Crossover
+        # Crossover (Cumulative Motion)
+        chbest = population[0]
+        chworst = population[-1]
+            
         for k in range(crossNumber):
-            parent1=population[RouletteWheelSelection(P)]
-            parent2=population[RouletteWheelSelection(P)]            
-            offspring1, offspring2=Crossover(parent1,parent2,inputdata)
-            Newpop.append(offspring1)
-            Newpop.append(offspring2)
-        # Mutation
+            chi=population[RouletteWheelSelection(P)]
+            chj=population[RouletteWheelSelection(P)]            
+            chibest = chi
+            chjbest = chj
+            chiworst = chi
+            chjworst =chj
+            X,Y,A,B,K,Z = Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputdata)
+            
+            Newpop.append(X)
+            Newpop.append(Y)
+            Newpop.append(A)
+            Newpop.append(B)
+            Newpop.append(K)
+            Newpop.append(Z)
+            
+        # Mutation (Local Movement)
         for k in range(muteNumber):
-            parent=population[RouletteWheelSelection(P)]
-            offspring=Mutation(parent,inputdata)
+            chi=population[RouletteWheelSelection(P)]
+            offspring=Mutation(chi,inputdata)
             Newpop.append(offspring)
+            offspring=Mutation(offspring,inputdata)
+            Newpop.append(offspring)
+            offspring=Mutation(chbest,inputdata)
+            Newpop.append(offspring)
+        # Random Diffusion
+        
         population=copy.deepcopy(Newpop)
         sortedPopulation=copy.deepcopy(population)
         sortedPopulation.sort(key=lambda x: x[1], reverse=1)
@@ -73,6 +92,6 @@ def GA(inputdata):
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
         print(BestCost)
-        if time.time()-tic > 100:
+        if time.time() - tic > 100:
             break
     return(BestCost, sortedPopulation[0][0])

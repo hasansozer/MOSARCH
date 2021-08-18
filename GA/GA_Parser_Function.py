@@ -2,8 +2,6 @@ import sys
 import numpy as np
 np.set_printoptions(threshold=sys.maxsize)
 
-print("Usage python RSFParser.py bash-dependency.rsf bash-clustering.rsf")
-
 def RSFParser(filename):
 	RSFParser.filename = filename
 	RSFParser.clustered_items = []
@@ -42,8 +40,8 @@ def ParseClusteringInputFile(parser,filename):
 			parser.name2ID.update({item_name: parser.total_item_count })
 			parser.total_item_count += 1
 		f.close()
-	except:
-		print("Error while reading an input file!111")
+	except Exception as e:
+		print(e)
 
 def parse_dependency_input_file(parser, filename):
 	try:
@@ -56,11 +54,5 @@ def parse_dependency_input_file(parser, filename):
 
 		f.close()
 
-	except:
-		print("Error while reading an input file!222")
-
-RSFParser(sys.argv[2])
-parse_dependency_input_file(RSFParser,sys.argv[1])
-clustered_items = RSFParser.clustered_items
-
-dsm_np = np.array([elem for row in RSFParser.dsm for elem in row])
+	except Exception as e:
+		print(e)

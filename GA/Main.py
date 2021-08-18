@@ -4,11 +4,11 @@ Created on Wed Aug  4 17:54:58 2021
 
 @author: Milad
 """
-import pandas as pd
-import numpy as np
+#import pandas as pd
 from GA import GA
 from GAKH import GAKH
 from GAJAYA import GAJAYA
+from GA_Parser_Function import RSFParser, dependency, ParseClusteringInputFile, parse_dependency_input_file 
 import time
 import numpy as np
 np.random.seed(519)
@@ -39,7 +39,17 @@ for i in range(nModules):
     for j in range(nModules):
         d_i[i] += w_ij[i][j]
 #########################################################################################################################
+#w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
 
+dependencyFile = "GA/bash-dependency.rsf";
+clusteringFile = "GA/bash-clustering.rsf";
+
+RSFParser(dependencyFile)
+parse_dependency_input_file(RSFParser,clusteringFile)
+
+# w_ij = np.array([elem for row in RSFParser.dsm for elem in row])
+# d_i = RSFParser.ID2name
+# clustered_items = RSFParser.clustered_items;
 
 
 # =============================================================================

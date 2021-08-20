@@ -27,31 +27,46 @@ betas = [0.0008]                              #Rollette wheel ratio
 
 
 '''Problem-related'''
-nClusters = [10]                               #Number of Clusters
-nModules = 500
+nClusters = [5]                               #Number of Clusters
+#nModules = 500
 
 
 #Esad Burdan bana w_ij ve d_i cekermisin?
 #########################################################################################################################
-w_ij = [list(np.random.randint(0,2,nModules)) for i in range(nModules)]
-d_i = np.zeros(nModules)
-for i in range(nModules):
-    d_i[i] = 0
-    for j in range(nModules):
-        d_i[i] += w_ij[i][j]
+# =============================================================================
+# w_ij = [list(np.random.randint(0,2,nModules)) for i in range(nModules)]
+# d_i = np.zeros(nModules)
+# for i in range(nModules):
+#     d_i[i] = 0
+#     for j in range(nModules):
+#         d_i[i] += w_ij[i][j]
+# =============================================================================
 #########################################################################################################################
 #w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
 
-dependencyFile = "GA/bash-dependency.rsf";
-clusteringFile = "GA/bash-clustering.rsf";
+dependencyFile = "bash-dependency.rsf";
+clusteringFile = "bash-clustering.rsf";
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
 clustered_items = parser.clustered_items
 
+
 # w_ij = np.array([elem for row in parser.dsm for elem in row])
 # d_i = parser.ID2name
 # clustered_items = parser.clustered_items;
+
+
+#w_ij = np.array([elem for row in RSFParser.dsm for elem in row])
+w_ij = np.array(RSFParser.dsm).astype(int)
+nModules = len(w_ij)
+d = RSFParser.ID2name
+clustered_items = RSFParser.clustered_items;
+d_i = np.zeros(nModules)
+for i in range(nModules):
+    d_i[i] = 0
+    for j in range(nModules):
+        d_i[i] += w_ij[i][j]
 
 
 # =============================================================================

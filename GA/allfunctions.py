@@ -11,7 +11,7 @@ def myCost(pop,inputdata):
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
     modularity = 0
     modulesOnClusters = []
-    m = 0.5 * np.sum(d_i)
+    m = 0.5 * np.sum(d_i) + 0.00000001
     for l in range(nClusters):
         temp =[]
         for k in range(len(pop)):
@@ -40,7 +40,7 @@ def myCostJaya(pop,inputdata):
             temp = []
     if sortedpop[-1]<nModules:
         modulesOnClusters.append(temp)
-    m = 0.5 * np.sum(d_i)
+    m = 0.5 * np.sum(d_i) + 0.00000001
     for l in range(len(modulesOnClusters)):
         for i in modulesOnClusters[l]:
             for j in modulesOnClusters[l]:

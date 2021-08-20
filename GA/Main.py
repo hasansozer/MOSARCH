@@ -8,7 +8,8 @@ Created on Wed Aug  4 17:54:58 2021
 from GA import GA
 from GAKH import GAKH
 from GAJAYA import GAJAYA
-from GA_Parser_Function import RSFParser, dependency, ParseClusteringInputFile, parse_dependency_input_file 
+from GA_Parser_Function import RSFParser,parse_dependency_input_file 
+from GA_Parser_Class import *
 import time
 import numpy as np
 np.random.seed(519)
@@ -44,12 +45,14 @@ for i in range(nModules):
 dependencyFile = "GA/bash-dependency.rsf";
 clusteringFile = "GA/bash-clustering.rsf";
 
-RSFParser(dependencyFile)
-parse_dependency_input_file(RSFParser,clusteringFile)
+parser = RSFParser(clusteringFile)
+parser.parse_dependency_input_file(dependencyFile)
+clustered_items = parser.clustered_items
 
-# w_ij = np.array([elem for row in RSFParser.dsm for elem in row])
-# d_i = RSFParser.ID2name
-# clustered_items = RSFParser.clustered_items;
+# w_ij = np.array([elem for row in parser.dsm for elem in row])
+# d_i = parser.ID2name
+# clustered_items = parser.clustered_items;
+
 
 
 # =============================================================================

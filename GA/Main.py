@@ -8,7 +8,7 @@ Created on Wed Aug  4 17:54:58 2021
 from GA import GA
 from GAKH import GAKH
 from GAJAYA import GAJAYA
-from GA_Parser_Function import RSFParser, dependency, ParseClusteringInputFile, parse_dependency_input_file 
+from GA_Parser_Function import RSFParser, dependency, ParseClusteringInputFile, parse_dependency_input_file
 import time
 import numpy as np
 np.random.seed(519)
@@ -26,31 +26,39 @@ betas = [0.0008]                              #Rollette wheel ratio
 
 
 '''Problem-related'''
-nClusters = [10]                               #Number of Clusters
-nModules = 500
+nClusters = [5]                               #Number of Clusters
+#nModules = 500
 
 
 #Esad Burdan bana w_ij ve d_i cekermisin?
 #########################################################################################################################
-w_ij = [list(np.random.randint(0,2,nModules)) for i in range(nModules)]
+# =============================================================================
+# w_ij = [list(np.random.randint(0,2,nModules)) for i in range(nModules)]
+# d_i = np.zeros(nModules)
+# for i in range(nModules):
+#     d_i[i] = 0
+#     for j in range(nModules):
+#         d_i[i] += w_ij[i][j]
+# =============================================================================
+#########################################################################################################################
+#w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
+
+dependencyFile = "bash-dependency.rsf";
+clusteringFile = "bash-clustering.rsf";
+
+RSFParser(dependencyFile)
+parse_dependency_input_file(RSFParser,clusteringFile)
+
+#w_ij = np.array([elem for row in RSFParser.dsm for elem in row])
+w_ij = np.array(RSFParser.dsm).astype(int)
+nModules = len(w_ij)
+d = RSFParser.ID2name
+clustered_items = RSFParser.clustered_items;
 d_i = np.zeros(nModules)
 for i in range(nModules):
     d_i[i] = 0
     for j in range(nModules):
         d_i[i] += w_ij[i][j]
-#########################################################################################################################
-#w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
-
-dependencyFile = "GA/bash-dependency.rsf";
-clusteringFile = "GA/bash-clustering.rsf";
-
-RSFParser(dependencyFile)
-parse_dependency_input_file(RSFParser,clusteringFile)
-
-# w_ij = np.array([elem for row in RSFParser.dsm for elem in row])
-# d_i = RSFParser.ID2name
-# clustered_items = RSFParser.clustered_items;
-
 
 # =============================================================================
 # name='bash-dependency.rsf'

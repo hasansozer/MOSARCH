@@ -49,18 +49,14 @@ clusteringFile = "GA/bash-clustering.rsf";
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
-clustered_items = parser.clustered_items
 
 
-w_ij = np.array([elem for row in parser.dsm for elem in row])
+# w_ij = np.array(parser.dsm).astype(int)
 # d_i = parser.ID2name
 # clustered_items = parser.clustered_items;
 
-print(w_ij);
 
 
-#w_ij = np.array([elem for row in RSFParser.dsm for elem in row])
-w_ij = np.array(RSFParser.dsm).astype(int)
 nModules = len(w_ij)
 d = RSFParser.ID2name
 clustered_items = RSFParser.clustered_items;

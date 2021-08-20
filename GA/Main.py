@@ -44,17 +44,19 @@ nClusters = [5]                               #Number of Clusters
 #########################################################################################################################
 #w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
 
-dependencyFile = "bash-dependency.rsf";
-clusteringFile = "bash-clustering.rsf";
+dependencyFile = "GA/bash-dependency.rsf";
+clusteringFile = "GA/bash-clustering.rsf";
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
 clustered_items = parser.clustered_items
 
 
-# w_ij = np.array([elem for row in parser.dsm for elem in row])
+w_ij = np.array([elem for row in parser.dsm for elem in row])
 # d_i = parser.ID2name
 # clustered_items = parser.clustered_items;
+
+print(w_ij);
 
 
 #w_ij = np.array([elem for row in RSFParser.dsm for elem in row])

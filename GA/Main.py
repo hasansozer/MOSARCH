@@ -17,13 +17,13 @@ np.random.seed(519)
 
 '''GA-related'''
 MaxIts = [10000]                                #Number of iterations
-nPops = [30]                                  #Number of population
-crossProbs = [0.77]                           #Crossover probability
-crossRates = [0.5]                             #Crossover rate  
-muteProbs = [0.8]                             #Mutation probability
-muteRates = [0.05]                            #Mutation Rate
-elitisimProbs = [0.3]                           #Elite Parents Probability
-betas = [0.0008]                              #Rollette wheel ratio
+nPops = [30,50,70]                                  #Number of population
+crossProbs = [0.3,0.4,0.5,0.6,0.7]                           #Crossover probability
+crossRates = [0.3,0.4,0.5,0.6,0.7]                             #Crossover rate  
+muteProbs = [0.6,0.7,0.8,0.9]                             #Mutation probability
+muteRates = [0.03,0.04,0.05,0.06]                            #Mutation Rate
+elitisimProbs = [0.1,0.2,0.3,0.4]                           #Elite Parents Probability
+betas = [0.0005,0.0006,0.0007,0.0008]                              #Rollette wheel ratio
 
 
 '''Problem-related'''
@@ -44,22 +44,20 @@ nClusters = [5]                               #Number of Clusters
 #########################################################################################################################
 #w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
 
-dependencyFile = "GA/bash-dependency.rsf";
-clusteringFile = "GA/bash-clustering.rsf";
+dependencyFile = "bash-dependency.rsf";
+clusteringFile = "bash-clustering.rsf";
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
 
 
-# w_ij = np.array(parser.dsm).astype(int)
-# d_i = parser.ID2name
-# clustered_items = parser.clustered_items;
+w_ij = np.array(parser.dsm).astype(int)
+d_i = parser.ID2name
+clustered_items = parser.clustered_items;
 
 
 
 nModules = len(w_ij)
-d = RSFParser.ID2name
-clustered_items = RSFParser.clustered_items;
 d_i = np.zeros(nModules)
 for i in range(nModules):
     d_i[i] = 0
@@ -67,28 +65,6 @@ for i in range(nModules):
         d_i[i] += w_ij[i][j]
 
 
-# =============================================================================
-# name='bash-dependency.rsf'
-# dataTable =pd.read_table(name,header=None)
-# dataTable[0] = dataTable[0].replace('cotain ','')
-# dataTable[0] = dataTable[0].map(lambda x: x.lstrip('depends '))
-# new = dataTable[0].str.split(" ", n = 1, expand = True)
-# 
-# uniqueValues1 = new[0].unique()
-# uniqueValues2 = new[1].unique()
-# uniques1 = [uniqueValues1[i] for i in range(len(uniqueValues1)) if uniqueValues1[i] not in uniqueValues2]
-# uniques2 = [uniqueValues2[i] for i in range(len(uniqueValues2)) if uniqueValues2[i] not in uniqueValues1]
-# uniques = uniques1 + uniques2
-# nModules = len(uniques)
-# w_ij = np.zeros((nModules,nModules))
-# for i in range(len(uniques)):
-#     for j in range(len(uniques)):
-#         for k in range(len(new)):
-#             if new[0][k] == uniques[i] and new[1][k] == uniques[j]:
-#                 w_ij[i][j] = 1
-# 
-# 
-# =============================================================================
 
 #%% Main Loop
 for MaxIt in MaxIts:
@@ -113,7 +89,7 @@ for MaxIt in MaxIts:
                                     objectiveGAJAYA, clusters = GAJAYA(inputdata)
                                     cpuGAJAYA = time.time()-start
                                     q=open("Results.txt", "a")
-                                    q.write(str(objectiveGA) + '  ' + str(cpuGA) + '  ' + str(objectiveGAKH) + '  ' + str(cpuGAKH) + '  ' + str(objectiveGAJAYA) + '  ' + str(cpuGAJAYA))
+                                    q.write(str(nPop) + '  ' +str(crossProb) + '  ' +str(crossRate) + '  ' +str(muteProb) + '  ' +str(muteRate) + '  ' +str(elitismProb) + '  ' +str(beta) + '  ' +str(objectiveGA) + '  ' + str(cpuGA) + '  ' + str(objectiveGAKH) + '  ' + str(cpuGAKH) + '  ' + str(objectiveGAJAYA) + '  ' + str(cpuGAJAYA))
                                     q.write('\n')
                                     q.write('\n')
                                     q.close()  

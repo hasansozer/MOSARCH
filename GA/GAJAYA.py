@@ -83,6 +83,6 @@ def GAJAYA(inputdata):
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
         print(BestCost)
-        if time.time() - tic > 100:
+        if time.time() - tic > 1000:
             break    
     return(BestCost, sortedPopulation[0][0])

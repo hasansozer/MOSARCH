@@ -7,7 +7,6 @@ depends org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode org.apache.hado
 depends org.apache.hadoop.io.compress.LzopCodec org.apache.hadoop.util.NativeCodeLoader
 depends org.apache.hadoop.mapred.SortedRanges org.apache.hadoop.io.Writable
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.protocol.FSConstants
-depends org.apache.hadoop.hdfs.server.namenode.INodeFileUnderConstruction org.apache.hadoop.hdfs.server.namenode.BlocksMap.BlockInfo
 depends org.apache.hadoop.mapred.SequenceFileOutputFormat org.apache.hadoop.fs.FileUtil
 depends org.apache.hadoop.mapred.lib.NLineInputFormat org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.ipc.Server org.apache.hadoop.io.WritableUtils
@@ -16,7 +15,6 @@ depends org.apache.hadoop.hdfs.server.namenode.FSDirectory org.apache.hadoop.met
 depends org.apache.hadoop.mapred.pipes.OutputHandler org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorReducer org.apache.hadoop.io.Text
-depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.hdfs.protocol.DataTransferProtocol
 depends org.apache.hadoop.io.WritableComparator org.apache.hadoop.util.ReflectionUtils
 depends org.apache.hadoop.mapred.IsolationRunner org.apache.hadoop.io.SequenceFile
 depends org.apache.hadoop.mapred.JobQueueClient org.apache.hadoop.conf.Configured
@@ -33,15 +31,12 @@ depends org.apache.hadoop.mapred.TextOutputFormat org.apache.hadoop.io.NullWrita
 depends org.apache.hadoop.fs.LocalDirAllocator org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.jobcontrol.Job org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.common.Storage
-depends org.apache.hadoop.fs.FileUtil org.apache.hadoop.util.Shell.ShellCommandExecutor
 depends org.apache.hadoop.mapred.join.TupleWritable org.apache.hadoop.io.Writable
-depends org.apache.hadoop.hdfs.server.balancer.Balancer org.apache.hadoop.hdfs.server.protocol.BlocksWithLocations.BlockWithLocations
 depends org.apache.hadoop.hdfs.server.common.Storage org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.mapred.pipes.Submitter org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.fs.FsShell org.apache.hadoop.ipc.RPC
 depends org.apache.hadoop.security.UserGroupInformation org.apache.hadoop.io.Writable
 depends org.apache.hadoop.mapred.LocalJobRunner org.apache.hadoop.fs.Path
-depends org.apache.hadoop.fs.LocalDirAllocator org.apache.hadoop.util.DiskChecker.DiskErrorException
 depends org.apache.hadoop.hdfs.server.protocol.BlockCommand org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.hdfs.server.namenode.JspHelper org.apache.hadoop.hdfs.protocol.DatanodeInfo
 depends org.apache.hadoop.mapred.lib.Chain org.apache.hadoop.io.serializer.Deserializer
@@ -79,7 +74,6 @@ depends org.apache.hadoop.mapred.join.OuterJoinRecordReader org.apache.hadoop.ma
 depends org.apache.hadoop.hdfs.server.namenode.UpgradeManagerNamenode org.apache.hadoop.hdfs.server.protocol.UpgradeCommand
 depends org.apache.hadoop.hdfs.server.protocol.DatanodeRegistration org.apache.hadoop.hdfs.server.common.StorageInfo
 depends org.apache.hadoop.io.compress.CompressorStream org.apache.hadoop.io.compress.Compressor
-depends org.apache.hadoop.io.ArrayFile org.apache.hadoop.io.SequenceFile.CompressionType
 depends org.apache.hadoop.mapred.HistoryViewer org.apache.hadoop.fs.PathFilter
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.fs.permission.FsPermission
 depends org.apache.hadoop.io.compress.DecompressorStream org.apache.hadoop.io.compress.Decompressor
@@ -97,7 +91,6 @@ depends org.apache.hadoop.fs.s3.MigrationTool org.apache.hadoop.util.ToolRunner
 depends org.apache.hadoop.security.UnixUserGroupInformation org.apache.hadoop.io.Text
 depends org.apache.hadoop.mapred.lib.InputSampler org.apache.hadoop.mapred.InputFormat
 depends org.apache.hadoop.metrics.file.FileContext org.apache.hadoop.metrics.spi.OutputRecord
-depends org.apache.hadoop.hdfs.server.namenode.UpgradeManagerNamenode org.apache.hadoop.hdfs.protocol.FSConstants.UpgradeAction
 depends org.apache.hadoop.mapred.JobConf org.apache.hadoop.mapred.lib.HashPartitioner
 depends org.apache.hadoop.mapred.lib.HashPartitioner org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.io.DefaultStringifier org.apache.hadoop.io.serializer.Serializer
@@ -114,9 +107,7 @@ depends org.apache.hadoop.ipc.metrics.RpcMetrics org.apache.hadoop.metrics.util.
 depends org.apache.hadoop.mapred.TaskStatus org.apache.hadoop.io.Writable
 depends org.apache.hadoop.hdfs.server.namenode.FSEditLog org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.hdfs.server.datanode.BlockSender org.apache.hadoop.hdfs.protocol.FSConstants
-depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.common.HdfsConstants.StartupOption
 depends org.apache.hadoop.hdfs.ChecksumDistributedFileSystem org.apache.hadoop.hdfs.protocol.DatanodeInfo
-depends org.apache.hadoop.mapred.EagerTaskInitializationListener org.apache.hadoop.mapred.JobStatusChangeEvent.EventType
 depends org.apache.hadoop.mapred.JobInProgress org.apache.hadoop.net.NetUtils
 depends org.apache.hadoop.hdfs.tools.DFSck org.apache.hadoop.util.Tool
 depends org.apache.hadoop.hdfs.protocol.DatanodeInfo org.apache.hadoop.io.WritableUtils
@@ -142,7 +133,6 @@ depends org.apache.hadoop.hdfs.server.protocol.UpgradeCommand org.apache.hadoop.
 depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.net.ScriptBasedMapping
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorDescriptor org.apache.hadoop.io.Text
 depends org.apache.hadoop.io.compress.LzoCodec org.apache.hadoop.conf.Configuration
-depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.util.DiskChecker.DiskOutOfSpaceException
 depends org.apache.hadoop.mapred.pipes.PipesNonJavaInputFormat org.apache.hadoop.mapred.InputSplit
 depends org.apache.hadoop.mapred.join.CompositeRecordReader org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.pipes.PipesNonJavaInputFormat org.apache.hadoop.io.FloatWritable
@@ -167,7 +157,6 @@ depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.util.IndexedSorter
 depends org.apache.hadoop.hdfs.server.namenode.DfsServlet org.apache.hadoop.hdfs.protocol.ClientProtocol
 depends org.apache.hadoop.mapred.lib.DelegatingInputFormat org.apache.hadoop.mapred.Reporter
 depends org.apache.hadoop.mapred.MergeSorter org.apache.hadoop.io.IntWritable
-depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.JobHistory.Listener
 depends org.apache.hadoop.mapred.join.CompositeInputSplit org.apache.hadoop.io.Text
 depends org.apache.hadoop.mapred.JobQueueInfo org.apache.hadoop.io.Text
 depends org.apache.hadoop.mapred.Task org.apache.hadoop.util.Progressable
@@ -218,7 +207,6 @@ depends org.apache.hadoop.mapred.ID org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.mapred.pipes.PipesMapRunner org.apache.hadoop.mapred.OutputCollector
 depends org.apache.hadoop.fs.FileUtil org.apache.hadoop.util.Shell
 depends org.apache.hadoop.hdfs.server.datanode.UpgradeObjectDatanode org.apache.hadoop.hdfs.protocol.FSConstants
-depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.namenode.BlocksMap.BlockInfo
 depends org.apache.hadoop.io.compress.lzo.LzoDecompressor org.apache.hadoop.io.compress.Decompressor
 depends org.apache.hadoop.fs.kfs.KosmosFileSystem org.apache.hadoop.fs.FSDataOutputStream
 depends org.apache.hadoop.conf.Configuration org.apache.hadoop.io.Writable
@@ -292,7 +280,6 @@ depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.util.VersionInfo
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.fs.Path
 depends org.apache.hadoop.fs.FsShell org.apache.hadoop.io.IOUtils
 depends org.apache.hadoop.mapred.lib.Chain org.apache.hadoop.io.serializer.SerializationFactory
-depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.mapred.SortedRanges.SkipRangeIterator
 depends org.apache.hadoop.hdfs.server.namenode.FileChecksumServlets org.apache.hadoop.ipc.RemoteException
 depends org.apache.hadoop.mapred.MultiFileSplit org.apache.hadoop.fs.BlockLocation
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.io.retry.RetryPolicy
@@ -313,21 +300,16 @@ depends org.apache.hadoop.mapred.IndexRecord org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.mapred.join.JoinRecordReader org.apache.hadoop.io.WritableUtils
 depends org.apache.hadoop.fs.kfs.KFSImpl org.apache.hadoop.fs.FSDataInputStream
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryInputFormat org.apache.hadoop.io.BytesWritable
-depends org.apache.hadoop.hdfs.server.balancer.Balancer org.apache.hadoop.hdfs.protocol.FSConstants.DatanodeReportType
 depends org.apache.hadoop.hdfs.server.common.UpgradeManager org.apache.hadoop.hdfs.server.protocol.UpgradeCommand
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryOutputFormat org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode org.apache.hadoop.hdfs.server.protocol.NamenodeProtocol
 depends org.apache.hadoop.hdfs.server.namenode.DatanodeDescriptor org.apache.hadoop.hdfs.protocol.BlockListAsLongs
 depends org.apache.hadoop.mapred.pipes.BinaryProtocol org.apache.hadoop.io.BytesWritable
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.protocol.DisallowedDatanodeException
-depends org.apache.hadoop.io.MapFile org.apache.hadoop.io.SequenceFile.CompressionType
 depends org.apache.hadoop.mapred.JobConf org.apache.hadoop.conf.Configuration
-depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.mapred.Counters.Group
 depends org.apache.hadoop.hdfs.protocol.ClientProtocol org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.mapred.pipes.PipesPartitioner org.apache.hadoop.io.WritableComparable
-depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.mapred.Merger.Segment
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.namenode.NameNode
-depends org.apache.hadoop.hdfs.server.datanode.FSDatasetInterface org.apache.hadoop.hdfs.server.datanode.metrics.FSDatasetMBean
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.common.UpgradeStatusReport
 depends org.apache.hadoop.record.compiler.ant.RccTask org.apache.hadoop.record.compiler.generated.Rcc
 depends org.apache.hadoop.fs.FsUrlConnection org.apache.hadoop.conf.Configuration
@@ -384,7 +366,6 @@ depends org.apache.hadoop.metrics.ganglia.GangliaContext org.apache.hadoop.metri
 depends org.apache.hadoop.mapred.FileInputFormat org.apache.hadoop.fs.PathFilter
 depends org.apache.hadoop.hdfs.server.datanode.DataBlockScanner org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.fs.InMemoryFileSystem org.apache.hadoop.util.Progressable
-depends org.apache.hadoop.hdfs.server.namenode.FSDirectory org.apache.hadoop.hdfs.server.namenode.BlocksMap.BlockInfo
 depends org.apache.hadoop.mapred.pipes.BinaryProtocol org.apache.hadoop.mapred.InputSplit
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.http.HttpServer
 depends org.apache.hadoop.mapred.join.CompositeRecordReader org.apache.hadoop.io.Writable
@@ -393,7 +374,6 @@ depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.SequenceFile
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.io.compress.GzipCodec
 depends org.apache.hadoop.mapred.join.ComposableRecordReader org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.util.DataChecksum
-depends org.apache.hadoop.util.ProcfsBasedProcessTree org.apache.hadoop.util.Shell.ExitCodeException
 depends org.apache.hadoop.mapred.JobInProgress org.apache.hadoop.fs.LocalFileSystem
 depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.net.NetUtils
 depends org.apache.hadoop.mapred.pipes.Application org.apache.hadoop.mapred.OutputCollector
@@ -420,7 +400,6 @@ depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.hdf
 depends org.apache.hadoop.record.meta.VectorTypeID org.apache.hadoop.record.RecordOutput
 depends org.apache.hadoop.io.compress.DefaultCodec org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorMapper org.apache.hadoop.mapred.OutputCollector
-depends org.apache.hadoop.hdfs.server.datanode.DatanodeBlockInfo org.apache.hadoop.fs.FileUtil.HardLink
 depends org.apache.hadoop.hdfs.HftpFileSystem org.apache.hadoop.fs.Path
 depends org.apache.hadoop.io.serializer.SerializationFactory org.apache.hadoop.conf.Configured
 depends org.apache.hadoop.mapred.Counters org.apache.hadoop.io.WritableUtils
@@ -439,13 +418,10 @@ depends org.apache.hadoop.hdfs.server.namenode.NamenodeFsck org.apache.hadoop.fs
 depends org.apache.hadoop.hdfs.server.namenode.FSDirectory org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryInputFormat org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.hdfs.server.namenode.StringBytesWritable org.apache.hadoop.io.BytesWritable
-depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.JobStatusChangeEvent.EventType
 depends org.apache.hadoop.mapred.HistoryViewer org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.pipes.BinaryProtocol org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode org.apache.hadoop.util.Daemon
 depends org.apache.hadoop.hdfs.tools.DFSAdmin org.apache.hadoop.fs.FileSystem
-depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.util.DiskChecker.DiskErrorException
-depends org.apache.hadoop.hdfs.server.namenode.FSEditLog org.apache.hadoop.hdfs.server.common.Storage.StorageDirectory
 depends org.apache.hadoop.io.compress.CompressionCodecFactory org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.server.balancer.Balancer org.apache.hadoop.security.UserGroupInformation
 depends org.apache.hadoop.hdfs.server.namenode.NamenodeFsck org.apache.hadoop.hdfs.protocol.DatanodeInfo
@@ -505,7 +481,6 @@ depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.s
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.common.UpgradeManager
 depends org.apache.hadoop.ipc.metrics.RpcMetrics org.apache.hadoop.metrics.MetricsUtil
 depends org.apache.hadoop.mapred.MapFileOutputFormat org.apache.hadoop.fs.FileUtil
-depends org.apache.hadoop.hdfs.server.protocol.BlockCommand org.apache.hadoop.hdfs.server.namenode.DatanodeDescriptor.BlockTargetPair
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.protocol.BlockCommand
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.protocol.DatanodeCommand
 depends org.apache.hadoop.hdfs.server.datanode.metrics.DataNodeMetrics org.apache.hadoop.metrics.util.MetricsTimeVaryingRate
@@ -536,7 +511,6 @@ depends org.apache.hadoop.mapred.JobShell org.apache.hadoop.util.RunJar
 depends org.apache.hadoop.hdfs.server.namenode.INodeFileUnderConstruction org.apache.hadoop.fs.permission.PermissionStatus
 depends org.apache.hadoop.fs.FileSystem org.apache.hadoop.hdfs.DistributedFileSystem
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.hdfs.server.common.UpgradeStatusReport
-depends org.apache.hadoop.mapred.JvmManager org.apache.hadoop.util.Shell.ShellCommandExecutor
 depends org.apache.hadoop.hdfs.protocol.DatanodeInfo org.apache.hadoop.io.Text
 depends org.apache.hadoop.mapred.join.CompositeRecordReader org.apache.hadoop.conf.Configurable
 depends org.apache.hadoop.mapred.lib.InputSampler org.apache.hadoop.fs.Path
@@ -593,7 +567,6 @@ depends org.apache.hadoop.mapred.join.Parser org.apache.hadoop.mapred.FileInputF
 depends org.apache.hadoop.hdfs.server.protocol.NamespaceInfo org.apache.hadoop.hdfs.server.common.StorageInfo
 depends org.apache.hadoop.io.AbstractMapWritable org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.FileInputFormat org.apache.hadoop.util.StringUtils
-depends org.apache.hadoop.mapred.TaskInProgress org.apache.hadoop.mapred.SortedRanges.Range
 depends org.apache.hadoop.fs.InMemoryFileSystem org.apache.hadoop.fs.permission.FsPermission
 depends org.apache.hadoop.net.NetUtils org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.SequenceFileOutputFormat org.apache.hadoop.fs.FileSystem
@@ -601,9 +574,7 @@ depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.ipc.RPC
 depends org.apache.hadoop.mapred.MapFileOutputFormat org.apache.hadoop.util.Progressable
 depends org.apache.hadoop.fs.Path org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.conf.Configuration org.apache.hadoop.fs.Path
-depends org.apache.hadoop.mapred.Task org.apache.hadoop.mapred.IFile.Writer
 depends org.apache.hadoop.mapred.MapRunner org.apache.hadoop.util.ReflectionUtils
-depends org.apache.hadoop.mapred.SequenceFileAsBinaryOutputFormat org.apache.hadoop.io.SequenceFile.ValueBytes
 depends org.apache.hadoop.mapred.lib.db.DBInputFormat org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.record.Utils org.apache.hadoop.io.WritableUtils
 depends org.apache.hadoop.util.LineReader org.apache.hadoop.io.Text
@@ -613,7 +584,6 @@ depends org.apache.hadoop.mapred.lib.TaggedInputSplit org.apache.hadoop.util.Ref
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.protocol.LocatedBlock
 depends org.apache.hadoop.mapred.FileInputFormat org.apache.hadoop.fs.BlockLocation
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.metrics.MetricsContext
-depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.io.SequenceFile.CompressionType
 depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.hdfs.server.common.HdfsConstants
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.fs.ChecksumFileSystem
@@ -646,7 +616,6 @@ depends org.apache.hadoop.metrics.ContextFactory org.apache.hadoop.metrics.spi.A
 depends org.apache.hadoop.ipc.metrics.RpcMetrics org.apache.hadoop.metrics.Updater
 depends org.apache.hadoop.mapred.LineRecordReader org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.common.Storage org.apache.hadoop.util.VersionInfo
-depends org.apache.hadoop.metrics.spi.OutputRecord org.apache.hadoop.metrics.spi.AbstractMetricsContext.TagMap
 depends org.apache.hadoop.io.compress.zlib.ZlibCompressor org.apache.hadoop.io.compress.Compressor
 depends org.apache.hadoop.mapred.pipes.Submitter org.apache.hadoop.mapred.FileInputFormat
 depends org.apache.hadoop.fs.s3.S3FileSystem org.apache.hadoop.util.Progressable
@@ -702,7 +671,6 @@ depends org.apache.hadoop.mapred.HistoryViewer org.apache.hadoop.conf.Configurat
 depends org.apache.hadoop.hdfs.server.namenode.FSDirectory org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.fs.kfs.KFSInputStream org.apache.hadoop.fs.FSInputStream
 depends org.apache.hadoop.mapred.lib.TotalOrderPartitioner org.apache.hadoop.io.NullWritable
-depends org.apache.hadoop.mapred.Mapper org.apache.hadoop.io.Closeable
 depends org.apache.hadoop.hdfs.server.namenode.NameNode org.apache.hadoop.hdfs.server.protocol.DatanodeCommand
 depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.fs.permission.FsPermission
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.ipc.RPC
@@ -710,7 +678,6 @@ depends org.apache.hadoop.io.compress.CompressionCodecFactory org.apache.hadoop.
 depends org.apache.hadoop.mapred.pipes.Submitter org.apache.hadoop.mapred.FileOutputFormat
 depends org.apache.hadoop.metrics.util.MetricsTimeVaryingRate org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.mapred.lib.TaggedInputSplit org.apache.hadoop.mapred.InputFormat
-depends org.apache.hadoop.util.ProcfsBasedProcessTree org.apache.hadoop.util.Shell.ShellCommandExecutor
 depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.io.DataInputBuffer
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.net.NetUtils org.apache.hadoop.ipc.VersionedProtocol
@@ -755,7 +722,6 @@ depends org.apache.hadoop.hdfs.server.datanode.BlockSender org.apache.hadoop.uti
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.fs.permission.PermissionStatus
 depends org.apache.hadoop.hdfs.server.namenode.DatanodeDescriptor org.apache.hadoop.io.WritableUtils
 depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.conf.Configuration
-depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.mapred.Counters.Counter
 depends org.apache.hadoop.hdfs.server.namenode.metrics.NameNodeMetrics org.apache.hadoop.metrics.jvm.JvmMetrics
 depends org.apache.hadoop.mapred.join.StreamBackedIterator org.apache.hadoop.io.Writable
 depends org.apache.hadoop.record.meta.RecordTypeInfo org.apache.hadoop.record.RecordOutput
@@ -796,11 +762,9 @@ depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.pipes.BinaryProtocol org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.mapred.lib.NLineInputFormat org.apache.hadoop.mapred.FileInputFormat
 depends org.apache.hadoop.mapred.lib.TokenCountMapper org.apache.hadoop.mapred.OutputCollector
-depends org.apache.hadoop.hdfs.server.datanode.FSDataset org.apache.hadoop.hdfs.server.datanode.metrics.FSDatasetMBean
 depends org.apache.hadoop.mapred.lib.MultipleSequenceFileOutputFormat org.apache.hadoop.util.Progressable
 depends org.apache.hadoop.fs.s3native.NativeS3FileSystem org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.mapred.pipes.PipesMapRunner org.apache.hadoop.mapred.JobConf
-depends org.apache.hadoop.hdfs.server.namenode.INodeFile org.apache.hadoop.hdfs.server.namenode.BlocksMap.BlockInfo
 depends org.apache.hadoop.hdfs.server.namenode.JspHelper org.apache.hadoop.hdfs.server.common.UpgradeStatusReport
 depends org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.protocol.ClientDatanodeProtocol
@@ -820,7 +784,6 @@ depends org.apache.hadoop.mapred.lib.NLineInputFormat org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.server.namenode.DfsServlet org.apache.hadoop.hdfs.DFSClient
 depends org.apache.hadoop.mapred.SequenceFileAsTextRecordReader org.apache.hadoop.io.Writable
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.DFSUtil
-depends org.apache.hadoop.mapred.BasicTypeSorterBase org.apache.hadoop.io.SequenceFile.ValueBytes
 depends org.apache.hadoop.hdfs.server.common.Storage org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.util.Progressable
 depends org.apache.hadoop.hdfs.server.namenode.NameNode org.apache.hadoop.net.NetworkTopology
@@ -834,7 +797,6 @@ depends org.apache.hadoop.fs.FsShell org.apache.hadoop.util.ReflectionUtils
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorJobBase org.apache.hadoop.mapred.Mapper
 depends org.apache.hadoop.mapred.join.MultiFilterRecordReader org.apache.hadoop.util.ReflectionUtils
 depends org.apache.hadoop.mapred.pipes.PipesMapRunner org.apache.hadoop.io.Writable
-depends org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner org.apache.hadoop.mapred.lib.KeyFieldHelper.KeyDescription
 depends org.apache.hadoop.mapred.lib.TotalOrderPartitioner org.apache.hadoop.io.BinaryComparable
 depends org.apache.hadoop.hdfs.protocol.ClientProtocol org.apache.hadoop.fs.ContentSummary
 depends org.apache.hadoop.mapred.MapOutputFile org.apache.hadoop.fs.Path
@@ -870,13 +832,11 @@ depends org.apache.hadoop.metrics.spi.MetricsRecordImpl org.apache.hadoop.metric
 depends org.apache.hadoop.mapred.InterTrackerProtocol org.apache.hadoop.ipc.VersionedProtocol
 depends org.apache.hadoop.hdfs.HftpFileSystem org.apache.hadoop.hdfs.server.namenode.ListPathsServlet
 depends org.apache.hadoop.mapred.lib.TaggedInputSplit org.apache.hadoop.conf.Configuration
-depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.namenode.LeaseManager.Lease
 depends org.apache.hadoop.hdfs.server.namenode.DatanodeDescriptor org.apache.hadoop.hdfs.protocol.DatanodeInfo
 depends org.apache.hadoop.hdfs.server.namenode.FSEditLog org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.fs.s3.Jets3tFileSystemStore org.apache.hadoop.fs.Path
 depends org.apache.hadoop.ipc.Server org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.mapred.KeyValueLineRecordReader org.apache.hadoop.io.Text
-depends org.apache.hadoop.hdfs.server.datanode.DataStorage org.apache.hadoop.hdfs.server.common.HdfsConstants.StartupOption
 depends org.apache.hadoop.conf.Configuration org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.mapred.OutputLogFilter org.apache.hadoop.fs.PathFilter
 depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.util.ToolRunner
@@ -902,7 +862,6 @@ depends org.apache.hadoop.util.GenericOptionsParser org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.server.namenode.UnderReplicatedBlocks org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.mapred.pipes.OutputHandler org.apache.hadoop.mapred.RecordReader
 depends org.apache.hadoop.hdfs.HftpFileSystem org.apache.hadoop.fs.FileStatus
-depends org.apache.hadoop.hdfs.server.namenode.NameNode org.apache.hadoop.hdfs.server.namenode.FSNamesystem.CompleteFileStatus
 depends org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.fs.LocalDirAllocator org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.common.InconsistentFSStateException
@@ -923,22 +882,18 @@ depends org.apache.hadoop.mapred.lib.InverseMapper org.apache.hadoop.mapred.Outp
 depends org.apache.hadoop.fs.ftp.FTPFileSystem org.apache.hadoop.fs.permission.FsAction
 depends org.apache.hadoop.mapred.pipes.PipesNonJavaInputFormat org.apache.hadoop.mapred.Reporter
 depends org.apache.hadoop.io.retry.RetryInvocationHandler org.apache.hadoop.util.StringUtils
-depends org.apache.hadoop.hdfs.server.namenode.JspHelper org.apache.hadoop.hdfs.protocol.FSConstants.UpgradeAction
 depends org.apache.hadoop.util.LineReader org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.lib.Chain org.apache.hadoop.io.Stringifier
 depends org.apache.hadoop.mapred.IFileInputStream org.apache.hadoop.fs.ChecksumException
 depends org.apache.hadoop.io.GenericWritable org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.TaskMemoryManagerThread org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.server.namenode.NamenodeFsck org.apache.hadoop.net.NetUtils
-depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.mapred.IFile.Reader
-depends org.apache.hadoop.hdfs.tools.DFSAdmin org.apache.hadoop.hdfs.protocol.FSConstants.DatanodeReportType
 depends org.apache.hadoop.io.compress.BZip2Codec org.apache.hadoop.io.compress.bzip2.CBZip2OutputStream
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.WritableFactories
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.KeyValueTextInputFormat org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.server.datanode.DataXceiverServer org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.io.compress.DefaultCodec
-depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.mapred.Merger.Segment
 depends org.apache.hadoop.mapred.Task org.apache.hadoop.conf.Configurable
 depends org.apache.hadoop.record.Record org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.mapred.Task org.apache.hadoop.fs.Path
@@ -960,7 +915,6 @@ depends org.apache.hadoop.ipc.Server org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.hdfs.server.namenode.TransferFsImage org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorBaseDescriptor org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.mapred.join.JoinRecordReader org.apache.hadoop.mapred.JobConf
-depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.mapred.SortedRanges.SkipRangeIterator
 depends org.apache.hadoop.fs.kfs.KosmosFileSystem org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.JvmTask org.apache.hadoop.io.Writable
 depends org.apache.hadoop.hdfs.server.namenode.INodeFile org.apache.hadoop.fs.permission.FsPermission
@@ -989,7 +943,6 @@ depends org.apache.hadoop.fs.shell.Count org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.server.protocol.BlocksWithLocations org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorMapper org.apache.hadoop.io.Text
 depends org.apache.hadoop.hdfs.HftpFileSystem org.apache.hadoop.fs.FSDataOutputStream
-depends org.apache.hadoop.mapred.Merger org.apache.hadoop.mapred.IFile.Reader
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryOutputFormat org.apache.hadoop.io.BytesWritable
 depends org.apache.hadoop.mapred.SequenceFileInputFormat org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.protocol.DatanodeRegistration org.apache.hadoop.io.WritableFactories
@@ -1010,7 +963,6 @@ depends org.apache.hadoop.fs.s3native.NativeS3FileSystem org.apache.hadoop.fs.FS
 depends org.apache.hadoop.hdfs.server.namenode.DatanodeDescriptor org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.mapred.lib.MultipleOutputs org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.io.compress.BZip2Codec org.apache.hadoop.io.compress.bzip2.CBZip2InputStream
-depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.namenode.BlocksMap.BlockInfo
 depends org.apache.hadoop.util.Tool org.apache.hadoop.conf.Configurable
 depends org.apache.hadoop.fs.ftp.FTPFileSystem org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.mapred.IsolationRunner org.apache.hadoop.io.Writable
@@ -1021,7 +973,6 @@ depends org.apache.hadoop.mapred.Counters org.apache.hadoop.io.Writable
 depends org.apache.hadoop.mapred.TaskTrackerAction org.apache.hadoop.io.Writable
 depends org.apache.hadoop.fs.s3native.NativeS3FileSystem org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.fs.ContentSummary org.apache.hadoop.io.Writable
-depends org.apache.hadoop.mapred.ReduceTaskRunner org.apache.hadoop.mapred.TaskTracker.TaskInProgress
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.net.NetUtils
 depends org.apache.hadoop.fs.FsShell org.apache.hadoop.util.Tool
 depends org.apache.hadoop.hdfs.server.namenode.DatanodeDescriptor org.apache.hadoop.hdfs.server.protocol.BlockCommand
@@ -1043,7 +994,6 @@ depends org.apache.hadoop.hdfs.server.namenode.NamenodeFsck org.apache.hadoop.hd
 depends org.apache.hadoop.fs.s3.S3FileSystem org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.fs.FsShell org.apache.hadoop.fs.shell.Count
 depends org.apache.hadoop.mapred.lib.TokenCountMapper org.apache.hadoop.mapred.Mapper
-depends org.apache.hadoop.mapred.Reducer org.apache.hadoop.io.Closeable
 depends org.apache.hadoop.mapred.KeyValueLineRecordReader org.apache.hadoop.io.LongWritable
 depends org.apache.hadoop.mapred.join.OverrideRecordReader org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.mapred.lib.NLineInputFormat org.apache.hadoop.mapred.Reporter
@@ -1059,7 +1009,6 @@ depends org.apache.hadoop.mapred.MapFileOutputFormat org.apache.hadoop.io.compre
 depends org.apache.hadoop.metrics.file.FileContext org.apache.hadoop.metrics.ContextFactory
 depends org.apache.hadoop.mapred.InputFormat org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.mapred.lib.LongSumReducer org.apache.hadoop.mapred.OutputCollector
-depends org.apache.hadoop.hdfs.server.datanode.FSDatasetInterface org.apache.hadoop.util.DiskChecker.DiskErrorException
 depends org.apache.hadoop.hdfs.server.namenode.CheckpointSignature org.apache.hadoop.hdfs.server.common.StorageInfo
 depends org.apache.hadoop.mapred.TaskMemoryManagerThread org.apache.hadoop.mapred.TaskTracker
 depends org.apache.hadoop.hdfs.server.datanode.BlockSender org.apache.hadoop.util.DataChecksum
@@ -1084,7 +1033,6 @@ depends org.apache.hadoop.hdfs.server.datanode.DataXceiverServer org.apache.hado
 depends org.apache.hadoop.hdfs.server.namenode.UpgradeObjectNamenode org.apache.hadoop.hdfs.server.common.HdfsConstants
 depends org.apache.hadoop.mapred.pipes.PipesReducer org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.hdfs.server.namenode.FileDataServlet org.apache.hadoop.hdfs.protocol.DatanodeInfo
-depends org.apache.hadoop.hdfs.ChecksumDistributedFileSystem org.apache.hadoop.hdfs.protocol.FSConstants.UpgradeAction
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.hdfs.server.datanode.DataNode
 depends org.apache.hadoop.hdfs.server.datanode.DataStorage org.apache.hadoop.hdfs.server.protocol.NamespaceInfo
 depends org.apache.hadoop.hdfs.protocol.DatanodeInfo org.apache.hadoop.io.WritableFactories
@@ -1098,10 +1046,8 @@ depends org.apache.hadoop.mapred.lib.InputSampler org.apache.hadoop.mapred.Repor
 depends org.apache.hadoop.mapred.pipes.Application org.apache.hadoop.mapred.RecordReader
 depends org.apache.hadoop.mapred.IFile org.apache.hadoop.io.compress.CompressionCodec
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryInputFormat org.apache.hadoop.io.SequenceFile
-depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.hdfs.DistributedFileSystem.DiskStatus
 depends org.apache.hadoop.mapred.SequenceFileInputFormat org.apache.hadoop.io.SequenceFile
 depends org.apache.hadoop.mapred.lib.MultipleOutputFormat org.apache.hadoop.mapred.JobConf
-depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.mapred.TaskTracker.TaskInProgress
 depends org.apache.hadoop.hdfs.tools.DFSck org.apache.hadoop.conf.Configured
 depends org.apache.hadoop.mapred.BasicTypeSorterBase org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.protocol.DatanodeInfo
@@ -1109,8 +1055,6 @@ depends org.apache.hadoop.fs.kfs.KFSOutputStream org.apache.hadoop.util.Progress
 depends org.apache.hadoop.mapred.lib.TotalOrderPartitioner org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.fs.HarFileSystem org.apache.hadoop.util.Progressable
 depends org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode org.apache.hadoop.net.NetUtils
-depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.common.HdfsConstants.StartupOption
-depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.namenode.metrics.FSNamesystemMBean
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.protocol.InterDatanodeProtocol
 depends org.apache.hadoop.record.meta.TypeID org.apache.hadoop.record.RecordOutput
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.protocol.DatanodeID
@@ -1125,8 +1069,6 @@ depends org.apache.hadoop.mapred.TaskAttemptContext org.apache.hadoop.util.Progr
 depends org.apache.hadoop.hdfs.server.namenode.INodeDirectoryWithQuota org.apache.hadoop.fs.permission.PermissionStatus
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryOutputFormat org.apache.hadoop.io.compress.CompressionCodec
 depends org.apache.hadoop.hdfs.server.datanode.metrics.DataNodeMetrics org.apache.hadoop.metrics.util.MetricsLongValue
-depends org.apache.hadoop.hdfs.server.datanode.DatanodeBlockInfo org.apache.hadoop.hdfs.server.datanode.FSDataset.FSVolume
-depends org.apache.hadoop.mapred.MapTaskRunner org.apache.hadoop.mapred.TaskTracker.TaskInProgress
 depends org.apache.hadoop.mapred.lib.InputSampler org.apache.hadoop.io.SequenceFile
 depends org.apache.hadoop.mapred.lib.MultithreadedMapRunner org.apache.hadoop.mapred.SkipBadRecords
 depends org.apache.hadoop.util.RunJar org.apache.hadoop.mapred.JobClient
@@ -1134,17 +1076,14 @@ depends org.apache.hadoop.mapred.CompletedJobStatusStore org.apache.hadoop.conf.
 depends org.apache.hadoop.hdfs.server.protocol.InterDatanodeProtocol org.apache.hadoop.ipc.VersionedProtocol
 depends org.apache.hadoop.mapred.lib.NLineInputFormat org.apache.hadoop.util.LineReader
 depends org.apache.hadoop.hdfs.server.namenode.NameNode org.apache.hadoop.fs.ContentSummary
-depends org.apache.hadoop.hdfs.server.common.Storage org.apache.hadoop.hdfs.server.common.HdfsConstants.StartupOption
 depends org.apache.hadoop.hdfs.server.datanode.DataStorage org.apache.hadoop.hdfs.server.common.InconsistentFSStateException
 depends org.apache.hadoop.mapred.JSPUtil org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryInputFormat org.apache.hadoop.mapred.Reporter
-depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.mapred.IFile.Writer
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.Writable
 depends org.apache.hadoop.io.WritableUtils org.apache.hadoop.util.ReflectionUtils
 depends org.apache.hadoop.mapred.pipes.PipesPartitioner org.apache.hadoop.mapred.Partitioner
 depends org.apache.hadoop.hdfs.server.datanode.DataBlockScanner org.apache.hadoop.hdfs.protocol.DatanodeInfo
 depends org.apache.hadoop.hdfs.server.datanode.UpgradeObjectDatanode org.apache.hadoop.hdfs.server.common.HdfsConstants
-depends org.apache.hadoop.fs.s3.Jets3tFileSystemStore org.apache.hadoop.fs.s3.INode.FileType
 depends org.apache.hadoop.ipc.Server org.apache.hadoop.security.UserGroupInformation
 depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.hdfs.protocol.LocatedBlock
 depends org.apache.hadoop.fs.kfs.KFSImpl org.apache.hadoop.fs.FSDataOutputStream
@@ -1186,11 +1125,9 @@ depends org.apache.hadoop.mapred.lib.NLineInputFormat org.apache.hadoop.fs.FileS
 depends org.apache.hadoop.hdfs.server.protocol.DatanodeRegistration org.apache.hadoop.io.WritableFactory
 depends org.apache.hadoop.mapred.lib.TaggedInputSplit org.apache.hadoop.io.Text
 depends org.apache.hadoop.fs.FileUtil org.apache.hadoop.io.IOUtils
-depends org.apache.hadoop.hdfs.tools.DFSAdmin org.apache.hadoop.hdfs.protocol.FSConstants.UpgradeAction
 depends org.apache.hadoop.mapred.JobConf org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.util.ReflectionUtils
 depends org.apache.hadoop.mapred.LineRecordReader org.apache.hadoop.fs.FSDataInputStream
-depends org.apache.hadoop.mapred.SequenceFileOutputFormat org.apache.hadoop.io.SequenceFile.CompressionType
 depends org.apache.hadoop.hdfs.server.datanode.FSDataset org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.mapred.MapFileOutputFormat org.apache.hadoop.io.Writable
 depends org.apache.hadoop.hdfs.server.protocol.DatanodeRegistration org.apache.hadoop.io.Writable
@@ -1199,8 +1136,6 @@ depends org.apache.hadoop.fs.FsShell org.apache.hadoop.util.ToolRunner
 depends org.apache.hadoop.ipc.Client org.apache.hadoop.util.ReflectionUtils
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.hdfs.server.namenode.NameNode
 depends org.apache.hadoop.fs.FsShell org.apache.hadoop.ipc.RemoteException
-depends org.apache.hadoop.hdfs.server.namenode.DatanodeDescriptor org.apache.hadoop.hdfs.server.namenode.BlocksMap.BlockInfo
-depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.namenode.FSEditLog.EditLogFileInputStream
 depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.mapred.FileSplit org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.ipc.Server
@@ -1208,7 +1143,6 @@ depends org.apache.hadoop.hdfs.server.namenode.INodeFile org.apache.hadoop.fs.pe
 depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.security.UnixUserGroupInformation
 depends org.apache.hadoop.io.compress.zlib.BuiltInZlibInflater org.apache.hadoop.io.compress.Decompressor
 depends org.apache.hadoop.mapred.join.WrappedRecordReader org.apache.hadoop.mapred.RecordReader
-depends org.apache.hadoop.mapred.JobInProgress org.apache.hadoop.mapred.JobHistory.Values
 depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.ipc.Client org.apache.hadoop.security.UserGroupInformation
 depends org.apache.hadoop.io.compress.GzipCodec org.apache.hadoop.io.compress.DefaultCodec
@@ -1216,7 +1150,6 @@ depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.compress.Defaul
 depends org.apache.hadoop.hdfs.tools.DFSAdmin org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.io.compress.zlib.ZlibFactory org.apache.hadoop.io.compress.Decompressor
 depends org.apache.hadoop.hdfs.server.datanode.FSDataset org.apache.hadoop.hdfs.protocol.FSConstants
-depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.ipc.RPC.VersionMismatch
 depends org.apache.hadoop.mapred.lib.RegexMapper org.apache.hadoop.mapred.Reporter
 depends org.apache.hadoop.fs.FilterFileSystem org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.OutputLogFilter org.apache.hadoop.fs.Path
@@ -1225,7 +1158,6 @@ depends org.apache.hadoop.mapred.lib.IdentityMapper org.apache.hadoop.mapred.Map
 depends org.apache.hadoop.mapred.LocalJobRunner org.apache.hadoop.mapred.JobTrackerMetricsInst
 depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.io.IOUtils
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.io.IOUtils
-depends org.apache.hadoop.hdfs.server.namenode.FSDirectory org.apache.hadoop.hdfs.server.common.HdfsConstants.StartupOption
 depends org.apache.hadoop.mapred.lib.DelegatingInputFormat org.apache.hadoop.mapred.InputFormat
 depends org.apache.hadoop.mapred.KeyValueTextInputFormat org.apache.hadoop.io.compress.CompressionCodecFactory
 depends org.apache.hadoop.hdfs.server.namenode.FSDirectory org.apache.hadoop.metrics.MetricsContext
@@ -1239,10 +1171,8 @@ depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hd
 depends org.apache.hadoop.mapred.MapFileOutputFormat org.apache.hadoop.util.ReflectionUtils
 depends org.apache.hadoop.hdfs.server.namenode.FileChecksumServlets org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.metrics.util.MetricsTimeVaryingInt org.apache.hadoop.util.StringUtils
-depends org.apache.hadoop.mapred.Reporter org.apache.hadoop.mapred.Counters.Counter
 depends org.apache.hadoop.mapred.QueueManager org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.StatusHttpServer org.apache.hadoop.conf.Configuration
-depends org.apache.hadoop.mapred.JobQueueJobInProgressListener org.apache.hadoop.mapred.JobStatusChangeEvent.EventType
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.common.Storage
 depends org.apache.hadoop.ipc.Client org.apache.hadoop.io.Writable
 depends org.apache.hadoop.io.DefaultStringifier org.apache.hadoop.conf.Configuration
@@ -1252,8 +1182,6 @@ depends org.apache.hadoop.hdfs.server.namenode.NamenodeFsck org.apache.hadoop.hd
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.hdfs.server.namenode.NotReplicatedYetException
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorJob org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.SkipBadRecords org.apache.hadoop.conf.Configuration
-depends org.apache.hadoop.hdfs.server.namenode.FSEditLog org.apache.hadoop.hdfs.server.namenode.FSImage.NameNodeDirType
-depends org.apache.hadoop.mapred.JvmManager org.apache.hadoop.mapred.TaskTracker.TaskInProgress
 depends org.apache.hadoop.mapred.pipes.PipesMapRunner org.apache.hadoop.mapred.RecordReader
 depends org.apache.hadoop.mapred.Task org.apache.hadoop.io.serializer.Deserializer
 depends org.apache.hadoop.mapred.lib.TokenCountMapper org.apache.hadoop.mapred.Reporter
@@ -1278,14 +1206,12 @@ depends org.apache.hadoop.hdfs.server.protocol.NamespaceInfo org.apache.hadoop.h
 depends org.apache.hadoop.mapred.lib.db.DBOutputFormat org.apache.hadoop.mapred.Reporter
 depends org.apache.hadoop.io.compress.zlib.ZlibFactory org.apache.hadoop.io.compress.Compressor
 depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.io.MD5Hash
-depends org.apache.hadoop.hdfs.tools.DFSAdmin org.apache.hadoop.hdfs.DistributedFileSystem.DiskStatus
 depends org.apache.hadoop.fs.kfs.KFSImpl org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.hdfs.server.namenode.LeaseManager org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.hdfs.server.common.IncorrectVersionException org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.mapred.join.InnerJoinRecordReader org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.fs.s3native.NativeS3FileSystem org.apache.hadoop.io.retry.RetryPolicies
-depends org.apache.hadoop.mapred.Merger org.apache.hadoop.mapred.IFile.Writer
 depends org.apache.hadoop.mapred.Counters org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.fs.s3.S3FileSystem org.apache.hadoop.io.retry.RetryPolicies
@@ -1307,10 +1233,8 @@ depends org.apache.hadoop.mapred.TaskStatus org.apache.hadoop.io.WritableUtils
 depends org.apache.hadoop.hdfs.protocol.DatanodeInfo org.apache.hadoop.fs.FsShell
 depends org.apache.hadoop.mapred.lib.db.DBInputFormat org.apache.hadoop.mapred.Reporter
 depends org.apache.hadoop.fs.FileStatus org.apache.hadoop.io.Writable
-depends org.apache.hadoop.hdfs.server.datanode.FSDataset org.apache.hadoop.util.DiskChecker.DiskErrorException
 depends org.apache.hadoop.mapred.pipes.BinaryProtocol org.apache.hadoop.io.Text
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.protocol.DatanodeProtocol
-depends org.apache.hadoop.hdfs.server.namenode.NameNode org.apache.hadoop.hdfs.server.common.HdfsConstants.StartupOption
 depends org.apache.hadoop.mapred.join.CompositeInputFormat org.apache.hadoop.mapred.InputSplit
 depends org.apache.hadoop.hdfs.server.namenode.NamenodeFsck org.apache.hadoop.fs.permission.PermissionStatus
 depends org.apache.hadoop.ipc.Client org.apache.hadoop.net.NetUtils
@@ -1384,8 +1308,6 @@ depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorJob org.apache.had
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.compress.CodecPool
 depends org.apache.hadoop.hdfs.server.namenode.ReplicationTargetChooser org.apache.hadoop.hdfs.protocol.LocatedBlock
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.compress.Decompressor
-depends org.apache.hadoop.net.ScriptBasedMapping org.apache.hadoop.util.Shell.ShellCommandExecutor
-depends org.apache.hadoop.hdfs.server.datanode.BlockReceiver org.apache.hadoop.hdfs.protocol.DataTransferProtocol
 depends org.apache.hadoop.mapred.TaskTrackerMetricsInst org.apache.hadoop.metrics.Updater
 depends org.apache.hadoop.fs.s3native.NativeS3FileSystem org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.JobTrackerMetricsInst org.apache.hadoop.metrics.Updater
@@ -1411,7 +1333,6 @@ depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.conf.Conf
 depends org.apache.hadoop.hdfs.HftpFileSystem org.apache.hadoop.fs.MD5MD5CRC32FileChecksum
 depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.fs.s3.S3FileSystem org.apache.hadoop.fs.Path
-depends org.apache.hadoop.metrics.spi.OutputRecord org.apache.hadoop.metrics.spi.AbstractMetricsContext.MetricMap
 depends org.apache.hadoop.fs.ftp.FTPInputStream org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.mapred.JobConf org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.io.GenericWritable org.apache.hadoop.conf.Configurable
@@ -1462,7 +1383,6 @@ depends org.apache.hadoop.mapred.pipes.OutputHandler org.apache.hadoop.mapred.Co
 depends org.apache.hadoop.fs.kfs.KosmosFileSystem org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.fs.MD5MD5CRC32FileChecksum org.apache.hadoop.io.MD5Hash
 depends org.apache.hadoop.mapred.pipes.PipesReducer org.apache.hadoop.io.WritableComparable
-depends org.apache.hadoop.mapred.lib.KeyFieldBasedComparator org.apache.hadoop.mapred.lib.KeyFieldHelper.KeyDescription
 depends org.apache.hadoop.fs.FileSystem org.apache.hadoop.net.NetUtils
 depends org.apache.hadoop.mapred.Task org.apache.hadoop.fs.LocalDirAllocator
 depends org.apache.hadoop.io.compress.LzopCodec org.apache.hadoop.io.DataOutputBuffer
@@ -1472,12 +1392,10 @@ depends org.apache.hadoop.mapred.LocalJobRunner org.apache.hadoop.io.DataOutputB
 depends org.apache.hadoop.fs.s3.FileSystemStore org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.IsolationRunner org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.mapred.LineRecordReader org.apache.hadoop.io.compress.CompressionCodec
-depends org.apache.hadoop.util.VersionInfo org.apache.hadoop.HadoopVersionAnnotation
 depends org.apache.hadoop.fs.FsUrlStreamHandler org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.hdfs.server.protocol.NamenodeProtocol org.apache.hadoop.hdfs.server.namenode.CheckpointSignature
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.util.Progress
 depends org.apache.hadoop.hdfs.server.datanode.BlockReceiver org.apache.hadoop.fs.FSOutputSummer
-depends org.apache.hadoop.hdfs.server.namenode.TransferFsImage org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode.ErrorSimulator
 depends org.apache.hadoop.mapred.pipes.Submitter org.apache.hadoop.util.GenericOptionsParser
 depends org.apache.hadoop.fs.FileUtil org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.hdfs.server.datanode.BlockSender org.apache.hadoop.fs.ChecksumException
@@ -1491,19 +1409,15 @@ depends org.apache.hadoop.mapred.lib.InverseMapper org.apache.hadoop.mapred.MapR
 depends org.apache.hadoop.mapred.SequenceFileOutputFormat org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.metrics.spi.NullContextWithUpdateThread org.apache.hadoop.metrics.ContextFactory
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.fs.permission.FsPermission
-depends org.apache.hadoop.metrics.spi.MetricsRecordImpl org.apache.hadoop.metrics.spi.AbstractMetricsContext.TagMap
 depends org.apache.hadoop.mapred.IFile org.apache.hadoop.fs.FSDataInputStream
 depends org.apache.hadoop.mapred.FileInputFormat org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.tools.DFSck org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.mapred.lib.Chain org.apache.hadoop.io.serializer.Serializer
-depends org.apache.hadoop.hdfs.server.datanode.DataStorage org.apache.hadoop.hdfs.server.common.HdfsConstants.NodeType
 depends org.apache.hadoop.mapred.lib.MultipleOutputs org.apache.hadoop.util.Progressable
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.io.serializer.Deserializer
 depends org.apache.hadoop.net.NetUtils org.apache.hadoop.ipc.Server
-depends org.apache.hadoop.mapred.MapReduceBase org.apache.hadoop.io.Closeable
 depends org.apache.hadoop.fs.ftp.FTPFileSystem org.apache.hadoop.util.Progressable
 depends org.apache.hadoop.fs.DU org.apache.hadoop.util.Shell
-depends org.apache.hadoop.mapred.SequenceFileAsBinaryOutputFormat org.apache.hadoop.io.SequenceFile.CompressionType
 depends org.apache.hadoop.mapred.TaskTrackerMetricsInst org.apache.hadoop.metrics.MetricsUtil
 depends org.apache.hadoop.fs.DF org.apache.hadoop.util.Shell
 depends org.apache.hadoop.hdfs.server.namenode.UpgradeObjectNamenode org.apache.hadoop.hdfs.server.common.UpgradeObject
@@ -1513,7 +1427,6 @@ depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.me
 depends org.apache.hadoop.mapred.join.ArrayListBackedIterator org.apache.hadoop.io.WritableUtils
 depends org.apache.hadoop.mapred.lib.InputSampler org.apache.hadoop.util.Tool
 depends org.apache.hadoop.mapred.join.OverrideRecordReader org.apache.hadoop.io.Writable
-depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.hdfs.server.protocol.BlocksWithLocations.BlockWithLocations
 depends org.apache.hadoop.util.MergeSort org.apache.hadoop.io.IntWritable
 depends org.apache.hadoop.mapred.BasicTypeSorterBase org.apache.hadoop.util.Progress
 depends org.apache.hadoop.mapred.pipes.Submitter org.apache.hadoop.mapred.OutputFormat
@@ -1525,8 +1438,6 @@ depends org.apache.hadoop.mapred.join.WrappedRecordReader org.apache.hadoop.io.W
 depends org.apache.hadoop.fs.kfs.KFSImpl org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.util.GenericOptionsParser org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.hdfs.server.namenode.NameNode
-depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.hdfs.protocol.FSConstants.UpgradeAction
-depends org.apache.hadoop.hdfs.protocol.ClientProtocol org.apache.hadoop.hdfs.protocol.FSConstants.UpgradeAction
 depends org.apache.hadoop.mapred.FileOutputCommitter org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.namenode.NameNode org.apache.hadoop.hdfs.server.common.IncorrectVersionException
 depends org.apache.hadoop.fs.s3native.Jets3tNativeFileSystemStore org.apache.hadoop.conf.Configuration
@@ -1570,12 +1481,10 @@ depends org.apache.hadoop.metrics.util.MetricsLongValue org.apache.hadoop.metric
 depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.hdfs.server.namenode.INode org.apache.hadoop.fs.ContentSummary
 depends org.apache.hadoop.hdfs.tools.DFSAdmin org.apache.hadoop.ipc.RPC
-depends org.apache.hadoop.hdfs.server.common.UpgradeObject org.apache.hadoop.hdfs.server.common.UpgradeObjectCollection.UOSignature
 depends org.apache.hadoop.fs.s3native.NativeS3FileSystem org.apache.hadoop.fs.FSDataInputStream
 depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.io.DataOutputBuffer
 depends org.apache.hadoop.hdfs.server.protocol.DatanodeRegistration org.apache.hadoop.hdfs.server.common.Storage
 depends org.apache.hadoop.mapred.IFile org.apache.hadoop.io.compress.Compressor
-depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.JobHistory.Keys
 depends org.apache.hadoop.hdfs.HftpFileSystem org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.fs.shell.Command org.apache.hadoop.conf.Configured
 depends org.apache.hadoop.mapred.JobConf org.apache.hadoop.util.Tool
@@ -1588,7 +1497,6 @@ depends org.apache.hadoop.hdfs.server.namenode.UpgradeManagerNamenode org.apache
 depends org.apache.hadoop.mapred.lib.TaggedInputSplit org.apache.hadoop.mapred.Mapper
 depends org.apache.hadoop.hdfs.server.protocol.NamenodeProtocol org.apache.hadoop.ipc.VersionedProtocol
 depends org.apache.hadoop.fs.s3.S3FileSystem org.apache.hadoop.fs.FSDataInputStream
-depends org.apache.hadoop.mapred.MapFileOutputFormat org.apache.hadoop.io.SequenceFile.CompressionType
 depends org.apache.hadoop.mapred.HistoryViewer org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.mapred.lib.Chain org.apache.hadoop.io.DataOutputBuffer
 depends org.apache.hadoop.hdfs.server.namenode.FSNamesystem org.apache.hadoop.security.UserGroupInformation
@@ -1597,15 +1505,11 @@ depends org.apache.hadoop.hdfs.server.datanode.UpgradeManagerDatanode org.apache
 depends org.apache.hadoop.mapred.Merger org.apache.hadoop.fs.ChecksumFileSystem
 depends org.apache.hadoop.hdfs.server.namenode.metrics.NameNodeStatistics org.apache.hadoop.hdfs.server.namenode.metrics.NameNodeMetrics
 depends org.apache.hadoop.hdfs.server.namenode.metrics.NameNodeMetrics org.apache.hadoop.hdfs.server.namenode.metrics.NameNodeStatistics
-depends org.apache.hadoop.hdfs.server.namenode.NamenodeFsck org.apache.hadoop.hdfs.protocol.FSConstants.DatanodeReportType
 depends org.apache.hadoop.mapred.Child org.apache.hadoop.metrics.MetricsContext
 depends org.apache.hadoop.fs.s3native.Jets3tNativeFileSystemStore org.apache.hadoop.fs.s3.S3Credentials
 depends org.apache.hadoop.mapred.lib.DelegatingMapper org.apache.hadoop.mapred.Reporter
-depends org.apache.hadoop.mapred.DefaultJobHistoryParser org.apache.hadoop.mapred.JobHistory.Keys
 depends org.apache.hadoop.mapred.lib.TotalOrderPartitioner org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.protocol.DatanodeID
-depends org.apache.hadoop.fs.s3.S3OutputStream org.apache.hadoop.fs.s3.INode.FileType
-depends org.apache.hadoop.hdfs.server.datanode.FSDataset org.apache.hadoop.util.DiskChecker.DiskOutOfSpaceException
 depends org.apache.hadoop.mapred.Reducer org.apache.hadoop.fs.FileSystem
 depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.common.StorageInfo
 depends org.apache.hadoop.mapred.lib.IdentityMapper org.apache.hadoop.mapred.OutputCollector
@@ -1619,7 +1523,6 @@ depends org.apache.hadoop.mapred.IFile org.apache.hadoop.io.compress.Decompresso
 depends org.apache.hadoop.hdfs.server.protocol.BlockCommand org.apache.hadoop.hdfs.protocol.DatanodeInfo
 depends org.apache.hadoop.hdfs.server.protocol.InterDatanodeProtocol org.apache.hadoop.hdfs.protocol.Block
 depends org.apache.hadoop.mapred.IFile org.apache.hadoop.io.compress.CodecPool
-depends org.apache.hadoop.mapred.MergeSorter org.apache.hadoop.io.SequenceFile.Sorter.RawKeyValueIterator
 depends org.apache.hadoop.mapred.lib.FieldSelectionMapReduce org.apache.hadoop.mapred.OutputCollector
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.io.Text
 depends org.apache.hadoop.hdfs.DFSUtil org.apache.hadoop.fs.Path
@@ -1641,7 +1544,6 @@ depends org.apache.hadoop.mapred.join.CompositeInputSplit org.apache.hadoop.util
 depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.ipc.RemoteException
 depends org.apache.hadoop.mapred.IFile org.apache.hadoop.io.DataInputBuffer
 depends org.apache.hadoop.hdfs.server.datanode.UpgradeObjectDatanode org.apache.hadoop.hdfs.server.common.UpgradeObject
-depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.common.HdfsConstants.StartupOption
 depends org.apache.hadoop.mapred.lib.aggregate.UserDefinedValueAggregatorDescriptor org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.hdfs.server.datanode.DatanodeBlockInfo org.apache.hadoop.io.IOUtils
 depends org.apache.hadoop.mapred.lib.MultipleOutputFormat org.apache.hadoop.mapred.FileOutputFormat
@@ -1659,7 +1561,6 @@ depends org.apache.hadoop.hdfs.protocol.ClientProtocol org.apache.hadoop.ipc.Ver
 depends org.apache.hadoop.mapred.JobHistory org.apache.hadoop.fs.PathFilter
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorJob org.apache.hadoop.mapred.SequenceFileInputFormat
 depends org.apache.hadoop.mapred.lib.NLineInputFormat org.apache.hadoop.mapred.LineRecordReader
-depends org.apache.hadoop.mapred.lib.db.DBConfiguration org.apache.hadoop.mapred.lib.db.DBInputFormat.NullDBWritable
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.protocol.NamespaceInfo
 depends org.apache.hadoop.hdfs.server.namenode.DfsServlet org.apache.hadoop.security.UserGroupInformation
 depends org.apache.hadoop.io.compress.zlib.ZlibFactory org.apache.hadoop.conf.Configuration
@@ -1681,7 +1582,6 @@ depends org.apache.hadoop.fs.s3native.NativeS3FileSystem org.apache.hadoop.io.re
 depends org.apache.hadoop.hdfs.server.namenode.NameNode org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.io.compress.CodecPool
 depends org.apache.hadoop.mapred.Task org.apache.hadoop.io.Writable
-depends org.apache.hadoop.hdfs.server.datanode.DataXceiver org.apache.hadoop.hdfs.server.datanode.FSDatasetInterface.MetaDataInputStream
 depends org.apache.hadoop.mapred.SequenceFileRecordReader org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.fs.ftp.FTPFileSystem org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.io.compress.Decompressor
@@ -1700,7 +1600,6 @@ depends org.apache.hadoop.mapred.join.TupleWritable org.apache.hadoop.io.Text
 depends org.apache.hadoop.mapred.SequenceFileAsBinaryOutputFormat org.apache.hadoop.fs.Path
 depends org.apache.hadoop.mapred.JobSubmissionProtocol org.apache.hadoop.ipc.VersionedProtocol
 depends org.apache.hadoop.mapred.lib.DelegatingInputFormat org.apache.hadoop.fs.Path
-depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.JobHistory.Values
 depends org.apache.hadoop.mapred.IndexRecord org.apache.hadoop.fs.Path
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.net.NetUtils
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.io.serializer.SerializationFactory
@@ -1708,7 +1607,6 @@ depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.util.D
 depends org.apache.hadoop.mapred.join.InnerJoinRecordReader org.apache.hadoop.io.WritableComparable
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorMapper org.apache.hadoop.mapred.Reporter
 depends org.apache.hadoop.mapred.lib.DelegatingInputFormat org.apache.hadoop.mapred.FileInputFormat
-depends org.apache.hadoop.hdfs.server.datanode.DataStorage org.apache.hadoop.fs.FileUtil.HardLink
 depends org.apache.hadoop.hdfs.server.datanode.BlockReceiver org.apache.hadoop.util.DataChecksum
 depends org.apache.hadoop.mapred.lib.MultipleInputs org.apache.hadoop.mapred.JobConf
 depends org.apache.hadoop.mapred.lib.KeyFieldBasedComparator org.apache.hadoop.io.WritableComparator
@@ -1717,20 +1615,16 @@ depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.fs.LocalFileSystem
 depends org.apache.hadoop.ipc.metrics.RpcMetrics org.apache.hadoop.ipc.Server
 depends org.apache.hadoop.ipc.Server org.apache.hadoop.ipc.metrics.RpcMetrics
 depends org.apache.hadoop.mapred.lib.MultipleSequenceFileOutputFormat org.apache.hadoop.mapred.RecordWriter
-depends org.apache.hadoop.hdfs.DistributedFileSystem org.apache.hadoop.hdfs.protocol.FSConstants.DatanodeReportType
 depends org.apache.hadoop.mapred.lib.InputSampler org.apache.hadoop.util.ToolRunner
-depends org.apache.hadoop.hdfs.server.namenode.FSImage org.apache.hadoop.hdfs.server.common.HdfsConstants.NodeType
 depends org.apache.hadoop.mapred.lib.aggregate.ValueAggregatorJob org.apache.hadoop.mapred.InputFormat
 depends org.apache.hadoop.io.RawComparator org.apache.hadoop.io.serializer.DeserializerComparator
 depends org.apache.hadoop.io.serializer.DeserializerComparator org.apache.hadoop.io.RawComparator
 depends org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode org.apache.hadoop.util.StringUtils
 depends org.apache.hadoop.hdfs.server.namenode.FSEditLog org.apache.hadoop.hdfs.protocol.DatanodeID
-depends org.apache.hadoop.mapred.TaskInProgress org.apache.hadoop.mapred.JobClient.RawSplit
 depends org.apache.hadoop.mapred.lib.FieldSelectionMapReduce org.apache.hadoop.mapred.Reducer
 depends org.apache.hadoop.fs.kfs.IFSImpl org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.util.Shell org.apache.hadoop.conf.Configuration
 depends org.apache.hadoop.hdfs.server.common.InconsistentFSStateException org.apache.hadoop.util.StringUtils
-depends org.apache.hadoop.mapred.DefaultJobHistoryParser org.apache.hadoop.mapred.JobHistory.Values
 depends org.apache.hadoop.hdfs.server.namenode.ListPathsServlet org.apache.hadoop.fs.FileStatus
 depends org.apache.hadoop.mapred.pipes.PipesMapRunner org.apache.hadoop.io.NullWritable
 depends org.apache.hadoop.hdfs.server.namenode.UpgradeManagerNamenode org.apache.hadoop.hdfs.server.common.Upgradeable
@@ -1740,17 +1634,13 @@ depends org.apache.hadoop.mapred.JobQueueTaskScheduler org.apache.hadoop.conf.Co
 depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.server.namenode.FileChecksumServlets
 depends org.apache.hadoop.hdfs.server.namenode.FileChecksumServlets org.apache.hadoop.hdfs.server.datanode.DataNode
 depends org.apache.hadoop.mapred.Merger org.apache.hadoop.util.Progressable
-depends org.apache.hadoop.hdfs.server.datanode.DataNode org.apache.hadoop.hdfs.protocol.DataTransferProtocol
 depends org.apache.hadoop.io.DefaultStringifier org.apache.hadoop.io.serializer.SerializationFactory
 depends org.apache.hadoop.hdfs.DFSClient org.apache.hadoop.security.AccessControlException
 depends org.apache.hadoop.mapred.lib.MultithreadedMapRunner org.apache.hadoop.mapred.RecordReader
 depends org.apache.hadoop.hdfs.protocol.DatanodeID org.apache.hadoop.io.WritableComparable
-depends org.apache.hadoop.hdfs.server.common.Storage org.apache.hadoop.hdfs.server.common.HdfsConstants.NodeType
 depends org.apache.hadoop.mapred.JobConf org.apache.hadoop.mapred.lib.KeyFieldBasedComparator
 depends org.apache.hadoop.mapred.lib.KeyFieldBasedComparator org.apache.hadoop.mapred.JobConf
-depends org.apache.hadoop.mapred.BasicTypeSorterBase org.apache.hadoop.io.SequenceFile.Sorter.RawKeyValueIterator
 depends org.apache.hadoop.mapred.TextOutputFormat org.apache.hadoop.fs.Path
-depends org.apache.hadoop.fs.FsShellPermissions org.apache.hadoop.fs.FsShell.CmdHandler
 depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.io.Text
 depends org.apache.hadoop.io.SequenceFile org.apache.hadoop.io.compress.Compressor
 depends org.apache.hadoop.fs.InMemoryFileSystem org.apache.hadoop.conf.Configuration
@@ -1767,6 +1657,5 @@ depends org.apache.hadoop.mapred.TaskUmbilicalProtocol org.apache.hadoop.mapred.
 depends org.apache.hadoop.hdfs.ChecksumDistributedFileSystem org.apache.hadoop.hdfs.protocol.FSConstants
 depends org.apache.hadoop.hdfs.server.namenode.EditLogOutputStream org.apache.hadoop.io.Writable
 depends org.apache.hadoop.mapred.join.CompositeInputFormat org.apache.hadoop.mapred.InputFormat
-depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.SequenceFile.CompressionType
 depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.io.IOUtils
 depends org.apache.hadoop.mapred.lib.MultipleInputs org.apache.hadoop.util.ReflectionUtils

@@ -40,8 +40,8 @@ class RSFParser:
 				self.total_item_count += 1
 
 			f.close()
-		except:
-			print("Error while reading an input file!111")
+		except Exception as e:
+			print(e)
 
 
 	def parse_dependency_input_file(self, filename):
@@ -53,6 +53,6 @@ class RSFParser:
 				item_name = tokens[1]
 				self.dsm[self.name2ID.get(item_name)][self.name2ID.get(tokens[2])] = True
 			f.close()
-		except:
-			print("Error while reading an input file!222")
+		except Exception as e:
+			print(e)
 

@@ -20,22 +20,10 @@ def dependency(parser,e1,e2):
 def ParseClusteringInputFile(parser,filename):
 	try:
 		f = open(filename, "r+")
-		cluster_name = ""
-		current_cluster = ""
 		item_name = ""
-		cluster_count = 0
-		
 		for line in f:
 			tokens = line.split()
-			cluster_name = tokens[1]
-			if current_cluster != cluster_name:
-				current_cluster = cluster_name
-				cluster_count += 1
-				parser.clustered_items.append([])	 
-			
-
 			item_name = tokens[2]
-			parser.clustered_items[cluster_count-1].append(item_name)
 			parser.ID2name.update({parser.total_item_count: item_name })
 			parser.name2ID.update({item_name: parser.total_item_count })
 			parser.total_item_count += 1

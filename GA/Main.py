@@ -44,18 +44,30 @@ nClusters = [5]                               #Number of Clusters
 #########################################################################################################################
 #w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
 
-dependencyFile = "bash-dependency.rsf";
-clusteringFile = "bash-clustering.rsf";
+dependencyFile = "archstudio-dependency.rsf"
+clusteringFile = "archstudio-clustering.rsf"
+
+'''
+dependencyFile = "bash-dependency.rsf"
+clusteringFile = "bash-clustering.rsf"
+
+dependencyFile = "chromium-dependency.rsf"
+clusteringFile = "chromium-clustering.rsf"
+
+dependencyFile = "hadoop-dependency.rsf"
+clusteringFile = "hadoop-clustering.rsf"
+
+dependencyFile = "itk-dependency.rsf"
+clusteringFile = "itk-clustering.rsf"
+
+'''
+
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
 
-
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
-clustered_items = parser.clustered_items;
-
-
 
 nModules = len(w_ij)
 d_i = np.zeros(nModules)

@@ -271,7 +271,6 @@ depends builtins.c alias.h
 depends builtins.c bashansi.h
 depends builtins.c bashintl.h
 depends builtins.c bashtypes.h
-depends builtins.c builtext.h
 depends builtins.c builtins.h
 depends builtins.c command.h
 depends builtins.c config-bot.h
@@ -286,7 +285,6 @@ depends builtins/bashgetopt.c config-bot.h
 depends builtins/bashgetopt.c config-top.h
 depends builtins/bashgetopt.c config.h
 depends builtins/bashgetopt.c include/chartypes.h
-depends builtins/common.c builtext.h
 depends builtins/common.c config-bot.h
 depends builtins/common.c config-top.h
 depends builtins/common.c config.h
@@ -296,7 +294,6 @@ depends builtins/evalfile.c config-bot.h
 depends builtins/evalfile.c config-top.h
 depends builtins/evalfile.c config.h
 depends builtins/evalfile.c include/typemax.h
-depends builtins/evalstring.c builtext.h
 depends builtins/evalstring.c config-bot.h
 depends builtins/evalstring.c config-top.h
 depends builtins/evalstring.c config.h
@@ -2450,7 +2447,6 @@ depends xmalloc.c config.h
 depends xmalloc.c error.h
 depends xmalloc.c include/gettext.h
 depends xmalloc.c include/stdc.h
-depends xmalloc.c lib/malloc/shmalloc.h
 depends y.tab.c alias.h
 depends y.tab.c array.h
 depends y.tab.c arrayfunc.h

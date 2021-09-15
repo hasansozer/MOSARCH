@@ -10,5 +10,5 @@ lucene 4.6 :  18815 deps
 nutch      :   6601 deps
 openjpa    :  45562 deps   
 struts2    :   4897 deps
-wicket 7.1 : 812817 deps   
+wicket 7.1 : 812817 deps   ++ 
 wicket 7.2 :  30251 deps   

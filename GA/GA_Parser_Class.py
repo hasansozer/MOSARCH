@@ -8,7 +8,7 @@ class RSFParser:
         self.total_item_count = 0
 
         # check if there is a clustering input file
-        if "cxf" in filename or "camel" in filename:
+        if "deps" in filename or "dependency" in filename:
             self.get_filenames(filename)
         else:
             self.parse_clustering_input_file(filename)

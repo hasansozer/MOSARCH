@@ -74,9 +74,21 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 # =============================================================================
 
 # =============================================================================
-dependencyFile = "cxf-dependency.rsf"
-clusteringFile = "cxf-dependency.rsf"
+#dependencyFile = "cxf-dependency.rsf"
+#clusteringFile = "cxf-dependency.rsf"
 # =============================================================================
+
+# =============================================================================
+dependencyFile = "openjpa-2.4.2-deps.rsf"
+clusteringFile = "openjpa-2.4.2-deps.rsf"
+# =============================================================================
+
+# =============================================================================
+#dependencyFile = "lucene-4.6.1-deps.rsf"
+#clusteringFile = "lucene-4.6.1-deps.rsf"
+# =============================================================================
+
+
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)

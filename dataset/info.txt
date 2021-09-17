@@ -11,4 +11,18 @@ nutch      :   6601 deps
 openjpa    :  45562 deps   
 struts2    :   4897 deps
 wicket 7.1 : 643863 deps   ++ 
-   
+
+
+archstudio   :    418 files
+bash         :    234 files
+camel        :  11891 files
+chromium     :  17565 files
+cxf          :  21959 files
+hadoop       :    469 files
+itk          :   7016 files
+lucene-3.6.0 :   1145 files
+lucene-4.6.1 :   2306 files
+nutch        :   1122 files
+openjpa      :   4265 files
+struts2      :    790 files
+wicket       :  52856 files

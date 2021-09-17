@@ -1,8 +1,8 @@
 archstudio :    866 deps
 bash       :   2508 deps
-camel      : 155701 deps   ++
+camel      : 140000 deps   ++
 chromium   : 773150 deps
-cxf        : 312152 deps   ++
+cxf        : 250000 deps   ++
 hadoop     :   1660 deps
 itk        :  54344 deps
 lucene 3.6 :   9565 deps

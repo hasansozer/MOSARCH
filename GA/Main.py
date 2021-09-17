@@ -80,9 +80,8 @@ clusteringFile = "cxf-dependency.rsf"
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
-print("Read rsf files")
+
 w_ij = np.array(parser.dsm).astype(int)
-print("Read w_ij")
 d_i = parser.ID2name
 
 print("np conversion")
@@ -93,13 +92,11 @@ for i in range(nModules):
     for j in range(nModules):
         d_i[i] += w_ij[i][j]
 
-print("for loop done")
 
 q1 = open("Results.csv", "w+")
 q1.write("")
 q1.close()
 
-print("Start")
 #%% Main Loop
 for MaxIt in MaxIts:
     for nPop in nPops:

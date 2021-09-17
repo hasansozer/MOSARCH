@@ -1,8 +1,8 @@
 archstudio :    866 deps
 bash       :   2508 deps
-camel      : 140000 deps   ++
+camel      : 110341 deps   ++
 chromium   : 773150 deps
-cxf        : 250000 deps   ++
+cxf        : 251671 deps   ++
 hadoop     :   1660 deps
 itk        :  54344 deps
 lucene 3.6 :   9565 deps
@@ -10,5 +10,5 @@ lucene 4.6 :  18815 deps
 nutch      :   6601 deps
 openjpa    :  45562 deps   
 struts2    :   4897 deps
-wicket 7.1 : 812817 deps   ++ 
-wicket 7.2 :  30251 deps   
+wicket 7.1 : 643863 deps   ++ 
+   

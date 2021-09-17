@@ -8,7 +8,6 @@ Created on Wed Aug  4 17:54:58 2021
 from GA import GA
 from GAKH import GAKH
 from GAJAYA import GAJAYA
-from GA_Parser_Function import RSFParser,parse_dependency_input_file 
 from GA_Parser_Class import *
 import time
 import numpy as np
@@ -49,8 +48,16 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 # clusteringFile = "archstudio-clustering.rsf"
 # =============================================================================
 
-dependencyFile = "chromium-dependency.rsf"
-clusteringFile = "chromium-clustering.rsf"
+# =============================================================================
+# dependencyFile = "bash-dependency.rsf"
+# clusteringFile = "bash-clustering.rsf"
+# =============================================================================
+
+# =============================================================================
+# dependencyFile = "chromium-dependency.rsf"
+# clusteringFile = "chromium-clustering.rsf"
+# =============================================================================
+
 # =============================================================================
 # dependencyFile = "hadoop-dependency.rsf"
 # clusteringFile = "hadoop-clustering.rsf"
@@ -61,28 +68,21 @@ clusteringFile = "chromium-clustering.rsf"
 # clusteringFile = "itk-clustering.rsf"
 # =============================================================================
 
-'''
-dependencyFile = "bash-dependency.rsf"
-clusteringFile = "bash-clustering.rsf"
+# =============================================================================
+# dependencyFile = "camel-dependency.rsf"
+# clusteringFile = "camel-dependency.rsf"
+# =============================================================================
 
 
-
-dependencyFile = "hadoop-dependency.rsf"
-clusteringFile = "hadoop-clustering.rsf"
-
-
-
-'''
+dependencyFile = "cxf-dependency.rsf"
+clusteringFile = "cxf-dependency.rsf"
 
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
 
-
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
-clustered_items = parser.clustered_items;
-
 
 
 nModules = len(w_ij)

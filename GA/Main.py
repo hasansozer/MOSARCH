@@ -8,7 +8,6 @@ Created on Wed Aug  4 17:54:58 2021
 from GA import GA
 from GAKH import GAKH
 from GAJAYA import GAJAYA
-from GA_Parser_Function import RSFParser,parse_dependency_input_file 
 from GA_Parser_Class import *
 import time
 import numpy as np
@@ -44,46 +43,29 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 #w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
 
 
-# =============================================================================
-# dependencyFile = "archstudio-dependency.rsf"
-# clusteringFile = "archstudio-clustering.rsf"
-# =============================================================================
 
-dependencyFile = "chromium-dependency.rsf"
-clusteringFile = "chromium-clustering.rsf"
 # =============================================================================
-# dependencyFile = "hadoop-dependency.rsf"
-# clusteringFile = "hadoop-clustering.rsf"
+#dependencyFile = "camel-dependency.rsf"
+#clusteringFile = "camel-dependency.rsf"
 # =============================================================================
 
 # =============================================================================
-# dependencyFile = "itk-dependency.rsf"
-# clusteringFile = "itk-clustering.rsf"
+#dependencyFile = "openjpa-2.4.2-deps.rsf"
+#clusteringFile = "openjpa-2.4.2-deps.rsf"
 # =============================================================================
 
-'''
-dependencyFile = "bash-dependency.rsf"
-clusteringFile = "bash-clustering.rsf"
+# =============================================================================
+#dependencyFile = "lucene-4.6.1-deps.rsf"
+#clusteringFile = "lucene-4.6.1-deps.rsf"
+# =============================================================================
 
-
-
-dependencyFile = "hadoop-dependency.rsf"
-clusteringFile = "hadoop-clustering.rsf"
-
-
-
-'''
 
 
 parser = RSFParser(clusteringFile)
 parser.parse_dependency_input_file(dependencyFile)
 
-
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
-clustered_items = parser.clustered_items;
-
-
 
 nModules = len(w_ij)
 d_i = np.zeros(nModules)

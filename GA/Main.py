@@ -43,28 +43,6 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 #w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
 
 
-# =============================================================================
-# dependencyFile = "archstudio-dependency.rsf"
-# clusteringFile = "archstudio-clustering.rsf"
-# =============================================================================
-
-# =============================================================================
-#dependencyFile = "bash-dependency.rsf"
-#clusteringFile = "bash-clustering.rsf"
-# =============================================================================
-
-# =============================================================================
-# dependencyFile = "hadoop-dependency.rsf"
-# clusteringFile = "hadoop-clustering.rsf"
-# =============================================================================
-
-# =============================================================================
-# dependencyFile = "itk-dependency.rsf"
-# clusteringFile = "itk-clustering.rsf"
-# =============================================================================
-
-
-
 
 # =============================================================================
 #dependencyFile = "camel-dependency.rsf"

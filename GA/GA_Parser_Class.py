@@ -41,7 +41,6 @@ class RSFParser:
             print(e)
 
     def get_filenames(self, filename):
-        print("Getting filenames")
         try:
             f = open(filename, "r+")
 
@@ -66,7 +65,6 @@ class RSFParser:
 
 
     def parse_dependency_input_file(self, filename):
-        print("Parsing dependency input file")
         try:
             f = open(filename, "r+")
 

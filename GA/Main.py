@@ -49,13 +49,8 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 # =============================================================================
 
 # =============================================================================
-# dependencyFile = "bash-dependency.rsf"
-# clusteringFile = "bash-clustering.rsf"
-# =============================================================================
-
-# =============================================================================
-# dependencyFile = "chromium-dependency.rsf"
-# clusteringFile = "chromium-clustering.rsf"
+#dependencyFile = "bash-dependency.rsf"
+#clusteringFile = "bash-clustering.rsf"
 # =============================================================================
 
 # =============================================================================
@@ -68,19 +63,17 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 # clusteringFile = "itk-clustering.rsf"
 # =============================================================================
 
+
+
+
 # =============================================================================
-# dependencyFile = "camel-dependency.rsf"
-# clusteringFile = "camel-dependency.rsf"
+#dependencyFile = "camel-dependency.rsf"
+#clusteringFile = "camel-dependency.rsf"
 # =============================================================================
 
 # =============================================================================
-#dependencyFile = "cxf-dependency.rsf"
-#clusteringFile = "cxf-dependency.rsf"
-# =============================================================================
-
-# =============================================================================
-dependencyFile = "openjpa-2.4.2-deps.rsf"
-clusteringFile = "openjpa-2.4.2-deps.rsf"
+#dependencyFile = "openjpa-2.4.2-deps.rsf"
+#clusteringFile = "openjpa-2.4.2-deps.rsf"
 # =============================================================================
 
 # =============================================================================
@@ -96,7 +89,6 @@ parser.parse_dependency_input_file(dependencyFile)
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
 
-print("np conversion")
 nModules = len(w_ij)
 d_i = np.zeros(nModules)
 for i in range(nModules):

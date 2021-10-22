@@ -1,0 +1,2 @@
+depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.JobInProgress
+depends org.apache.hadoop.mapred.JobInProgress org.apache.hadoop.mapred.JobTracker

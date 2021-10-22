@@ -1,0 +1,10 @@
+depends org.apache.hadoop.mapred.TaskTracker org.apache.hadoop.mapred.LocalJobRunner
+depends org.apache.hadoop.mapred.LocalJobRunner org.apache.hadoop.mapred.TaskTracker
+depends org.apache.hadoop.mapred.TaskTracker org.apache.hadoop.mapred.JobTracker
+depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.TaskTracker
+depends org.apache.hadoop.mapred.ReduceTask org.apache.hadoop.mapred.MapTask
+depends org.apache.hadoop.mapred.MapTask org.apache.hadoop.mapred.ReduceTask
+depends org.apache.hadoop.mapred.JobClient org.apache.hadoop.mapred.JobTracker
+depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.JobClient
+depends org.apache.hadoop.mapred.JobTracker org.apache.hadoop.mapred.JobInProgress
+depends org.apache.hadoop.mapred.JobInProgress org.apache.hadoop.mapred.JobTracker

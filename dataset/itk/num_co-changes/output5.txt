@@ -1,0 +1,4 @@
+depends Modules/IO/TIFF/include/itkTIFFImageIO.h Modules/IO/TIFF/src/itkTIFFImageIO.cxx
+depends Modules/IO/TIFF/src/itkTIFFImageIO.cxx Modules/IO/TIFF/include/itkTIFFImageIO.h
+depends Modules/Registration/RegistrationMethodsv4/test/itkBSplineExponentialImageRegistrationTest.cxx Modules/Registration/RegistrationMethodsv4/test/itkExponentialImageRegistrationTest.cxx
+depends Modules/Registration/RegistrationMethodsv4/test/itkExponentialImageRegistrationTest.cxx Modules/Registration/RegistrationMethodsv4/test/itkBSplineExponentialImageRegistrationTest.cxx

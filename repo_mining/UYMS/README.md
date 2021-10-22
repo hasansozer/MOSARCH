@@ -5,7 +5,7 @@ Outputs can also be found in them.
 To try the code by yourself:
 
 ## Pre-requisites
-1. Zip files: Download [Chromium](https://drive.google.com/file/d/1EViBzHzYE37mJrgA5h7XJC7fFt7S3KHb/view?usp=sharing), [Hadoop](https://drive.google.com/file/d/1muaxvF89LsrW6_2oap2UObLdB5Zy8g6n/view?usp=sharing), [ITK](https://drive.google.com/file/d/1muaxvF89LsrW6_2oap2UObLdB5Zy8g6n/view?usp=sharing) and extract all the files inside.
+1. Zip files: Download Chromium, Hadoop, ITK and extract all the files inside.
 2. Download the git repos [Chromium](https://github.com/chromium/chromium), [Hadoop](https://github.com/apache/hadoop) and [ITK](https://github.com/InsightSoftwareConsortium/ITK) to a directory that has no read/write restrictions.
 3. [Python](https://www.python.org/downloads/)
 4. [Java](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)

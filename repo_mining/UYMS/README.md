@@ -21,11 +21,11 @@ To try the code by yourself:
 ## For Hadoop & ITK
 1. Open `main.py` and replace the line `repo = Repository('C:\\Users...')` with the path of the corresponding repository in your computer.
 2. Run `main.py`. This will create the additional dependencies for each number of commits in `rsf` format.
-3. Run `automaticacdc.py` and `automaticmcdc.py` to get the results from ACDC and MCDC clustering algorithms, respectively.
+3. Run `automaticacdc.py` and `automaticmgmc.py` to get the results from ACDC and MGMC clustering algorithms, respectively.
 
 <br>
 
 ## Chromium
 1. The commits are pre-downloaded to `2013-2012-clean.txt` because of git errors caused by `PyDriller`. You can replace the commit info inside `2013-2012-clean.txt` with another commit info in the same format.
 2. Run `main.py`. This will create the additional dependencies for each number of commits in `rsf` format.
-3. Run `automaticacdc.py` and `automaticmcdc.py` to get the results from ACDC and MCDC clustering algorithms, respectively.
+3. Run `automaticacdc.py` and `automaticmgmc.py` to get the results from ACDC and MGMC clustering algorithms, respectively.

@@ -29,34 +29,22 @@ betas = [0.0005]                              #Rollette wheel ratio
 nClusters = [3,5,10,15]                               #Number of Clusters
 #nModules = 500
 
-#Esad Burdan bana w_ij ve d_i cekermisin?
-#########################################################################################################################
 # =============================================================================
-# w_ij = [list(np.random.randint(0,2,nModules)) for i in range(nModules)]
-# d_i = np.zeros(nModules)
-# for i in range(nModules):
-#     d_i[i] = 0
-#     for j in range(nModules):
-#         d_i[i] += w_ij[i][j]
-# =============================================================================
-#########################################################################################################################
-#w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
-
-
-
-# =============================================================================
-#dependencyFile = "camel-dependency.rsf"
-#clusteringFile = "camel-dependency.rsf"
+#dependencyFile = "bash-dependency.rsf"
+#clusteringFile = "bash-clustering.rsf"
+#nClusters = [5]
 # =============================================================================
 
 # =============================================================================
-#dependencyFile = "openjpa-2.4.2-deps.rsf"
-#clusteringFile = "openjpa-2.4.2-deps.rsf"
+#dependencyFile = "archstudio-dependency.rsf"
+#clusteringFile = "archstudio-clustering.rsf"
+#nClusters = [3]
 # =============================================================================
 
 # =============================================================================
-#dependencyFile = "lucene-4.6.1-deps.rsf"
-#clusteringFile = "lucene-4.6.1-deps.rsf"
+#dependencyFile = "hadoop-dependency.rsf"
+#clusteringFile = "hadoop-clustering.rsf"
+#nClusters = [3]
 # =============================================================================
 
 
@@ -113,13 +101,4 @@ for MaxIt in MaxIts:
                                     cpuGAJAYA = time.time()-start
                                     q=open("Results.csv", "a")
                                     q.write('\n')
-                                    q.close()
-# =============================================================================
-#                                     q=open("Results.csv", "a")
-#                                     q.write(str(nPop) + ',' +str(crossProb) + ',' +str(crossRate) + ',' +str(muteProb) + ',' +str(muteRate) + ',' +str(elitismProb) + ',' +str(beta) + ',' +str(objectiveGA) + ',' + str(cpuGA) + ',' + str(objectiveGAKH) + ',' + str(cpuGAKH) + ',' + str(objectiveGAJAYA) + ',' + str(cpuGAJAYA))
-#                                     q.write('\n')
-#                                     q.close()  
-# =============================================================================
-                                                                
-                                                        
-                                                    
+                                    q.close()       

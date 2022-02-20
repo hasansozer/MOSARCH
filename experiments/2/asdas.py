@@ -3,28 +3,28 @@ import numpy as np
 
 
 # =============================================================================
-dependencyFile = "bash-dependency.rsf"
-clusteringFile = "clustered_bash-dependency.rsf"
+# dependencyFile = "bash-dependency.rsf"
+# clusteringFile = "clustered_bash-dependency.rsf"
 # =============================================================================
 
 # =============================================================================
 dependencyFile = "archstudio-dependency.rsf"
-clusteringFile = "clustered_archstudio-dependency.rsf"
+clusteringFile = "archstudio-clustering.rsf"
 # =============================================================================
 
 # =============================================================================
-dependencyFile = "hadoop-dependency.rsf"
-clusteringFile = "clustered_hadoop-dependency.rsf"
+#dependencyFile = "hadoop-dependency.rsf"
+#clusteringFile = "clustered_hadoop-dependency.rsf"
 # =============================================================================
 
 # =============================================================================
-dependencyFile = "lucene-4.6.1-deps.rsf"
-clusteringFile = "clustered_lucene-4.6.1-deps.rsf"
+#dependencyFile = "lucene-4.6.1-deps.rsf"
+#clusteringFile = "clustered_lucene-4.6.1-deps.rsf"
 # =============================================================================
 
 # =============================================================================
-dependencyFile = "openjpa-2.4.2-deps.rsf"
-clusteringFile = "clustered_openjpa-2.4.2-deps.rsf"
+#dependencyFile = "openjpa-2.4.2-deps.rsf"
+#clusteringFile = "clustered_openjpa-2.4.2-deps.rsf"
 # =============================================================================
 
 
@@ -35,7 +35,7 @@ w_ij = np.array(parser.dsm).astype(int)
 name2id = parser.name2ID
 id2name = parser.ID2name
 
-# taken from Mahir's code directly
+# taken from Milad's code directly
 nModules = len(w_ij)
 d_i = np.zeros(nModules)
 for i in range(nModules):
@@ -73,5 +73,13 @@ for l in range(len(modulesOnClusters)):
             for j in modulesOnClusters[l]:
                 modularity += w_ij[i][j] - d_i[i]*d_i[j] / (2*m)
 modularity = 1 / (2 * m) * modularity
+
+# for c in range(cluster_count):
+#     modules = clustered_items[c]
+#     for e1 in range(len(modules)):
+#         for e2 in range(e1+1,len(modules)):
+#             total += parser.dependency(modules[e1], modules[e2])
+#             total -= (d[e1]*d[e2])/(2*m)
+
 
 print("Modularity: ", modularity)

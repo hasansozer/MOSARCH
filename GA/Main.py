@@ -30,9 +30,9 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 #nModules = 500
 
 # =============================================================================
-#dependencyFile = "bash-dependency.rsf"
-#clusteringFile = "bash-clustering.rsf"
-#nClusters = [5]
+dependencyFile = "bash-dependency.rsf"
+clusteringFile = "bash-clustering.rsf"
+nClusters = [3]
 # =============================================================================
 
 # =============================================================================
@@ -85,19 +85,19 @@ for MaxIt in MaxIts:
                                     q.close()
                                     inputdata = MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate
                                     start = time.time()
-                                    objectiveGA, clusters = GA(inputdata)
+                                    objectiveGA, clusters = GA(parser,inputdata)
                                     q=open("Results.csv", "a")
                                     q.write('\n')
                                     q.close()
                                     cpuGA = time.time()-start
                                     start = time.time()
-                                    objectiveGAKH, clusters = GAKH(inputdata)
+                                    objectiveGAKH, clusters = GAKH(parser,inputdata)
                                     q=open("Results.csv", "a")
                                     q.write('\n')
                                     q.close()                                    
                                     cpuGAKH = time.time()-start
                                     start = time.time()
-                                    objectiveGAJAYA, clusters = GAJAYA(inputdata)
+                                    objectiveGAJAYA, clusters = GAJAYA(parser,inputdata)
                                     cpuGAJAYA = time.time()-start
                                     q=open("Results.csv", "a")
                                     q.write('\n')

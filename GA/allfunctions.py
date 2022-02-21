@@ -7,8 +7,34 @@ Created on Thu Aug  5 01:48:27 2021
 import numpy as np
 import copy
 #%% Modularity
-def myCost(pop,inputdata):
+def myCost(parser,pop,inputdata):
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+    
+    modularity = 0
+
+    d_out = [0 for index in range(parser.module_count)]
+    d_in = [0 for index in range(parser.module_count)]
+
+    for x in range(parser.module_count):
+        for y in range(parser.module_count):
+            d_out[x] += parser.dsm[x][y]
+            d_in[y] += parser.dsm[x][y]
+
+    total = 0
+    for c in range(parser.cluster_count):
+        modules = parser.clustered_items[c]
+        for e1 in range(len(modules)):
+            for e2 in range(len(modules)):
+                if e1 != e2:
+                    total += parser.dsm[parser.name2ID.get(modules[e1])][parser.name2ID.get(modules[e2])]
+                    total -= (d_out[parser.name2ID.get(modules[e1])] * d_in[parser.name2ID.get(modules[e2])]) / parser.dependency_count
+
+    modularity = ((1 / parser.dependency_count) * total)
+    
+    return modularity
+    
+    
+    """ 
     modularity = 0
     modulesOnClusters = []
     m = 0.5 * np.sum(d_i) + 0.00000001
@@ -23,6 +49,7 @@ def myCost(pop,inputdata):
                 modularity += w_ij[i][j] - d_i[i]*d_i[j]/(2*m)
     modularity = 1/(2*m) * modularity
     return(modularity)
+    """
 
 #%% Modularity for JAYA
 def myCostJaya(pop,inputdata):

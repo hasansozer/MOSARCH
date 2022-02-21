@@ -6,6 +6,7 @@ class RSFParser:
         self.name2ID = {}
         self.ID2name = {}
         self.total_item_count = 0
+        self.dependency_count = 0
 
         # check if there is a clustering input file
         if "deps" in filename or "dependency" in filename:
@@ -27,11 +28,20 @@ class RSFParser:
         try:
             f = open(filename, "r+")
             item_name = ""
+            cluster_count = 0
+            cluster_name = ""
+            current_cluster = ""
 
             for line in f:
                 tokens = line.split()
+                cluster_name = tokens[1]
+                if current_cluster != cluster_name:
+                    current_cluster = cluster_name
+                    cluster_count += 1
+                    self.clustered_items.append([])	 
+                 
                 item_name = tokens[2]
-                
+                self.clustered_items[cluster_count-1].append(item_name)
                 self.name2ID.update({item_name: self.total_item_count})
                 self.ID2name.update({self.total_item_count: item_name})
                 self.total_item_count += 1
@@ -72,6 +82,7 @@ class RSFParser:
                 tokens = line.split()
                 item_name = tokens[1]
                 self.dsm[self.name2ID.get(item_name)][self.name2ID.get(tokens[2])] = True
+                self.dependency_count += 1
             f.close()
         except Exception as e:
             print(e)

@@ -32,7 +32,8 @@ for c in range(cluster_count):
     modules = clustered_items[c]
     for e1 in range(len(modules)):
         for e2 in range(len(modules)):
-            total += parser.dsm[parser.name2ID.get(modules[e1])][parser.name2ID.get(modules[e2])]
-            total -= (d_out[parser.name2ID.get(modules[e1])] * d_in[parser.name2ID.get(modules[e2])]) / dependency_count
+            if e1 != e2:
+                total += parser.dsm[parser.name2ID.get(modules[e1])][parser.name2ID.get(modules[e2])]
+                total -= (d_out[parser.name2ID.get(modules[e1])] * d_in[parser.name2ID.get(modules[e2])]) / dependency_count
 
 print((1 / dependency_count) * total)

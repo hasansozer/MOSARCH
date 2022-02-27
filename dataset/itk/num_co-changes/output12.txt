@@ -1,0 +1,2 @@
+depends Modules/IO/TIFF/include/itkTIFFImageIO.h Modules/IO/TIFF/src/itkTIFFImageIO.cxx
+depends Modules/IO/TIFF/src/itkTIFFImageIO.cxx Modules/IO/TIFF/include/itkTIFFImageIO.h

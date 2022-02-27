@@ -111,6 +111,7 @@ for MaxIt in MaxIts:
                                     start = time.time()
                                     objectiveGAJAYA, clusters = GAJAYA(inputdata)
                                     cpuGAJAYA = time.time()-start
+<<<<<<< Updated upstream
                                     q=open("Results.csv", "a")
                                     q.write('\n')
                                     q.close()
@@ -120,6 +121,12 @@ for MaxIt in MaxIts:
 #                                     q.write('\n')
 #                                     q.close()  
 # =============================================================================
+=======
+                                    q=open("Results.txt", "a")
+                                    q.write(str(nPop) + '  ' +str(crossProb) + '  ' +str(crossRate) + '  ' +str(muteProb) + '  ' +str(muteRate) + '  ' +str(elitismProb) + '  ' +str(beta) + '  ' +str(objectiveGA) + '  ' + str(cpuGA) + '  ' + str(objectiveGAKH) + '  ' + str(cpuGAKH) + '  ' + str(objectiveGAJAYA) + '  ' + str(cpuGAJAYA))
+                                    q.write('\n')
+                                    q.close()  
+>>>>>>> Stashed changes
                                                                 
                                                         
                                                     

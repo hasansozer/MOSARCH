@@ -16,10 +16,12 @@ def parse_directed_clustering_input_file(filename):
     cluster_name = ""
     current_cluster = ""
     item_name = ""
-    cluster_count = 0
     total_item_count = 0
+    dependency_count = 0
+    cluster_count = 0
     clustered_items = []
     name2ID = {}
+    dsm = []
 
     f = open(filename, "r+")
     for line in f:
@@ -122,18 +124,18 @@ def modularity(dependency_file, clustering_file):
 
 
 repos = {
-         "archstudio" : ["archstudio-dependency.rsf", "archstudio-clustering.rsf"],
-         "bash"       : ["bash-dependency.rsf", "bash-clustering.rsf"],
-         "camel"      : ["camel-dependency.rsf"],
-         "chromium"   : ["chromium-dependency.rsf", "chromium-clustering.rsf"],
-         "cxf"        : ["cxf-dependency.rsf"],
-         "hadoop"     : ["hadoop-dependency.rsf", "hadoop-clustering.rsf"],
-         "itk"        : ["itk-dependency.rsf", "itk-clustering.rsf"],
-         "lucene"     : ["lucene-4.6.1-deps.rsf"],
-         "nutch"      : ["nutch-2.3.1-deps.rsf"],
-         "openjpa"    : ["openjpa-2.4.2-deps.rsf"],
-         "struts2"    : ["struts2-2.3.16-dependency.rsf"],
-         "wicket"     : ["wicket-dependency.rsf"]
+          "archstudio" : ["archstudio-dependency.rsf", "archstudio-clustering.rsf"],
+          "bash"       : ["bash-dependency.rsf", "bash-clustering.rsf"],
+        #  "camel"      : ["camel-dependency.rsf"], # more memory is needed 16 GB is not enough
+          "chromium"   : ["chromium-dependency.rsf", "chromium-clustering.rsf"],
+        #  "cxf"        : ["cxf-dependency.rsf"], # more memory is needed 16 GB is not enough
+          "hadoop"     : ["hadoop-dependency.rsf", "hadoop-clustering.rsf"],
+          "itk"        : ["itk-dependency.rsf", "itk-clustering.rsf"],
+        #  "lucene"     : ["lucene-4.6.1-deps.rsf"], # Type error
+        #  "nutch"      : ["nutch-2.3.1-deps.rsf"], # Type error
+        #  "openjpa"    : ["openjpa-2.4.2-deps.rsf"], # Type error
+        #  "struts2"    : ["struts2-2.3.16-dependency.rsf"], # Type error
+        #  "wicket"     : ["wicket-dependency.rsf"] # more memory is needed 16 GB is not enough
         }
 
 mgmc_jar = "../experiments/clustering.jar"

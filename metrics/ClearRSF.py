@@ -1,5 +1,5 @@
 import sys
-import numpy as np
+import shutil
 import hashlib
 import os
 
@@ -24,11 +24,12 @@ if "s" in flags or "S" in flags:
                     continue
                 else:
                     f1.write(line)
-    os.copyfile("temp.txt", filename)
+    shutil.copyfile("temp.txt", filename)
+    os.remove("temp.txt")
 
 if "u" in flags or "U" in flags:
 
-    os.copyfile(filename, filename + ".tmp")
+    shutil.copyfile(filename, filename + ".tmp")
 
     print("Clearing duplicate items")
     lines_hash = set()

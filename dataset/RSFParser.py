@@ -47,16 +47,29 @@ class RSFParser:
 
 
 	def parse_dependency_input_file(self, filename):
-			f = open(filename, "r+")
-			a = []
+		f = open(filename, "r+")
+		a = []
 
-			for line in f:
-				tokens = line.split()
-				a.append(tokens)
-				item_name = tokens[1]
-				try:
-					self.dsm[self.name2ID.get(item_name)][self.name2ID.get(tokens[2])] = True
-				except:
-					a.pop()
+		for line in f:
+			tokens = line.split()
+			a.append(tokens)
+			item_name = tokens[1]
+			try:
+				self.dsm[self.name2ID.get(item_name)][self.name2ID.get(tokens[2])] = True
+			except:
+				a.pop()
 
-			f.close()
+		f.close()
+		file = open(filename, "w+")
+
+		for line in a:
+			str1 = "" 
+
+			for ele in line: 
+				str1 += ele
+				str1 += " "
+
+			str1 += "\n"
+			file.write(str1)
+
+		file.close()

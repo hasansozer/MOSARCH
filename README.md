@@ -18,6 +18,7 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 - [Esad Simitcioglu](https://github.com/EsadSimitcioglu)
 - [Abdullah Saydemir](https://github.com/Saydemr)
 - [Milad Elyasi](http://www.miladelyasi.com/)
+- [Ersin Ersoy](https://github.com/ersinersoy/)
 
 ## External Tools
  - The [PyDriller](https://github.com/ishepard/pydriller) framework is used for automated analysis of Git repositories.

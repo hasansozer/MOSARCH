@@ -12,6 +12,7 @@ class RSFParser:
 		self.clustered_items = []
 		self.name2ID = {}
 		self.total_item_count = 0
+		self.dependency_count = 0
 
 		self.parse_clustering_input_file(filename)
 		self.dsm = [[False for x in range(self.total_item_count)] for y in range(self.total_item_count)]
@@ -54,6 +55,7 @@ class RSFParser:
 				item_name = tokens[1]
 				try:
 					self.dsm[self.name2ID.get(item_name)][self.name2ID.get(tokens[2])] = True
+					self.dependency_count += 1
 				except:
 					a.pop()
 

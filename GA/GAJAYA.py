@@ -8,7 +8,7 @@ import numpy as np
 import time
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, myCostJaya, CrossoverJAYA, MutationJAYA, Jaya
 import copy
-def GAJAYA(inputdata):
+def GAJAYA(parser,inputdata):
     tic = time.time()
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
     objective = 0
@@ -28,7 +28,7 @@ def GAJAYA(inputdata):
     for i in range(nPop):
         # Get the solution of DP-RL
         pop = [np.random.random() for i in range(nModules+nClusters-1)]
-        modularity = myCostJaya(pop,inputdata)
+        modularity = myCostJaya(parser,pop,inputdata)
     
         #Update the population
         population.append([pop,modularity])

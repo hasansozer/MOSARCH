@@ -1,10 +1,8 @@
-
+import shutil
+import hashlib
 from RSFParser import RSFParser
 
 def modularity_directed(dependency_file, clustering_file):
-	
-	print("Modularity_directed dependency file : " , dependency_file)
-	print("Modularity_directed clustering file : " , clustering_file)
 
 	parser = RSFParser(clustering_file)
 	parser.parse_dependency_input_file(dependency_file)
@@ -38,9 +36,6 @@ def modularity_directed(dependency_file, clustering_file):
 
 def modularity(dependency_file, clustering_file):
 
-	print("Modularity dependency file : " , dependency_file)
-	print("Modularity clustering file : " , clustering_file)
-
 	parser = RSFParser(clustering_file)
 	parser.parse_dependency_input_file(dependency_file)
 	clustered_items = parser.clustered_items
@@ -70,19 +65,61 @@ def modularity(dependency_file, clustering_file):
 	return cluster_count, module_count, 1/(2*m)*total
 
 
+def clear_dependency_file(filename):
+	print("Converting class dependencies to module dependencies")
+	shutil.copyfile(filename, filename + ".tmp")
+	f = open(filename + ".tmp", "r")
+	g = open(filename, "w+")
+
+	for line in f:
+		tokens = line.split()
+		g.write(tokens[0] + " " + tokens[1].split("$")[0] + " " + tokens[2].split("$")[0] + "\n")
+
+	f.close()
+	g.close()
+
+	print("Clearing self dependencies")
+	with open(filename, "r+") as f:
+		with open("temp.txt", "w+") as f1:
+			for line in f:
+				tokens = line.rstrip().split()
+
+				# remove self dependencies
+				if tokens[1] == tokens[2]:
+					continue
+				else:
+					f1.write(line)
+	shutil.copyfile("temp.txt", filename)
+	os.remove("temp.txt")
+
+	shutil.copyfile(filename, filename + ".tmp")
+
+	print("Clearing duplicate items")
+	lines_hash = set()
+	with open(filename + ".tmp", "r+") as f:
+		with open(filename, "w+") as output_file:
+			for line in f:
+				hashValue = hashlib.md5(line.rstrip().encode('utf-8')).hexdigest()
+				if hashValue not in lines_hash:
+					output_file.write(line)
+					lines_hash.add(hashValue)
+
+	os.remove(filename + ".tmp")
+
+
 repos = {
-		  "archstudio" : ["archstudio-dependency.rsf", "archstudio-clustering.rsf"],
-		  "bash"       : ["bash-dependency.rsf", "bash-clustering.rsf"],
-		#  "camel"      : ["camel-dependency.rsf"], # more memory is needed 16 GB is not enough
-		  "chromium"   : ["chromium-dependency.rsf", "chromium-clustering.rsf"],
-		#  "cxf"        : ["cxf-dependency.rsf"], # more memory is needed 16 GB is not enough
-		  "hadoop"     : ["hadoop-dependency.rsf", "hadoop-clustering.rsf"],
-		  "itk"        : ["itk-dependency.rsf", "itk-clustering.rsf"],
-		  "lucene"     : ["lucene-4.6.1-deps.rsf"], # Type error
-		  "nutch"      : ["nutch-2.3.1-deps.rsf"], # Type error
-		  "openjpa"    : ["openjpa-2.4.2-deps.rsf"], # Type error
-		  "struts2"    : ["struts2-2.3.16-dependency.rsf"], # Type error
-		  "wicket"     : ["wicket-dependency.rsf"] # more memory is needed 16 GB is not enough
+			"archstudio" : ["archstudio-dependency.rsf", "archstudio-clustering.rsf"],
+			"bash"       : ["bash-dependency.rsf", "bash-clustering.rsf"],
+			# "camel"      : ["camel-dependency.rsf"], # more memory is needed 16 GB is not enough
+			"chromium"   : ["chromium-dependency.rsf", "chromium-clustering.rsf"],
+			# "cxf"        : ["cxf-dependency.rsf"], # more memory is needed 16 GB is not enough
+			"hadoop"     : ["hadoop-dependency.rsf", "hadoop-clustering.rsf"],
+			"itk"        : ["itk-dependency.rsf", "itk-clustering.rsf"],
+			"lucene"     : ["lucene-4.6.1-deps.rsf"],
+			"nutch"      : ["nutch-2.3.1-deps.rsf"],
+			"openjpa"    : ["openjpa-2.4.2-deps.rsf"],
+			"struts2"    : ["struts2-2.3.16-dependency.rsf"],
+			# "wicket"     : ["wicket-dependency.rsf"] # more memory is needed 16 GB is not enough
 		}
 
 mgmc_jar = "../experiments/clustering.jar"
@@ -94,11 +131,13 @@ import csv
 
 f = open("repo_information.csv", "w+", newline="")
 writer = csv.writer(f)
-writer.writerow(["Repository_Name", "Cluster_Count", "Total_Item_Count", "Modularity", "Directed_Modularity"])
+writer.writerow(["Repository_Name", "Has_Clustering_File", "Cluster_Count", "Total_Item_Count", "Dependency_Count", "Modularity", "Directed_Modularity", "MGMC_Cluster_Count", "MGMC_Total_Item_Count", "MGMC_Dependency_Count", "MGMC_Modularity", "MGMC_Directed_Modularity"])
 f.close()
 
 for repo in repos:
-	print(repo + "/" + repos[repo][0])
+	print("\nProcessing " + repo)
+	clear_dependency_file("./" + repo + "/" + repos[repo][0])
+
 	# convert dependency rsf to txt
 	cmd = "java -jar " + rsf2txt + " ./" + repo + "/" + repos[repo][0] + " ./" + repo + "/" + "mgmc-clustered.txt"
 	os.system(cmd)
@@ -114,13 +153,16 @@ for repo in repos:
 	# remove temporary files
 	os.remove(repo + "/mgmc-clustered.txt")
 	os.remove(repo + "/output.txt")
- 
+
+for repo in repos:
 	# use modularity algorithms to calculate the modularity of the clustered dependency graph
 	path_dependency = "./" + repo + "/" + repos[repo][0]
 
+	has_clustering = False
 	if len(repos[repo]) == 1:
 		path_clustering = "./" + repo + "/" + repos[repo][0]    
 	else:
+		has_clustering = True
 		path_clustering = "./" + repo + "/" + repos[repo][1]
 
 	directed_cluster_count, directed_total_item_count, dependency_count, directed_modularity = modularity_directed(path_dependency, path_clustering)
@@ -141,7 +183,10 @@ for repo in repos:
 	mgmc_directed_cluster_count, mgmc_directed_total_item_count, mgmc_dependency_count, mgmc_directed_modularity = modularity_directed(path_dependency, path_clustering)
 	mgmc_cluster_count, mgmc_total_item_count, mgmc_modularity_ = modularity(path_dependency, path_clustering)
 
+	assert mgmc_directed_cluster_count == mgmc_cluster_count
+	assert mgmc_directed_total_item_count == mgmc_total_item_count
+
 	g = open("repo_information.csv", "a+", newline="")
 	writer = csv.writer(g)
-	writer.writerow([repo, cluster_count, total_item_count, dependency_count, modularity_, directed_modularity, mgmc_cluster_count, mgmc_total_item_count, mgmc_dependency_count, mgmc_modularity_, mgmc_directed_modularity])
+	writer.writerow([repo, str(has_clustering), cluster_count, total_item_count, dependency_count, modularity_, directed_modularity, mgmc_cluster_count, mgmc_total_item_count, mgmc_dependency_count, mgmc_modularity_, mgmc_directed_modularity])
 	g.close()

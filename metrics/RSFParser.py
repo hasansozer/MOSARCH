@@ -69,6 +69,7 @@ class RSFParser:
 					str1 += ele
 					str1 += " "
 
+				str1 = str1.rstrip()
 				str1 += "\n"
 				file.write(str1)
 

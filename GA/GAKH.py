@@ -8,7 +8,7 @@ import numpy as np
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, Cumulative
 import copy
 import time
-def GAKH(inputdata):
+def GAKH(parser,inputdata):
     tic = time.time()
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
     objective = 0
@@ -26,7 +26,7 @@ def GAKH(inputdata):
     for i in range(nPop):
         # Get the solution of DP-RL
         pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
-        modularity = myCost(pop,inputdata)
+        modularity = myCost(parser,pop,inputdata)
     
         #Update the population
         population.append([pop,modularity])

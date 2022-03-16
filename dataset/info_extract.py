@@ -131,7 +131,7 @@ import csv
 
 f = open("repo_information.csv", "w+", newline="")
 writer = csv.writer(f)
-writer.writerow(["Repository_Name", "Has_Clustering_File", "Cluster_Count", "Total_Item_Count", "Dependency_Count", "Modularity", "Directed_Modularity", "MGMC_Cluster_Count", "MGMC_Total_Item_Count", "MGMC_Dependency_Count", "MGMC_Modularity", "MGMC_Directed_Modularity"])
+writer.writerow(["Repository_Name", "Has_Clustering_File", "Cluster_Count", "Total_Item_Count", "Dependency_Count", "Modularity", "Directed_Modularity", "MGMC_Cluster_Count", "MGMC_Total_Item_Count", "MGMC_Modularity", "MGMC_Directed_Modularity"])
 f.close()
 
 for repo in repos:
@@ -188,5 +188,5 @@ for repo in repos:
 
 	g = open("repo_information.csv", "a+", newline="")
 	writer = csv.writer(g)
-	writer.writerow([repo, str(has_clustering), cluster_count, total_item_count, dependency_count, modularity_, directed_modularity, mgmc_cluster_count, mgmc_total_item_count, mgmc_dependency_count, mgmc_modularity_, mgmc_directed_modularity])
+	writer.writerow([repo, str(has_clustering), cluster_count, total_item_count, dependency_count, modularity_, directed_modularity, mgmc_cluster_count, mgmc_total_item_count, mgmc_modularity_, mgmc_directed_modularity])
 	g.close()

@@ -32,8 +32,6 @@ def modularity_directed(dependency_file, clustering_file):
 	return cluster_count, module_count, dependency_count, (1 / dependency_count) * total
 
 
-
-
 def modularity(dependency_file, clustering_file):
 
 	parser = RSFParser(clustering_file)
@@ -66,7 +64,6 @@ def modularity(dependency_file, clustering_file):
 
 
 def clear_dependency_file(filename):
-	print("Converting class dependencies to module dependencies")
 	shutil.copyfile(filename, filename + ".tmp")
 	f = open(filename + ".tmp", "r")
 	g = open(filename, "w+")
@@ -78,7 +75,6 @@ def clear_dependency_file(filename):
 	f.close()
 	g.close()
 
-	print("Clearing self dependencies")
 	with open(filename, "r+") as f:
 		with open("temp.txt", "w+") as f1:
 			for line in f:
@@ -94,7 +90,6 @@ def clear_dependency_file(filename):
 
 	shutil.copyfile(filename, filename + ".tmp")
 
-	print("Clearing duplicate items")
 	lines_hash = set()
 	with open(filename + ".tmp", "r+") as f:
 		with open(filename, "w+") as output_file:
@@ -135,7 +130,7 @@ writer.writerow(["Repository_Name", "Has_Clustering_File", "Cluster_Count", "Tot
 f.close()
 
 for repo in repos:
-	print("\nProcessing " + repo)
+	print("Pre-Processing " + repo.upper())
 	clear_dependency_file("./" + repo + "/" + repos[repo][0])
 
 	# convert dependency rsf to txt
@@ -155,6 +150,7 @@ for repo in repos:
 	os.remove(repo + "/output.txt")
 
 for repo in repos:
+	print("Processing " + repo.upper())
 	# use modularity algorithms to calculate the modularity of the clustered dependency graph
 	path_dependency = "./" + repo + "/" + repos[repo][0]
 
@@ -167,17 +163,6 @@ for repo in repos:
 
 	directed_cluster_count, directed_total_item_count, dependency_count, directed_modularity = modularity_directed(path_dependency, path_clustering)
 	cluster_count, total_item_count, modularity_ = modularity(path_dependency, path_clustering)
-
-	print("Directed Cluster Count: " + str(directed_cluster_count))
-	print("Directed Total Item Count: " + str(directed_total_item_count))
-	print("Cluster Count: " + str(cluster_count))
-	print("Total Item Count: " + str(total_item_count))
-	print()
-	print("Directed Modularity: " + str(directed_modularity))
-	print("Modularity: " + str(modularity_))
-	print("-------------------------------------------------------------")
-	assert directed_cluster_count == cluster_count
-	assert directed_total_item_count == total_item_count
 	
 	path_clustering = "./" + repo + "/" + repo + "-mgmc-clustered.rsf"
 	mgmc_directed_cluster_count, mgmc_directed_total_item_count, mgmc_dependency_count, mgmc_directed_modularity = modularity_directed(path_dependency, path_clustering)

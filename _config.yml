@@ -2,3 +2,4 @@ theme: jekyll-theme-cayman
 timezone: TR
 title: MOSARCH
 subtitle: Recovery of Modular Software Architectures with Exact and Heuristic Clustering Methods
+show_downloads: false

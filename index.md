@@ -1,4 +1,4 @@
-## Project Information
+## MOSARCH
 - Funding: [The Scientific and Technological Research Council of Turkey](https://tubitak.gov.tr/en) (grant #120E488)
 - Host Institution: [Ozyegin University](https://www.ozyegin.edu.tr/)
 - Industrial partner: [Turkcell Technology](http://www.turkcellteknoloji.com.tr/language/en/)

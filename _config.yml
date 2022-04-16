@@ -1,7 +1,5 @@
-remote_theme: chrisrhymes/bulma-clean-theme
+remote_theme: pages-themes/cayman@v0.2.0
 theme_color: '#000080'
-fixed_navbar: top
-hide_footer: true
 timezone: TR
 title: MOSARCH
 subtitle: Recovery of Modular Software Architectures with Exact and Heuristic Clustering Methods

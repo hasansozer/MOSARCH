@@ -27,21 +27,23 @@ class RSFParser:
     def parse_clustering_input_file(self, filename):
         try:
             f = open(filename, "r+")
-            item_name = ""
-            cluster_count = 0
-            cluster_name = ""
-            current_cluster = ""
-
+            cluster_names = {}
+            cluster_index = 0
+            
             for line in f:
                 tokens = line.split()
                 cluster_name = tokens[1]
-                if current_cluster != cluster_name:
-                    current_cluster = cluster_name
-                    cluster_count += 1
-                    self.clustered_items.append([])	 
-                 
                 item_name = tokens[2]
-                self.clustered_items[cluster_count-1].append(item_name)
+
+                if cluster_name not in cluster_names:
+                    cluster_names.update({cluster_name: cluster_index})
+                    self.clustered_items.append([])
+                    self.clustered_items[cluster_index].append(item_name)
+                    cluster_index += 1
+                else:
+                    temp_index = cluster_names.get(cluster_name)
+                    self.clustered_items[temp_index].append(item_name)
+
                 self.name2ID.update({item_name: self.total_item_count})
                 self.ID2name.update({self.total_item_count: item_name})
                 self.total_item_count += 1

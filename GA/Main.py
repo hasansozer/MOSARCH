@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Aug  4 17:54:58 2021
-
 @author: Milad
 """
 #import pandas as pd
@@ -109,7 +108,11 @@ for MaxIt in MaxIts:
                                     start = time.time()
                                     objectiveGAJAYA, clusters = GAJAYA(inputdata)
                                     cpuGAJAYA = time.time()-start
+<<<<<<< HEAD
 # !#<<<<<<< Updated upstream
+=======
+
+>>>>>>> 2ff10f9ec5de726ab153ff0da82f6cfd9a1bf48b
                                     q=open("Results.csv", "a")
                                     q.write('\n')
                                     q.close()
@@ -119,12 +122,19 @@ for MaxIt in MaxIts:
 #                                     q.write('\n')
 #                                     q.close()  
 # =============================================================================
+<<<<<<< HEAD
 # =======
+=======
+>>>>>>> 2ff10f9ec5de726ab153ff0da82f6cfd9a1bf48b
                                     q=open("Results.txt", "a")
                                     q.write(str(nPop) + '  ' +str(crossProb) + '  ' +str(crossRate) + '  ' +str(muteProb) + '  ' +str(muteRate) + '  ' +str(elitismProb) + '  ' +str(beta) + '  ' +str(objectiveGA) + '  ' + str(cpuGA) + '  ' + str(objectiveGAKH) + '  ' + str(cpuGAKH) + '  ' + str(objectiveGAJAYA) + '  ' + str(cpuGAJAYA))
                                     q.write('\n')
                                     q.close()  
+<<<<<<< HEAD
 # >>>>>>> Stashed changes
                                                                 
                                                         
                                                     
+=======
+
+>>>>>>> 2ff10f9ec5de726ab153ff0da82f6cfd9a1bf48b

@@ -54,10 +54,8 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 #clusteringFile = "openjpa-2.4.2-deps.rsf"
 # =============================================================================
 
-# =============================================================================
-#dependencyFile = "lucene-4.6.1-deps.rsf"
-#clusteringFile = "lucene-4.6.1-deps.rsf"
-# =============================================================================
+ependencyFile = "lucene-4.6.1-deps.rsf"
+lusteringFile = "lucene-4.6.1-deps.rsf"
 
 
 
@@ -111,7 +109,7 @@ for MaxIt in MaxIts:
                                     start = time.time()
                                     objectiveGAJAYA, clusters = GAJAYA(inputdata)
                                     cpuGAJAYA = time.time()-start
-<<<<<<< Updated upstream
+# !#<<<<<<< Updated upstream
                                     q=open("Results.csv", "a")
                                     q.write('\n')
                                     q.close()
@@ -121,12 +119,12 @@ for MaxIt in MaxIts:
 #                                     q.write('\n')
 #                                     q.close()  
 # =============================================================================
-=======
+# =======
                                     q=open("Results.txt", "a")
                                     q.write(str(nPop) + '  ' +str(crossProb) + '  ' +str(crossRate) + '  ' +str(muteProb) + '  ' +str(muteRate) + '  ' +str(elitismProb) + '  ' +str(beta) + '  ' +str(objectiveGA) + '  ' + str(cpuGA) + '  ' + str(objectiveGAKH) + '  ' + str(cpuGAKH) + '  ' + str(objectiveGAJAYA) + '  ' + str(cpuGAJAYA))
                                     q.write('\n')
                                     q.close()  
->>>>>>> Stashed changes
+# >>>>>>> Stashed changes
                                                                 
                                                         
                                                     

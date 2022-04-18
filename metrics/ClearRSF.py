@@ -1,84 +1,50 @@
 import sys
-import numpy as np
-def write_to_file(file_name, content):
-    file = open(filename, "w+")
-
-    for line in a:
-        str1 = "" 
-
-        for ele in line: 
-            str1 += ele
-            str1 += " "
-
-        str1 += "\n"
-        file.write(str1)
-
-    file.close()
+import shutil
+import hashlib
+import os
 
 try:
     filename = sys.argv[1]
-    flags = sys.argv[2]
 except:
-    print("Usage: python ClearRSF.py flags \n" +
-          "c : removes $ from filenames \n" + 
-          "s : removes self dependencies \n" + 
-          "u : removes duplicates \n")
+    print("Usage: python ClearRSF.py filename")
     sys.exit(1)
 
-if "c" in flags or "C" in flags:
-    print("Clearing special characters")
-    f = open(filename, "r+")
-    a = []
-    for line in f:
-        tokens = line.split()
-        item_name1 = tokens[1]
-        item_name2 = tokens[2]
+print("Converting class dependencies to module dependencies")
+shutil.copyfile(filename, filename + ".tmp")
+f = open(filename + ".tmp", "r")
+g = open(filename, "w+")
 
-        if "$" in tokens[1]:
-            item_name1 = tokens[1].split("$")[0]
-        if "$" in tokens[2]:
-            item_name2 = tokens[2].split("$")[0]
+for line in f:
+    tokens = line.split()
+    g.write(tokens[0] + " " + tokens[1].split("$")[0] + " " + tokens[2].split("$")[0] + "\n")
 
-        arr = [tokens[0], item_name1, item_name2]
-        a.append(arr)
+f.close()
+g.close()
 
-    f.close()
-    write_to_file(filename, a)
+print("Clearing self dependencies")
+with open(filename, "r+") as f:
+    with open("temp.txt", "w+") as f1:
+        for line in f:
+            tokens = line.rstrip().split()
 
+            # remove self dependencies
+            if tokens[1] == tokens[2]:
+                continue
+            else:
+                f1.write(line)
+shutil.copyfile("temp.txt", filename)
+os.remove("temp.txt")
 
-if "s" in flags or "S" in flags:
-    print("Clearing self dependencies")
-    a = []
-    f = open(filename, "r+")
-    for line in f:
-        tokens = line.split()
-        item_name1 = tokens[1]
-        item_name2 = tokens[2]
+shutil.copyfile(filename, filename + ".tmp")
 
-        # remove self dependencies
-        if tokens[1] == tokens[2]:
-            continue
+print("Clearing duplicate items")
+lines_hash = set()
+with open(filename + ".tmp", "r+") as f:
+    with open(filename, "w+") as output_file:
+        for line in f:
+            hashValue = hashlib.md5(line.rstrip().encode('utf-8')).hexdigest()
+            if hashValue not in lines_hash:
+                output_file.write(line)
+                lines_hash.add(hashValue)
 
-        arr = [tokens[0], item_name1, item_name2]
-        a.append(arr)
-    f.close()
-    write_to_file(filename, a)
-        
-
-if "u" in flags or "U" in flags:
-    print("Clearing duplicate items")
-    f = open(filename, "r+")
-    a = []
-    for line in f:
-        tokens = line.split()
-        item_name1 = tokens[1]
-        item_name2 = tokens[2]
-
-        arr = [tokens[0], item_name1, item_name2]
-
-        a.append(arr)
-    
-    f.close()
-    b = np.array(a)
-    c = np.unique(b, axis=0)
-    write_to_file(filename, c)
+os.remove(filename + ".tmp")

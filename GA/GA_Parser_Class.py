@@ -6,6 +6,7 @@ class RSFParser:
         self.name2ID = {}
         self.ID2name = {}
         self.total_item_count = 0
+        self.dependency_count = 0
 
         # check if there is a clustering input file
         if "deps" in filename or "dependency" in filename:
@@ -26,12 +27,23 @@ class RSFParser:
     def parse_clustering_input_file(self, filename):
         try:
             f = open(filename, "r+")
-            item_name = ""
-
+            cluster_names = {}
+            cluster_index = 0
+            
             for line in f:
                 tokens = line.split()
+                cluster_name = tokens[1]
                 item_name = tokens[2]
-                
+
+                if cluster_name not in cluster_names:
+                    cluster_names.update({cluster_name: cluster_index})
+                    self.clustered_items.append([])
+                    self.clustered_items[cluster_index].append(item_name)
+                    cluster_index += 1
+                else:
+                    temp_index = cluster_names.get(cluster_name)
+                    self.clustered_items[temp_index].append(item_name)
+
                 self.name2ID.update({item_name: self.total_item_count})
                 self.ID2name.update({self.total_item_count: item_name})
                 self.total_item_count += 1
@@ -72,6 +84,7 @@ class RSFParser:
                 tokens = line.split()
                 item_name = tokens[1]
                 self.dsm[self.name2ID.get(item_name)][self.name2ID.get(tokens[2])] = True
+                self.dependency_count += 1
             f.close()
         except Exception as e:
             print(e)

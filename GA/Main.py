@@ -28,19 +28,6 @@ betas = [0.0005]                              #Rollette wheel ratio
 nClusters = [3,5,10,15]                               #Number of Clusters
 #nModules = 500
 
-#Esad Burdan bana w_ij ve d_i cekermisin?
-#########################################################################################################################
-# =============================================================================
-# w_ij = [list(np.random.randint(0,2,nModules)) for i in range(nModules)]
-# d_i = np.zeros(nModules)
-# for i in range(nModules):
-#     d_i[i] = 0
-#     for j in range(nModules):
-#         d_i[i] += w_ij[i][j]
-# =============================================================================
-#########################################################################################################################
-#w_ij, d_i, clustered_items = GAParser('bash-dependency.rsf', 'bash-clustering.rsf')
-
 
 
 # =============================================================================
@@ -53,13 +40,25 @@ nClusters = [3,5,10,15]                               #Number of Clusters
 #clusteringFile = "openjpa-2.4.2-deps.rsf"
 # =============================================================================
 
-ependencyFile = "lucene-4.6.1-deps.rsf"
-lusteringFile = "lucene-4.6.1-deps.rsf"
+# =============================================================================
+# dependencyFile = "lucene-4.6.1-deps.rsf"
+# clusteringFile = "lucene-4.6.1-deps.rsf"
+# =============================================================================
 
+# To give the solution of heuristic method to JAYA algorithm, use the following
+# lines of code. Use <dataset>-mgmc-clustered.rsf as clustering file and regular
+# dependency file. You can comment out the following lines.
+# =============================================================================
+# parser = RSFParser('lucene-mgmc-clustered.rsf')
+# parser.parse_dependency_input_file('lucene-4.6.1-deps.rsf')
+# jaya_list = parser.get_jaya_random_list('lucene-mgmc-clustered.rsf')
+# =============================================================================
 
-
-parser = RSFParser(clusteringFile)
-parser.parse_dependency_input_file(dependencyFile)
+# =============================================================================
+# parser = RSFParser('bash-mgmc-clustered.rsf')
+# parser.parse_dependency_input_file('bash-dependency.rsf')
+# jaya_list = parser.get_jaya_random_list('bash-mgmc-clustered.rsf')
+# =============================================================================
 
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
@@ -108,11 +107,7 @@ for MaxIt in MaxIts:
                                     start = time.time()
                                     objectiveGAJAYA, clusters = GAJAYA(inputdata)
                                     cpuGAJAYA = time.time()-start
-<<<<<<< HEAD
-# !#<<<<<<< Updated upstream
-=======
 
->>>>>>> 2ff10f9ec5de726ab153ff0da82f6cfd9a1bf48b
                                     q=open("Results.csv", "a")
                                     q.write('\n')
                                     q.close()
@@ -122,19 +117,7 @@ for MaxIt in MaxIts:
 #                                     q.write('\n')
 #                                     q.close()  
 # =============================================================================
-<<<<<<< HEAD
-# =======
-=======
->>>>>>> 2ff10f9ec5de726ab153ff0da82f6cfd9a1bf48b
                                     q=open("Results.txt", "a")
                                     q.write(str(nPop) + '  ' +str(crossProb) + '  ' +str(crossRate) + '  ' +str(muteProb) + '  ' +str(muteRate) + '  ' +str(elitismProb) + '  ' +str(beta) + '  ' +str(objectiveGA) + '  ' + str(cpuGA) + '  ' + str(objectiveGAKH) + '  ' + str(cpuGAKH) + '  ' + str(objectiveGAJAYA) + '  ' + str(cpuGAJAYA))
                                     q.write('\n')
-                                    q.close()  
-<<<<<<< HEAD
-# >>>>>>> Stashed changes
-                                                                
-                                                        
-                                                    
-=======
-
->>>>>>> 2ff10f9ec5de726ab153ff0da82f6cfd9a1bf48b
+                                    q.close()

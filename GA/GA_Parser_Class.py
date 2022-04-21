@@ -3,6 +3,7 @@ class RSFParser:
     def __init__(self, filename):
         self.filename = filename
         self.clustered_items = []
+        self.cluster_names = {}
         self.name2ID = {}
         self.ID2name = {}
         self.total_item_count = 0
@@ -27,7 +28,6 @@ class RSFParser:
     def parse_clustering_input_file(self, filename):
         try:
             f = open(filename, "r+")
-            cluster_names = {}
             cluster_index = 0
             
             for line in f:
@@ -35,13 +35,13 @@ class RSFParser:
                 cluster_name = tokens[1]
                 item_name = tokens[2]
 
-                if cluster_name not in cluster_names:
-                    cluster_names.update({cluster_name: cluster_index})
+                if cluster_name not in self.cluster_names:
+                    self.cluster_names.update({cluster_name: cluster_index})
                     self.clustered_items.append([])
                     self.clustered_items[cluster_index].append(item_name)
                     cluster_index += 1
                 else:
-                    temp_index = cluster_names.get(cluster_name)
+                    temp_index = self.cluster_names.get(cluster_name)
                     self.clustered_items[temp_index].append(item_name)
 
                 self.name2ID.update({item_name: self.total_item_count})
@@ -88,3 +88,21 @@ class RSFParser:
             f.close()
         except Exception as e:
             print(e)
+
+    def get_jaya_random_list(self, mgmc_clustered_file):
+        bias = 0.0001
+        jaya_initial_list = []
+        with open(mgmc_clustered_file, "r+") as f:
+            for line in f:
+                tokens = line.split()
+                cluster = tokens[1]
+                cluster_index = self.cluster_names[cluster]
+                
+                import random
+                random_number = random.uniform(cluster_index / self.total_item_count + bias, (cluster_index+1)/self.total_item_count - bias)
+                jaya_initial_list.append(random_number)
+
+        for i in range(len(self.clustered_items)):
+            jaya_initial_list.append((i+1) / self.total_item_count)
+
+        return jaya_initial_list

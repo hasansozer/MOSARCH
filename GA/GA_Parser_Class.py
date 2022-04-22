@@ -106,3 +106,13 @@ class RSFParser:
             jaya_initial_list.append((i+1) / self.total_item_count)
 
         return jaya_initial_list
+
+    def get_genetic_list(self, clustering_file):
+        genetic_list = []
+        with open(clustering_file, "r+") as f:
+            for line in f:
+                tokens = line.split()
+                cluster = tokens[1]
+                cluster_index = self.cluster_names[cluster]
+                genetic_list.append(cluster_index)
+        return genetic_list

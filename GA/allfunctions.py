@@ -8,10 +8,10 @@ import numpy as np
 import copy
 #%% Modularity
 def myCost(pop,inputdata):
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
+    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     modularity = 0
     modulesOnClusters = []
-    for l in range(nCluster):
+    for l in range(nClusters):
         temp =[]
         for k in range(len(pop)):
             if pop[k] == l:

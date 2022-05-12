@@ -8,9 +8,9 @@ import numpy as np
 import time
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, myCostJaya, CrossoverJAYA, MutationJAYA, Jaya
 import copy
-def GAJAYA(parser,inputdata):
+def GAJAYA(inputdata):
     tic = time.time()
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     objective = 0
     clusters = []
     
@@ -21,14 +21,14 @@ def GAJAYA(parser,inputdata):
         length: number of modules + number of clusters - 1
         decoding guide: VRP-like
         use arg sort
-        The reason I am using this repesntation is that JAYA is a continuous algorithm
+        The reason I am using this representation is that JAYA is a continuous algorithm
     '''
     
     population=[]
     for i in range(nPop):
         # Get the solution of DP-RL
-        pop = [np.random.random() for i in range(nModules+nClusters-1)]
-        modularity = myCostJaya(parser,pop,inputdata)
+        pop = [np.random.random() for _ in range(nModules+nClusters-1)]
+        modularity = myCostJaya(pop,inputdata)
     
         #Update the population
         population.append([pop,modularity])
@@ -82,7 +82,7 @@ def GAJAYA(parser,inputdata):
         population = sortedPopulation
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
-        print(BestCost)
-        if time.time() - tic > 1000:
-            break    
+        print(BestCost) 
+        if time.time() - tic > 2200:
+            break
     return(BestCost, sortedPopulation[0][0])

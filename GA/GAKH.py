@@ -91,7 +91,6 @@ def GAKH(inputdata):
         population = sortedPopulation
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
-        print(BestCost)
-        if time.time()-tic > 2200:
-            break      
+        with open('GAKH_graph' + str(nClusters), 'a+') as f:
+            f.write( str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')  
     return(BestCost, sortedPopulation[0][0])

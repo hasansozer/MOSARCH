@@ -30,18 +30,15 @@ betas = [0.0005]                              #Rollette wheel ratio
 
 
 '''Problem-related'''
-nClusters = [15]                               #Number of Clusters
-
-dependencyFile = "archstudio-dependency.rsf"
-
+nClusters = [3,5,10,15]                               #Number of Clusters
+dependencyFile = "lucene-4.6.1-deps.rsf"
 
 parser = RSFParser()
 parser.parse_dependency_input_file(dependencyFile)
 
-
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
-clustered_items = parser.clustered_items;
+clustered_items = parser.clustered_items
 
 
 nModules = len(w_ij)
@@ -74,8 +71,6 @@ for MaxIt in MaxIts:
                             for beta in betas:
                                 for nCluster in nClusters:
                                     inputdata = MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray
-                                    objectiveGAJAYA, clusters = GAJAYA(inputdata)
-
                                     q=open("Results.csv", "a+")
                                     q.write(str(nCluster) + ': \n')
                                     q.write('GA: \n')
@@ -101,6 +96,3 @@ for MaxIt in MaxIts:
                                     q.write(str(objectiveGAJAYA) + ' ' + str(cpuGAJAYA) + '\n')
                                     q.write(str(nPop) + ',' +str(crossProb) + ',' +str(crossRate) + ',' +str(muteProb) + ',' +str(muteRate) + ',' +str(elitismProb) + ',' +str(beta) + ',' +str(objectiveGA) + ',' + str(cpuGA) + ',' + str(objectiveGAKH) + ',' + str(cpuGAKH) + ',' + str(objectiveGAJAYA) + ',' + str(cpuGAJAYA) + '\n')
                                     q.close()
-                                                                
-                                                        
-                                                    

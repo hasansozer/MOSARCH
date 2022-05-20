@@ -19,19 +19,19 @@ np.random.seed(519)
 MaxIts = [100]                                #Number of iterations
 
 
-nPops = [50]                                  #Number of population
-crossRates = [0.1]                             #Crossover rate  
+nPops = [70]                                  #Number of population
+crossRates = [0.2]                             #Crossover rate  
 muteRates = [0.06]                            #Mutation Rate
 
-crossProbs = [0.35]                           #Crossover probability
+crossProbs = [0.55]                           #Crossover probability
 muteProbs = [0.7]                             #Mutation probability
-elitisimProbs = [0.2]                           #Elite Parents Probability
+elitisimProbs = [0.3]                           #Elite Parents Probability
 betas = [0.0005]                              #Rollette wheel ratio
 
 
 '''Problem-related'''
-nClusters = [3,5,10,15]                               #Number of Clusters
-dependencyFile = "lucene-4.6.1-deps.rsf"
+nClusters = [3,5,10,15,20]                               #Number of Clusters
+dependencyFile = "bash-dependency.rsf"
 
 parser = RSFParser()
 parser.parse_dependency_input_file(dependencyFile)
@@ -71,6 +71,10 @@ for MaxIt in MaxIts:
                             for beta in betas:
                                 for nCluster in nClusters:
                                     inputdata = MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray
+                                    objectiveGA = 0
+                                    cpuGA = 0
+                                    objectiveGAKH = 0 
+                                    cpuGAKH = 0
                                     q=open("Results.csv", "a+")
                                     q.write(str(nCluster) + ': \n')
                                     q.write('GA: \n')

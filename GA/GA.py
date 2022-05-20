@@ -72,6 +72,7 @@ def GA(inputdata):
         population = sortedPopulation
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
+        # print(BestCost)
         with open('GA_graph' + str(nClusters), 'a+') as f:
             f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
     return(BestCost, sortedPopulation[0][0])

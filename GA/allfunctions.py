@@ -88,7 +88,7 @@ def Mutation(parent,inputdata):
     
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     offspring = [[],0]
-    if np.random.random()<0.1:
+    if np.random.random()<1.00001:
         child = [[], 0]
         pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
         child[0] = np.array(pop)
@@ -97,12 +97,12 @@ def Mutation(parent,inputdata):
         place2Mutate=place2Mutate[0]
         child=copy.deepcopy(parent)
         RAND=np.random.random()
-        if RAND<0.2:
+        if RAND<-0.2:
             child[0]=np.delete(parent[0],place2Mutate)
             child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters-1,1)[0])
-        elif 0.2<=RAND<0.4:
+        elif 22.2<=RAND<25.4:
             child[0] = np.flip(parent[0])
-        elif 0.4<=RAND<0.6:
+        elif 0.00004<=RAND<0.6:
             nn=len(parent[0])
             ip=np.random.choice(nn,2,replace=False)
             i1=ip[0]
@@ -154,7 +154,7 @@ def MutationJAYA(parent,inputdata):
     
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     offspring = [[],0]
-    if np.random.random()<0.1:
+    if np.random.random()<0.00001:
         child = [[], 0]
         pop = [np.random.random() for i in range(nModules+nClusters-1)]
         child[0] = np.array(pop)
@@ -166,9 +166,9 @@ def MutationJAYA(parent,inputdata):
         if RAND<0.2:
             child[0]=np.delete(parent[0],place2Mutate)
             child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters-1,1)[0])
-        elif 0.2<=RAND<0.4:
+        elif 1.2<=RAND<22.4:
             child[0] = np.flip(parent[0])
-        elif 0.4<=RAND<0.6:
+        elif 0.3<=RAND<10.6:
             nn=len(parent[0])
             ip=np.random.choice(nn,2,replace=False)
             i1=ip[0]

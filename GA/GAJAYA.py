@@ -12,6 +12,7 @@ def GAJAYA(inputdata):
     tic = time.time()
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     objective = 0
+    miyu = 10
     clusters = []
     
     #%% Initialization
@@ -37,12 +38,13 @@ def GAJAYA(inputdata):
     sortedPopulation=copy.deepcopy(population)
     sortedPopulation.sort(key=lambda x: x[1], reverse = 1)
     population = sortedPopulation
+    gBest = sortedPopulation[0]
+    gWorst = sortedPopulation[-1]
     #%% Main Loop
     for iter in range(MaxIt):
         Newpop=[]
         # Selecet Elite Parents and move them to next generation
         nElite=int(nPop*elitismProb)
-        nNonElite=nPop-nElite
         for i in range(nElite):
              Newpop.append(sortedPopulation[i])
         # Select Parents to Crossover and Mutation
@@ -62,26 +64,36 @@ def GAJAYA(inputdata):
             offspring1, offspring2=CrossoverJAYA(parent1,parent2,inputdata)
             Newpop.append(offspring1)
             Newpop.append(offspring2)
+            offspring1, offspring2 = Jaya(offspring1, inputdata, gBest, gWorst),Jaya(offspring2, inputdata, gBest, gWorst)
+            Newpop.append(offspring1)
+            Newpop.append(offspring2)
         # Mutation
         for k in range(muteNumber):
             parent=population[RouletteWheelSelection(P)]
             offspring=MutationJAYA(parent,inputdata)
             Newpop.append(offspring)
+            offspring = Jaya(offspring, inputdata, gBest, gWorst)
+            Newpop.append(offspring)
+
         # JAYA
-        best = population[0]
-        worst = population [-1]
-        for k in range(20):
-            parent=population[RouletteWheelSelection(P)]
+        Newpop.sort(key=lambda x: x[1], reverse=1)
+        best = Newpop[0]
+        worst = Newpop [-1]
+        for k in range(40):
+            parent=Newpop[k]
             offspring = Jaya(parent, inputdata, best, worst)
             Newpop.append(offspring)
             
         population=copy.deepcopy(Newpop)
         sortedPopulation=copy.deepcopy(population)
         sortedPopulation.sort(key=lambda x: x[1], reverse=1)
-        sortedPopulation = sortedPopulation[:nPop]
+        gBest = sortedPopulation[0]
+        gWorst = sortedPopulation[-1]
+        sortedPopulation = sortedPopulation[:2*nPop]
         population = sortedPopulation
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
+        # print(BestCost)
         with open('GAJAYA_graph' + str(nClusters), 'a+') as f:
             f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n') 
     return(BestCost, sortedPopulation[0][0])

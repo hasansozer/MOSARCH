@@ -20,6 +20,15 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 - [Milad Elyasi](http://www.miladelyasi.com/)
 - [Ersin Ersoy](https://github.com/ersinersoy/)
 
+## Repo Navigation
+ - `dataset` contains dependency and clustering (for some) files for respective systems. Files are obtained from [here](https://softarch.usc.edu/~lemduc/Recovered_files/ICSA_2018/).
+ - `experiments` contains set of files that are used in automation of the experiments. Further information is available in readme file inside the directory.
+ - `GA` contains implementation of the genetic algorithms GA, GAKH and HYGAR.
+ - `metrics` contains metrics used for measuring the quality of SAR. It includes modularity, directed modularity and TurboMQ.
+ - `repo_mining` contains files for reproducing the experiments provided in UYMS paper.
+ - `results` contains the results published to the papers.
+
+
 ## External Tools
  - The [PyDriller](https://github.com/ishepard/pydriller) framework is used for automated analysis of Git repositories.
 

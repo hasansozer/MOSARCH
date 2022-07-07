@@ -1,48 +1,12 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug  5 01:48:27 2021
-
-@author: Milad
-"""
 import numpy as np
 import copy
-#%% Modularity
-def myCost(parser,pop,inputdata):
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
-    
-    modularity = 0
-    clustered_items = parser.clustered_items
-    cluster_count = len(clustered_items)
-    module_count = parser.total_item_count
-    dependency_count = parser.dependency_count
 
-    d_out = [0 for index in range(module_count)]
-    d_in = [0 for index in range(module_count)]
+def myCost(pop,inputdata):
+    max_iterations, population_size, num_crossover, num_mutations, mutation_rate, elitism_probability, beta, num_clusters, num_modules, w_ij, d_i, crossover_rate, code_list, dependency_matrix, num_dependencies, d_in, d_out, max_duration = inputdata
 
-    for x in range(module_count):
-        for y in range(module_count):
-            d_out[x] += parser.dsm[x][y]
-            d_in[y] += parser.dsm[x][y]
-
-    total = 0
-    for c in range(cluster_count):
-        modules = parser.clustered_items[c]
-        for e1 in range(len(modules)):
-            for e2 in range(len(modules)):
-                if e1 != e2:
-                    total += parser.dsm[parser.name2ID.get(modules[e1])][parser.name2ID.get(modules[e2])]
-                    total -= (d_out[parser.name2ID.get(modules[e1])] * d_in[parser.name2ID.get(modules[e2])]) / dependency_count
-
-    modularity = ((1 / dependency_count) * total)
-    print("Modularity : " , modularity)
-    return modularity
-    
-    
-    """ 
     modularity = 0
     modulesOnClusters = []
-    m = 0.5 * np.sum(d_i) + 0.00000001
-    for l in range(nClusters):
+    for l in range(num_clusters):
         temp =[]
         for k in range(len(pop)):
             if pop[k] == l:
@@ -50,37 +14,37 @@ def myCost(parser,pop,inputdata):
         modulesOnClusters.append(temp)
         for i in modulesOnClusters[l]:
             for j in modulesOnClusters[l]:
-                modularity += w_ij[i][j] - d_i[i]*d_i[j]/(2*m)
-    modularity = 1/(2*m) * modularity
-    return(modularity)
-    """
+                if i!=j:
+                    modularity += (dependency_matrix[i][j]-(d_out[i]*d_in[j]/num_dependencies))/num_dependencies
+    return modularity
 
-#%% Modularity for JAYA
+
 def myCostJaya(pop,inputdata):
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+    max_iterations, population_size, num_crossover, num_mutations, mutation_rate, elitism_probability, beta, num_clusters, num_modules, w_ij, d_i, crossover_rate, code_list, dependency_matrix, num_dependencies, d_in, d_out, max_duration = inputdata
+
     modularity = 0
     modulesOnClusters = []
     sortedpop = np.argsort(pop)
     modulesOnClusters=[]
     temp = []
     for i in sortedpop:
-        if i < nModules:
+        if i < num_modules:
             temp.append(i)
         else:
             modulesOnClusters.append(temp)
             temp = []
-    if sortedpop[-1]<nModules:
+    if sortedpop[-1]<num_modules:
         modulesOnClusters.append(temp)
-    m = 0.5 * np.sum(d_i) + 0.00000001
+
     for l in range(len(modulesOnClusters)):
         for i in modulesOnClusters[l]:
             for j in modulesOnClusters[l]:
-                modularity += w_ij[i][j] - d_i[i]*d_i[j]/(2*m)
-    modularity = 1/(2*m) * modularity
-    return(modularity)
+                if i!=j:
+                    modularity += (dependency_matrix[i][j]-(d_out[i]*d_in[j]/num_dependencies))/num_dependencies
+    return modularity
 
 
-#%% RolletteWheel
+
 def RouletteWheelSelection(P):
      r=np.random.random()
      c=np.cumsum(P)
@@ -89,76 +53,11 @@ def RouletteWheelSelection(P):
           i=6
      else:
           i=i[0][0]
-     return(i)
-#%% Crossover
-def Crossover(parser,parent1,parent2,inputdata):
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
-    offspring1=copy.deepcopy(parent1)
-    offspring2=copy.deepcopy(parent2)
-    c=np.random.randint(1,len(parent1[0])-1)
-    x11=offspring1[0][0:c+1]
-    x12=offspring1[0][c+1:]
-   
-    x21=offspring2[0][0:c+1]
-    x22=offspring2[0][c+1:]
-   
-    
-    off1=x11+x22
-    off2=x21+x12
-    offspring1[0]=off1
-    offspring2[0]=off2
-    off1=offspring1[0]    
-    modularity = myCost(parser,off1,inputdata)
-    offspring1[1]=modularity
-    off2=offspring2[0]    
-    modularity = myCost(parser,off2,inputdata)
-    offspring2[1]=modularity
-    
-    return(offspring1,offspring2)
-#%% Mutation
-def Mutation(parser,parent,inputdata):
-    
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
-    offspring = [[],0]
-    if np.random.random()<0.1:
-        child = [[], 0]
-        pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
-        child[0] = np.array(pop)
-    else:
-        place2Mutate=np.random.choice(range(nModules),1)
-        place2Mutate=place2Mutate[0]
-        child=copy.deepcopy(parent)
-        RAND=np.random.random()
-        if RAND<0.2:
-            child[0]=np.delete(parent[0],place2Mutate)
-            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters-1,1)[0])
-        elif 0.2<=RAND<0.4:
-            child[0] = np.flip(parent[0])
-        elif 0.4<=RAND<0.6:
-            nn=len(parent[0])
-            ip=np.random.choice(nn,2,replace=False)
-            i1=ip[0]
-            i2=ip[1]
-            child=copy.deepcopy(parent)
-            child[0][i1]=parent[0][i2]
-            child[0][i2]=parent[0][i1] 
-            child[0] = np.array(child[0])
-        else:
-            i=np.random.choice(range(len(parent[0])),2,replace=False)
-            i1=min(i)
-            i2=max(i)
-            child[0][i1:i2]=parent[0][i1:i2][::-1]
-            child[0] = np.array(child[0])
-    # Decode and Caclulate the Cost
-    modularity = myCost(parser,child[0],inputdata)
-    #Update the population
-    offspring[0] = child[0].tolist()
-    offspring[1] = modularity
-    return(offspring)
+     return i
 
-#%% CrossoverJAYA
-def CrossoverJAYA(parser,parent1,parent2,inputdata):
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+
+def Crossover(parent1,parent2,inputdata):
+    
     offspring1=copy.deepcopy(parent1)
     offspring2=copy.deepcopy(parent2)
     c=np.random.randint(1,len(parent1[0])-1)
@@ -174,33 +73,35 @@ def CrossoverJAYA(parser,parent1,parent2,inputdata):
     offspring1[0]=off1
     offspring2[0]=off2
     off1=offspring1[0]    
-    modularity = myCostJaya(parser,off1,inputdata)
+    modularity = myCost(off1,inputdata)
     offspring1[1]=modularity
     off2=offspring2[0]    
-    modularity = myCostJaya(parser,off2,inputdata)
+    modularity = myCost(off2,inputdata)
     offspring2[1]=modularity
     
-    return(offspring1,offspring2)
-#%% Mutation
-def MutationJAYA(parser,parent,inputdata):
+    return offspring1, offspring2
+
+
+def Mutation(parent,inputdata):
     
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+    max_iterations, population_size, num_crossover, num_mutations, mutation_rate, elitism_probability, beta, num_clusters, num_modules, w_ij, d_i, crossover_rate, code_list, dependency_matrix, num_dependencies, d_in, d_out, max_duration = inputdata
+
     offspring = [[],0]
-    if np.random.random()<0.1:
+    if np.random.random() <= 1.00000:
         child = [[], 0]
-        pop = [np.random.random() for i in range(nModules+nClusters-1)]
+        pop = [np.random.randint(0,num_clusters-1) for _ in range(num_modules)]
         child[0] = np.array(pop)
     else:
-        place2Mutate=np.random.choice(range(nModules),1)
+        place2Mutate=np.random.choice(range(num_modules),1)
         place2Mutate=place2Mutate[0]
         child=copy.deepcopy(parent)
         RAND=np.random.random()
-        if RAND<0.2:
+        if RAND<-0.2:
             child[0]=np.delete(parent[0],place2Mutate)
-            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters-1,1)[0])
-        elif 0.2<=RAND<0.4:
+            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, num_clusters-1,1)[0])
+        elif 22.2<=RAND<25.4:
             child[0] = np.flip(parent[0])
-        elif 0.4<=RAND<0.6:
+        elif 0.00004<=RAND<0.6:
             nn=len(parent[0])
             ip=np.random.choice(nn,2,replace=False)
             i1=ip[0]
@@ -215,18 +116,88 @@ def MutationJAYA(parser,parent,inputdata):
             i2=max(i)
             child[0][i1:i2]=parent[0][i1:i2][::-1]
             child[0] = np.array(child[0])
-    # Decode and Caclulate the Cost
-    modularity = myCostJaya(parser,child[0],inputdata)
+    # Decode and Calculate the Cost
+    modularity = myCost(child[0],inputdata)
     #Update the population
     offspring[0] = child[0].tolist()
     offspring[1] = modularity
-    return(offspring)
-#%% Cumulative Motion
+    return offspring
+
+
+
+def CrossoverJAYA(parent1,parent2,inputdata):
+    
+    offspring1=copy.deepcopy(parent1)
+    offspring2=copy.deepcopy(parent2)
+    c=np.random.randint(1,len(parent1[0])-1)
+    x11=offspring1[0][0:c+1]
+    x12=offspring1[0][c+1:]
+   
+    x21=offspring2[0][0:c+1]
+    x22=offspring2[0][c+1:]
+   
+    
+    off1=x11+x22
+    off2=x21+x12
+    offspring1[0]=off1
+    offspring2[0]=off2
+    off1=offspring1[0]    
+    modularity = myCostJaya(off1,inputdata)
+    offspring1[1]=modularity
+    off2=offspring2[0]    
+    modularity = myCostJaya(off2,inputdata)
+    offspring2[1]=modularity
+    
+    return offspring1, offspring2
+
+
+def MutationJAYA(parent,inputdata):
+    
+    max_iterations, population_size, num_crossover, num_mutations, mutation_rate, elitism_probability, beta, num_clusters, num_modules, w_ij, d_i, crossover_rate, code_list, dependency_matrix, num_dependencies, d_in, d_out, max_duration = inputdata
+
+    offspring = [[],0]
+    if np.random.random()<0.00001:
+        child = [[], 0]
+        pop = [np.random.random() for i in range(num_modules+num_clusters-1)]
+        child[0] = np.array(pop)
+    else:
+        place2Mutate=np.random.choice(range(num_modules),1)
+        place2Mutate=place2Mutate[0]
+        child=copy.deepcopy(parent)
+        RAND=np.random.random()
+        if RAND<0.2:
+            child[0]=np.delete(parent[0],place2Mutate)
+            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, num_clusters-1,1)[0])
+        elif 1.2<=RAND<22.4:
+            child[0] = np.flip(parent[0])
+        elif 0.3<=RAND<10.6:
+            nn=len(parent[0])
+            ip=np.random.choice(nn,2,replace=False)
+            i1=ip[0]
+            i2=ip[1]
+            child=copy.deepcopy(parent)
+            child[0][i1]=parent[0][i2]
+            child[0][i2]=parent[0][i1] 
+            child[0] = np.array(child[0])
+        else:
+            i=np.random.choice(range(len(parent[0])),2,replace=False)
+            i1=min(i)
+            i2=max(i)
+            child[0][i1:i2]=parent[0][i1:i2][::-1]
+            child[0] = np.array(child[0])
+    # Decode and Calculate the Cost
+    modularity = myCostJaya(child[0],inputdata)
+    #Update the population
+    offspring[0] = child[0].tolist()
+    offspring[1] = modularity
+    return offspring
+
 
 def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputdata):
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata    
+    max_iterations, population_size, num_crossover, num_mutations, mutation_rate, elitism_probability, beta, num_clusters, num_modules, w_ij, d_i, crossover_rate, code_list, dependency_matrix, num_dependencies, d_in, d_out, max_duration = inputdata
+
     # Calculate X
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chi,chj,inputdata)
     else:
         offspring1, offspring2 = chi,chj
@@ -236,7 +207,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
     else:
         temp = offspring2
         
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chbest,chworst,inputdata)
     else:
         offspring1, offspring2 = chbest,chworst
@@ -251,7 +222,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
         X = best
     
     # Calclate Y
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chi,chj,inputdata)
         offspring3, offspring4=Crossover(chi,chbest,inputdata)
         offspring4, offspring5=Crossover(chj,chbest,inputdata)
@@ -289,7 +260,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
     else:
         Y = temp
     #Calculate A
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chi,chbest,inputdata)
     else:
         offspring1, offspring2=chi,chbest
@@ -298,7 +269,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
     else:
         temp = offspring2
     
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chi,chworst,inputdata)
     else:
         offspring1, offspring2=chi,chworst            
@@ -312,7 +283,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
         A = temp
 
     #Calculate B
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chj,chbest,inputdata)
     else:
         offspring1, offspring2=chj,chbest
@@ -321,7 +292,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
     else:
         temp = offspring2
     
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chj,chworst,inputdata)
     else:
         offspring1, offspring2=chj,chworst            
@@ -386,7 +357,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
         worst = B[1]
         chjworst = B
     #Calculate K
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chi,chibest,inputdata)
     else:
         offspring1, offspring2=chi,chibest
@@ -395,7 +366,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
     else:
         temp = offspring2
     
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chi,chiworst,inputdata)
     else:
         offspring1, offspring2=chi,chiworst          
@@ -408,7 +379,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
     else:
         K = temp            
     #Calculate Z
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chj,chjbest,inputdata)
     else:
         offspring1, offspring2=chj,chjbest
@@ -417,7 +388,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
     else:
         temp = offspring2
     
-    if np.random.random() < crossRate:
+    if np.random.random() < crossover_rate:
         offspring1, offspring2=Crossover(chj,chjworst,inputdata)
     else:
         offspring1, offspring2=chj,chjworst          
@@ -429,16 +400,16 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
         Z = temp2
     else:
         Z = temp    
-    return(X,Y,A,B,K,Z)
+    return X,Y,A,B,K,Z
 
-#%% JAYA
-def Jaya(parser,parent,inputdata,best,worst):
+
+def Jaya(parent,inputdata,best,worst):
     r1 = 0.4
     r2 = 0.4
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+
     child = [[],0]
     for i in range(len(parent[0])):
         child[0].append (parent[0][i] + r1 * (best[0][i] - abs(parent[0][i])) - r2 * (worst[0][i] - abs(parent[0][i])) )
-    modularity = myCostJaya(parser,child[0],inputdata)
+    modularity = myCostJaya(child[0],inputdata)
     child[1] = modularity
-    return(child)
+    return child

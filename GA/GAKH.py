@@ -8,25 +8,15 @@ import numpy as np
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, Cumulative
 import copy
 import time
-def GAKH(parser,inputdata):
+def GAKH(inputdata):
     tic = time.time()
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
-    objective = 0
-    clusters = []
-    
-    #%% Initialization
-    '''
-    Answer representation is here for future reference:
-        |3|4|5|10|11 ....|3|
-        length: number of modules
-        number in between: The cluster that module is asssigned too
-    '''
+    max_iterations, population_size, num_crossover, num_mutations, mutation_rate, elitism_probability, beta, num_clusters, num_modules, w_ij, d_i, crossover_rate, code_list, dependency_matrix, num_dependencies, d_in, d_out, max_duration = inputdata
     
     population=[]
-    for i in range(nPop):
+    for i in range(population_size):
         # Get the solution of DP-RL
-        pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
-        modularity = myCost(parser,pop,inputdata)
+        pop = [np.random.randint(0,num_clusters-1) for _ in range(num_modules)]
+        modularity = myCost(pop,inputdata)
     
         #Update the population
         population.append([pop,modularity])
@@ -35,12 +25,12 @@ def GAKH(parser,inputdata):
     sortedPopulation=copy.deepcopy(population)
     sortedPopulation.sort(key=lambda x: x[1], reverse = 1)
     population = sortedPopulation
-    #%% Main Loop
-    for iter in range(MaxIt):
+
+    for iter in range(max_iterations):
         Newpop=[]
-        # Selecet Elite Parents and move them to next generation
-        nElite=int(nPop*elitismProb)
-        nNonElite=nPop-nElite
+        # Select Elite Parents and move them to next generation
+        nElite=int(population_size*elitism_probability)
+
         for i in range(nElite):
              Newpop.append(sortedPopulation[i])
         # Select Parents to Crossover and Mutation
@@ -57,7 +47,7 @@ def GAKH(parser,inputdata):
         chbest = population[0]
         chworst = population[-1]
             
-        for k in range(crossNumber):
+        for _ in range(num_crossover):
             chi=population[RouletteWheelSelection(P)]
             chj=population[RouletteWheelSelection(P)]            
             chibest = chi
@@ -74,7 +64,7 @@ def GAKH(parser,inputdata):
             Newpop.append(Z)
             
         # Mutation (Local Movement)
-        for k in range(muteNumber):
+        for _ in range(num_mutations):
             chi=population[RouletteWheelSelection(P)]
             offspring=Mutation(chi,inputdata)
             Newpop.append(offspring)
@@ -87,11 +77,10 @@ def GAKH(parser,inputdata):
         population=copy.deepcopy(Newpop)
         sortedPopulation=copy.deepcopy(population)
         sortedPopulation.sort(key=lambda x: x[1], reverse=1)
-        sortedPopulation = sortedPopulation[:nPop]
+        sortedPopulation = sortedPopulation[:population_size]
         population = sortedPopulation
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
-        print(BestCost)
-        if time.time() - tic > 1000:
-            break
-    return(BestCost, sortedPopulation[0][0])
+
+        
+    return BestCost, sortedPopulation[0][0]

@@ -1,3 +1,5 @@
+from codecs import ignore_errors
+from msilib.schema import Binary
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -16,7 +18,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(507, 231)
+        MainWindow.resize(507, 271)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -55,6 +57,12 @@ class Ui_MainWindow(object):
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setGeometry(QRect(230, 180, 75, 24))
+
+        self.label_4 = QLabel(self.centralwidget)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(250, 210, 75, 24))
+
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -81,8 +89,11 @@ class Ui_MainWindow(object):
 
     def runAlgorithm(self):
         self.lineEdit.text()
-        output = subprocess.run(['python', 'model.py','--dependency_file', self.lineEdit.text(),'--algorithm', self.comboBox.currentText()], capture_output=True)
-        print(output)
+        output = subprocess.run(['python', 'Main.py','--dependency_file', self.lineEdit.text(),'--algorithm', self.comboBox.currentText()], capture_output=True)
+        modularity = output.stdout.decode("ascii","ignore")
+        modularity = modularity[:7]
+        self.label_4.setText(modularity)
+        print(modularity)
 
 
 app = QApplication(sys.argv)

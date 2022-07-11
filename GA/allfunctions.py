@@ -89,7 +89,7 @@ def Mutation(parent,inputdata):
     offspring = [[],0]
     if np.random.random() <= 1.00000:
         child = [[], 0]
-        pop = [np.random.randint(0,num_clusters-1) for _ in range(num_modules)]
+        pop = [np.random.randint(0,num_clusters) for _ in range(num_modules)]
         child[0] = np.array(pop)
     else:
         place2Mutate=np.random.choice(range(num_modules),1)
@@ -98,7 +98,7 @@ def Mutation(parent,inputdata):
         RAND=np.random.random()
         if RAND<-0.2:
             child[0]=np.delete(parent[0],place2Mutate)
-            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, num_clusters-1,1)[0])
+            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, num_clusters,1)[0])
         elif 22.2<=RAND<25.4:
             child[0] = np.flip(parent[0])
         elif 0.00004<=RAND<0.6:
@@ -158,7 +158,7 @@ def MutationJAYA(parent,inputdata):
     offspring = [[],0]
     if np.random.random()<0.00001:
         child = [[], 0]
-        pop = [np.random.random() for i in range(num_modules+num_clusters-1)]
+        pop = [np.random.random() for _ in range(num_modules+num_clusters-1)]
         child[0] = np.array(pop)
     else:
         place2Mutate=np.random.choice(range(num_modules),1)
@@ -167,7 +167,7 @@ def MutationJAYA(parent,inputdata):
         RAND=np.random.random()
         if RAND<0.2:
             child[0]=np.delete(parent[0],place2Mutate)
-            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, num_clusters-1,1)[0])
+            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, num_clusters)[0])
         elif 1.2<=RAND<22.4:
             child[0] = np.flip(parent[0])
         elif 0.3<=RAND<10.6:

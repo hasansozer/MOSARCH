@@ -15,7 +15,7 @@ def GAKH(inputdata):
     population=[]
     for i in range(population_size):
         # Get the solution of DP-RL
-        pop = [np.random.randint(0,num_clusters-1) for _ in range(num_modules)]
+        pop = [np.random.randint(0,num_clusters) for _ in range(num_modules)]
         modularity = myCost(pop,inputdata)
     
         #Update the population

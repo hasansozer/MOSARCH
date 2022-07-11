@@ -58,7 +58,12 @@ def main(cmd_opt):
     elif cmd_opt['algorithm'] == 'HYGAR':
         objective, clusters = GAJAYA(inputdata)
     
-    print(objective)
+    #print(objective)
+    print(clusters)
+
+    with open(cmd_opt['out_file'], "w+") as f:
+        for item in clusters:
+            pass
     
 
 if __name__ == '__main__':
@@ -80,7 +85,7 @@ if __name__ == '__main__':
     parser.add_argument('--mutation_rate', type=float, default=0.06, help='Mutation rate')
     parser.add_argument('--elitism_probability', type=float, default=0.2, help='Elitism probability')
     parser.add_argument('--betas', type=float, default=0.0005, help='Roulette wheel ratio')
-    parser.add_argument('--num_clusters', type=int, default=5, help='Number of clusters')
+    parser.add_argument('--num_clusters', type=int, default=3, help='Number of clusters')
     parser.add_argument('--seed', type=int, default=519, help='Numpy random seed')
     parser.add_argument('--max_duration', type=int, default=10000, help='Maximum duration if the max number of iterations yet to be reached.')
 

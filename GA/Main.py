@@ -6,6 +6,20 @@ from GA_Parser_Class import *
 import time
 import numpy as np
 
+def jaya_postprocess(clusters, num_clusters):
+    clusters = np.argsort(clusters)
+    cluster_id = 0
+    news = {}
+    for item in clusters:
+        if item < len(clusters) - num_clusters + 1:
+            news.update({item : cluster_id})
+        else:
+            cluster_id += 1
+    ret = []
+    for i in range(len(news)):
+        ret.append(news[i])
+    return ret
+
 def main(cmd_opt):
     max_iterations = cmd_opt['max_iterations']
     max_duration = cmd_opt['max_duration']
@@ -57,14 +71,14 @@ def main(cmd_opt):
         objective, clusters = GAKH(inputdata)
     elif cmd_opt['algorithm'] == 'HYGAR':
         objective, clusters = GAJAYA(inputdata)
-    
-    #print(objective)
-    print(clusters)
+        clusters = jaya_postprocess(clusters, num_clusters)
 
     with open(cmd_opt['out_file'], "w+") as f:
-        for item in clusters:
-            pass
-    
+        for index, item in enumerate(clusters):
+            f.write("contains {} {}\n".format(item,parser.ID2name[index]))
+
+
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -72,12 +86,12 @@ if __name__ == '__main__':
     # data args
     parser.add_argument('--dependency_file', type=str, help='Dependency file in .rsf format')
     parser.add_argument('--clustering_file', type=str, help='Clustering file in .rsf format')
-    parser.add_argument('--algorithm', type=str, default='GA', help='SAR Algorithm : GA, GAKH, HYGAR')
+    parser.add_argument('--algorithm', type=str, default='HYGAR', help='SAR Algorithm : GA, GAKH, HYGAR')
     
     parser.add_argument('--clean_dep_rsf', action='store_true', help='Clean the dependency rsf file from self dependencies')
 
     # genetic algorithm args
-    parser.add_argument('--max_iterations', type=int, default=100, help='Maximum iterations')
+    parser.add_argument('--max_iterations', type=int, default=10, help='Maximum iterations')
     parser.add_argument('--population_size', type=int, default=30, help='Population size')
     parser.add_argument('--crossover_probability', type=float, default=0.35, help='Crossover probability')
     parser.add_argument('--crossover_rate', type=float, default=0.5, help='Crossover rate')
@@ -93,7 +107,7 @@ if __name__ == '__main__':
     parser.add_argument('--metric', type=str, default='directed_modularity', help='modularity, directed_modularity')
 
     # output
-    parser.add_argument('--out_file', type=str, default='out.csv', help='output file')
+    parser.add_argument('--out_file', type=str, default='out.rsf', help='output file')
     
 
     args = parser.parse_args()

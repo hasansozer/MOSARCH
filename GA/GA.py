@@ -25,7 +25,7 @@ def GA(inputdata):
     population=[]
     for i in range(nPop):
         # Get the solution of DP-RL
-        pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
+        pop = [np.random.randint(0,nClusters) for i in range(nModules)]
         modularity = myCost(pop,inputdata)
     
         #Update the population

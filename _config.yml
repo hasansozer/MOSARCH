@@ -2,6 +2,5 @@ title: MOSARCH
 description: Recovery of Modular Software Architectures with Exact and Heuristic Clustering Methods
 timezone: TR
 show_downloads: false
-theme: jekyll-theme-architec
-
+remote_theme: pages-themes/architect@v0.2.0
 

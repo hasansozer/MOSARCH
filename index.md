@@ -1,6 +1,6 @@
 Welcome to the Web page of the MOSARCH project that focuses on **software architecture recovery/reconstruction (SAR)**. Software architecture documentation is important for program comprehension, developer communication and proper system maintenance. Unfortunately, this documentation is usually incorrect or incomplete, especially for legacy systems. Reverse engineering the documentation requires extensive effort as the software size and complexity increase. SAR approaches have been introduced to address this problem by analyzing dependencies among software modules to cluster them and reason about the high-level structure of a system. This project aims at developing **a generic and integrated SAR platform** that addresses the shortcomings of existing approaches. In particular, The goal of MOSARCH is to develop a scalable SAR platform that can employ **both exact optimization mehtods and heuristics** to utilize **various types of module interdependency data** based on **multi-objective optimization criteria**.
 
-## Home | [Publications](./publications.html)
+## Home | [Contributors](./contributers.html) | [Publications](./publications.html)
 
 ## MOSARCH
 - Project Funding: [The Scientific and Technological Research Council of Turkey](https://tubitak.gov.tr/en) (grant #120E488)

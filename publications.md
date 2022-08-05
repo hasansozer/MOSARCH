@@ -1,4 +1,4 @@
-[back](./)
+[<< back](./)
 
 ## Publications
 -  M. Elyasi, M.E. Simitcioglu, A. Saydemir, A. Ekici, and H. Sozer. HYGAR: A hybrid genetic

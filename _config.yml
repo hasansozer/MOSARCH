@@ -3,4 +3,6 @@ description: Recovery of Modular Software Architectures with Exact and Heuristic
 timezone: TR
 show_downloads: false
 remote_theme: pages-themes/architect@v0.2.0
-
+github:
+  zip_url: http://example.com/download.zip
+  another_url: another value

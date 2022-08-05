@@ -9,13 +9,3 @@ Welcome to the Web page of the MOSARCH project that focuses on **software archit
 - Start date: 15.03.2021
 - End date: 15.03.2024
 
-## Project Members
-- [Hasan Sozer](https://faculty.ozyegin.edu.tr/hsozer/)
-- [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/)
-- [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/)
-
-## Other Contributors
-- [Esad Simitcioglu](https://github.com/EsadSimitcioglu)
-- [Abdullah Saydemir](https://github.com/Saydemr)
-- [Milad Elyasi](http://www.miladelyasi.com/)
-- [Ersin Ersoy](https://github.com/ersinersoy/)

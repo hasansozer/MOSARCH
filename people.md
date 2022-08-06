@@ -4,6 +4,7 @@
 - Principal Investigator: [Hasan Sozer](https://faculty.ozyegin.edu.tr/hsozer/), [Ozyegin University](https://www.ozyegin.edu.tr/)
 - Researcher: [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/), [Ozyegin University](https://www.ozyegin.edu.tr/)
 - Researcher: [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/), [Ozyegin University](https://www.ozyegin.edu.tr/)
+- M.Sc. Student: [Taha Varol](https://tr.linkedin.com/in/tahavarol), [Ozyegin University](https://www.ozyegin.edu.tr/)
 
 ## Other Contributors
 - [Esad Simitcioglu](https://github.com/EsadSimitcioglu), [Ozyegin University](https://www.ozyegin.edu.tr/)

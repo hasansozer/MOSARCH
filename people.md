@@ -1,10 +1,10 @@
 ### [Home](./) | Contributors | [Publications](./publications.html)
 
 ## Project Members
-- Principal Investigator: [Hasan Sozer](https://faculty.ozyegin.edu.tr/hsozer/), [Ozyegin University](https://www.ozyegin.edu.tr/)
-- Researcher: [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/), [Ozyegin University](https://www.ozyegin.edu.tr/)
-- Researcher: [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/), [Ozyegin University](https://www.ozyegin.edu.tr/)
-- M.Sc. Student: [Taha Varol](https://tr.linkedin.com/in/tahavarol), [Ozyegin University](https://www.ozyegin.edu.tr/)
+- [Hasan Sozer](https://faculty.ozyegin.edu.tr/hsozer/) (Principal Investigator), [Ozyegin University](https://www.ozyegin.edu.tr/)
+- [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/) (Researcher), [Ozyegin University](https://www.ozyegin.edu.tr/)
+- [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/) (Researcher), [Ozyegin University](https://www.ozyegin.edu.tr/)
+- [Taha Varol](https://tr.linkedin.com/in/tahavarol) (M.Sc. Student), [Ozyegin University](https://www.ozyegin.edu.tr/)
 
 ## Other Contributors
 - [Esad Simitcioglu](https://github.com/EsadSimitcioglu), [Ozyegin University](https://www.ozyegin.edu.tr/)

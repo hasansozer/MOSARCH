@@ -1,4 +1,4 @@
-### [Home](./) | [Contributors](./people.html) | Publications
+### MOSARCH [Home](./) | [Contributors](./people.html) | Publications
 -  M. Elyasi, M.E. Simitcioglu, A. Saydemir, A. Ekici, and H. Sozer. HYGAR: A hybrid genetic
 algorithm for software architecture recovery. In Proceedings of the 37th ACM Symposium on
 Applied Computing, pages 1417–1424, Virtual Event, 2022.

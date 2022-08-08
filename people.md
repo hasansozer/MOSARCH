@@ -1,4 +1,4 @@
-### [Home](./) | Contributors | [Publications](./publications.html)
+### MOSARCH [Home](./) | Contributors | [Publications](./publications.html)
 
 ## Project Members
 - [Hasan Sozer](https://faculty.ozyegin.edu.tr/hsozer/) (Principal Investigator), [Ozyegin University](https://www.ozyegin.edu.tr/)

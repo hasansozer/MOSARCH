@@ -1,3 +1,4 @@
 ### [MOSARCH Home](./) | [Contributors](./people.html) | [Publications](./publications.html) | Toolset
 
-TODO
+
+![System Overview](/sysoverview.jpg)

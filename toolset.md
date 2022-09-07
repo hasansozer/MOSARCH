@@ -4,11 +4,11 @@ Our toolset aims at software architecture recovery by automatically clustering s
 
 ![System Overview](/images/sysoverview.png)
 
-The main modules and the flow of intermediate artifacts are depicted in the figure below. There are 3 main tools. The first one performs *Structural Coupling Analysis* to extract *Module Dependencies* by analyzing the *Source Code*. The second tool takes *Modification History* and extracts *Module co-changes*. The last tool performs *Module Clustering* based on the output artifacts of the other two tools.
+The main processes and the flow of (intermediate) artifacts are depicted in the figure below. There are 3 main processes. The first one performs *Structural Coupling Analysis* to extract *Module Dependencies* by analyzing the *Source Code*. The second process extracts *Modification History* from the *Source Code Repository* to analyze *Module co-changes*. The last process performs *Module Clustering* based on the output artifacts of the other two tools.
 
 ![Flow](/images/flow.png)
 
-The following figure depicts the envisioned design for the *Module Clustering* tool for supporting extendability.
+The following figure depicts the envisioned design for the tool that performs *Module Clustering* for supporting extendability.
 
 ![Design](/images/design.png)
 

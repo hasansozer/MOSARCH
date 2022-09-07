@@ -4,7 +4,7 @@ Our toolset aims at software architecture recovery by automatically clustering s
 
 ![System Overview](/images/sysoverview.png)
 
-The main processes and the flow of (intermediate) artifacts are depicted in the figure below. There are 3 main processes. The first one performs *Structural Coupling Analysis* to extract *Module Dependencies* by analyzing the *Source Code*. The second process extracts *Modification History* from the *Source Code Repository* to analyze *Module co-changes*. The last process performs *Module Clustering* based on the output artifacts of the other two tools.
+The main processes and the flow of (intermediate) artifacts are depicted in the figure below. There are 3 main processes. The first one performs *Structural Coupling Analysis* to extract *Module Dependencies* by analyzing the *Source Code*. The second process extracts *Modification History* from the *Source Code Repository* to analyze *Module co-changes*. We developed a [repo mining tool](https://github.com/hasansozer/MOSARCH/tree/main/repo_mining) that performs this analysis and provides a module dependency graph based on these co-changes. The last process performs *Module Clustering* based on the output artifacts of the other two tools.
 
 ![Flow](/images/flow.png)
 

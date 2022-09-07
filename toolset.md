@@ -8,7 +8,7 @@ The main processes and the flow of (intermediate) artifacts are depicted in the 
 
 ![Flow](/images/flow.png)
 
-The following figure depicts the envisioned design for the tool that performs *Module Clustering* for supporting extendability.
+The following figure depicts the envisioned design for the tool that performs *Module Clustering* for supporting extendability. The main component of the tool is *Architecture Recovery*, which takes a set of *Dependency Models* as input. These models can be extracted as a result of the analysis of either structural or evolutionary coupling regarding the modules of the subject system. An additional input, *Configuration Settings*, is provided for configuring the clustering algorithm and its parameters. The output is the *Clustering Result*, which suggests an expected structural decomposition of a modular software architecture.
 
 ![Design](/images/design.png)
 

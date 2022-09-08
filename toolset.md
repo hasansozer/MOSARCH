@@ -12,4 +12,5 @@ The following figure depicts the envisioned design for the tool that performs *M
 
 ![Design](/images/design.png)
 
+Two [design patterns](https://en.wikipedia.org/wiki/Design_Patterns) are adopted in the design depicted above. First, Strategy pattern is used for enabling the *Architecture Recovery* component to switch among various clustering algorithms. Second, Composite pattern is used for enabling the composition of algorithms to implement a hybrid algorithm.
 

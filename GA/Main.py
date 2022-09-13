@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Aug  4 17:54:58 2021
+
 @author: Milad
 """
 #import pandas as pd
@@ -14,54 +15,30 @@ np.random.seed(519)
 #%% Input information for Simulation
 
 '''GA-related'''
-MaxIts = [10000]                                #Number of iterations
-nPops = [30]                                  #Number of population
-crossProbs = [0.35]                           #Crossover probability
-crossRates = [0.5]                             #Crossover rate  
-muteProbs = [0.7]                             #Mutation probability
+MaxIts = [100]                                #Number of iterations
+
+
+nPops = [70]                                  #Number of population
+crossRates = [0.2]                             #Crossover rate  
 muteRates = [0.06]                            #Mutation Rate
-elitisimProbs = [0.2]                           #Elite Parents Probability
+
+crossProbs = [0.55]                           #Crossover probability
+muteProbs = [0.7]                             #Mutation probability
+elitisimProbs = [0.3]                           #Elite Parents Probability
 betas = [0.0005]                              #Rollette wheel ratio
 
 
 '''Problem-related'''
-nClusters = [3,5,10,15]                               #Number of Clusters
-#nModules = 500
+nClusters = [3,5,10,15,20]                               #Number of Clusters
+dependencyFile = "bash-dependency.rsf"
 
-
-
-# =============================================================================
-#dependencyFile = "camel-dependency.rsf"
-#clusteringFile = "camel-dependency.rsf"
-# =============================================================================
-
-# =============================================================================
-#dependencyFile = "openjpa-2.4.2-deps.rsf"
-#clusteringFile = "openjpa-2.4.2-deps.rsf"
-# =============================================================================
-
-# =============================================================================
-# dependencyFile = "lucene-4.6.1-deps.rsf"
-# clusteringFile = "lucene-4.6.1-deps.rsf"
-# =============================================================================
-
-# To give the solution of heuristic method to JAYA algorithm, use the following
-# lines of code. Use <dataset>-mgmc-clustered.rsf as clustering file and regular
-# dependency file. You can comment out the following lines.
-# =============================================================================
-# parser = RSFParser('lucene-mgmc-clustered.rsf')
-# parser.parse_dependency_input_file('lucene-4.6.1-deps.rsf')
-# jaya_list = parser.get_jaya_random_list('lucene-mgmc-clustered.rsf')
-# =============================================================================
-
-# =============================================================================
-# parser = RSFParser('bash-mgmc-clustered.rsf')
-# parser.parse_dependency_input_file('bash-dependency.rsf')
-# jaya_list = parser.get_jaya_random_list('bash-mgmc-clustered.rsf')
-# =============================================================================
+parser = RSFParser()
+parser.parse_dependency_input_file(dependencyFile)
 
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
+clustered_items = parser.clustered_items
+
 
 nModules = len(w_ij)
 d_i = np.zeros(nModules)
@@ -71,9 +48,14 @@ for i in range(nModules):
         d_i[i] += w_ij[i][j]
 
 
-q1 = open("Results.csv", "w+")
-q1.write("")
-q1.close()
+
+CodeList = parser.name2ID.keys()
+Dependencies = [] # Unnecessary, never used
+DependencyMatrix = [parser.dsm]
+nDependecies = [parser.dependency_count]
+dInArray = [parser.d_in]
+dOutArray = [parser.d_out]
+
 
 #%% Main Loop
 for MaxIt in MaxIts:
@@ -87,37 +69,33 @@ for MaxIt in MaxIts:
                         for elitismProb in elitisimProbs:
                             for beta in betas:
                                 for nCluster in nClusters:
-                                    q=open("Results.csv", "a")
-                                    q.write(str(nCluster) + ': ')
-                                    q.write('\n')
+                                    inputdata = MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray
+                                    objectiveGA = 0
+                                    cpuGA = 0
+                                    objectiveGAKH = 0 
+                                    cpuGAKH = 0
+                                    q=open("Results.csv", "a+")
+                                    q.write(str(nCluster) + ': \n')
+                                    q.write('GA: \n')
                                     q.close()
-                                    inputdata = MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate
                                     start = time.time()
                                     objectiveGA, clusters = GA(inputdata)
-                                    q=open("Results.csv", "a")
-                                    q.write('\n')
-                                    q.close()
                                     cpuGA = time.time()-start
+                                    q=open("Results.csv", "a+")
+                                    q.write(str(objectiveGA) + ' ' + str(cpuGA) + '\n')	
+                                    q.write('GAKH: \n')
+                                    q.close()
                                     start = time.time()
                                     objectiveGAKH, clusters = GAKH(inputdata)
-                                    q=open("Results.csv", "a")
-                                    q.write('\n')
-                                    q.close()                                    
                                     cpuGAKH = time.time()-start
+                                    q=open("Results.csv", "a+")
+                                    q.write(str(objectiveGAKH) + ' ' + str(cpuGAKH) + '\n')
+                                    q.write('HYGAR: \n')
+                                    q.close()
                                     start = time.time()
                                     objectiveGAJAYA, clusters = GAJAYA(inputdata)
                                     cpuGAJAYA = time.time()-start
-
-                                    q=open("Results.csv", "a")
-                                    q.write('\n')
-                                    q.close()
-# =============================================================================
-#                                     q=open("Results.csv", "a")
-#                                     q.write(str(nPop) + ',' +str(crossProb) + ',' +str(crossRate) + ',' +str(muteProb) + ',' +str(muteRate) + ',' +str(elitismProb) + ',' +str(beta) + ',' +str(objectiveGA) + ',' + str(cpuGA) + ',' + str(objectiveGAKH) + ',' + str(cpuGAKH) + ',' + str(objectiveGAJAYA) + ',' + str(cpuGAJAYA))
-#                                     q.write('\n')
-#                                     q.close()  
-# =============================================================================
-                                    q=open("Results.txt", "a")
-                                    q.write(str(nPop) + '  ' +str(crossProb) + '  ' +str(crossRate) + '  ' +str(muteProb) + '  ' +str(muteRate) + '  ' +str(elitismProb) + '  ' +str(beta) + '  ' +str(objectiveGA) + '  ' + str(cpuGA) + '  ' + str(objectiveGAKH) + '  ' + str(cpuGAKH) + '  ' + str(objectiveGAJAYA) + '  ' + str(cpuGAJAYA))
-                                    q.write('\n')
+                                    q=open("Results.csv", "a+")
+                                    q.write(str(objectiveGAJAYA) + ' ' + str(cpuGAJAYA) + '\n')
+                                    q.write(str(nPop) + ',' +str(crossProb) + ',' +str(crossRate) + ',' +str(muteProb) + ',' +str(muteRate) + ',' +str(elitismProb) + ',' +str(beta) + ',' +str(objectiveGA) + ',' + str(cpuGA) + ',' + str(objectiveGAKH) + ',' + str(cpuGAKH) + ',' + str(objectiveGAJAYA) + ',' + str(cpuGAJAYA) + '\n')
                                     q.close()

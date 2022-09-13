@@ -8,10 +8,11 @@ import numpy as np
 import time
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, myCostJaya, CrossoverJAYA, MutationJAYA, Jaya
 import copy
-def GAJAYA(parser,inputdata):
+def GAJAYA(inputdata):
     tic = time.time()
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     objective = 0
+    miyu = 10
     clusters = []
     
     #%% Initialization
@@ -21,14 +22,14 @@ def GAJAYA(parser,inputdata):
         length: number of modules + number of clusters - 1
         decoding guide: VRP-like
         use arg sort
-        The reason I am using this repesntation is that JAYA is a continuous algorithm
+        The reason I am using this representation is that JAYA is a continuous algorithm
     '''
     
     population=[]
     for i in range(nPop):
         # Get the solution of DP-RL
-        pop = [np.random.random() for i in range(nModules+nClusters-1)]
-        modularity = myCostJaya(parser,pop,inputdata)
+        pop = [np.random.random() for _ in range(nModules+nClusters-1)]
+        modularity = myCostJaya(pop,inputdata)
     
         #Update the population
         population.append([pop,modularity])
@@ -37,12 +38,13 @@ def GAJAYA(parser,inputdata):
     sortedPopulation=copy.deepcopy(population)
     sortedPopulation.sort(key=lambda x: x[1], reverse = 1)
     population = sortedPopulation
+    gBest = sortedPopulation[0]
+    gWorst = sortedPopulation[-1]
     #%% Main Loop
     for iter in range(MaxIt):
         Newpop=[]
         # Selecet Elite Parents and move them to next generation
         nElite=int(nPop*elitismProb)
-        nNonElite=nPop-nElite
         for i in range(nElite):
              Newpop.append(sortedPopulation[i])
         # Select Parents to Crossover and Mutation
@@ -62,27 +64,38 @@ def GAJAYA(parser,inputdata):
             offspring1, offspring2=CrossoverJAYA(parent1,parent2,inputdata)
             Newpop.append(offspring1)
             Newpop.append(offspring2)
+            offspring1, offspring2 = Jaya(offspring1, inputdata, gBest, gWorst),Jaya(offspring2, inputdata, gBest, gWorst)
+            Newpop.append(offspring1)
+            Newpop.append(offspring2)
         # Mutation
         for k in range(muteNumber):
             parent=population[RouletteWheelSelection(P)]
             offspring=MutationJAYA(parent,inputdata)
             Newpop.append(offspring)
+            offspring = Jaya(offspring, inputdata, gBest, gWorst)
+            Newpop.append(offspring)
+
         # JAYA
-        best = population[0]
-        worst = population [-1]
-        for k in range(20):
-            parent=population[RouletteWheelSelection(P)]
+        Newpop.sort(key=lambda x: x[1], reverse=1)
+        best = Newpop[0]
+        worst = Newpop [-1]
+        for k in range(40):
+            parent=Newpop[k]
             offspring = Jaya(parent, inputdata, best, worst)
             Newpop.append(offspring)
             
         population=copy.deepcopy(Newpop)
         sortedPopulation=copy.deepcopy(population)
         sortedPopulation.sort(key=lambda x: x[1], reverse=1)
-        sortedPopulation = sortedPopulation[:nPop]
+        gBest = sortedPopulation[0]
+        gWorst = sortedPopulation[-1]
+        sortedPopulation = sortedPopulation[:2*nPop]
         population = sortedPopulation
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
-        print(BestCost)
-        if time.time() - tic > 1000:
-            break    
+        # print(BestCost)
+        with open('GAJAYA_graph' + str(nClusters), 'a+') as f:
+            f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
+        if time.time()-tic > 9000:
+            break 
     return(BestCost, sortedPopulation[0][0])

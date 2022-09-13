@@ -8,9 +8,9 @@ import numpy as np
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation
 import copy
 import time
-def GA(parser,inputdata):
+def GA(inputdata):
     tic = time.time()
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate = inputdata
+    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     objective = 0
     clusters = []
     
@@ -25,12 +25,12 @@ def GA(parser,inputdata):
     population=[]
     for i in range(nPop):
         # Get the solution of DP-RL
-        pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
-        modularity = myCost(parser,pop,inputdata)
+        pop = [np.random.randint(0,nClusters) for i in range(nModules)]
+        modularity = myCost(pop,inputdata)
     
         #Update the population
         population.append([pop,modularity])
-             
+
     # Sort the Population
     sortedPopulation=copy.deepcopy(population)
     sortedPopulation.sort(key=lambda x: x[1], reverse = 1)
@@ -57,13 +57,13 @@ def GA(parser,inputdata):
         for k in range(crossNumber):
             parent1=population[RouletteWheelSelection(P)]
             parent2=population[RouletteWheelSelection(P)]            
-            offspring1, offspring2=Crossover(parser,parent1,parent2,inputdata)
+            offspring1, offspring2=Crossover(parent1,parent2,inputdata)
             Newpop.append(offspring1)
             Newpop.append(offspring2)
         # Mutation
         for k in range(muteNumber):
             parent=population[RouletteWheelSelection(P)]
-            offspring=Mutation(parser,parent,inputdata)
+            offspring=Mutation(parent,inputdata)
             Newpop.append(offspring)
         population=copy.deepcopy(Newpop)
         sortedPopulation=copy.deepcopy(population)
@@ -72,7 +72,9 @@ def GA(parser,inputdata):
         population = sortedPopulation
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
-        print(BestCost)
-        if time.time()-tic > 1000:
+        # print(BestCost)
+        with open('GA_graph' + str(nClusters), 'a+') as f:
+            f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
+        if time.time()-tic > 9000:
             break
     return(BestCost, sortedPopulation[0][0])

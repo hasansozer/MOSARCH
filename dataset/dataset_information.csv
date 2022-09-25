@@ -1,0 +1,10 @@
+Repository_Name,Has_Clustering_File,Cluster_Count,Total_Item_Count,Dependency_Count,Cluster_Count_After_MGMC,Total_Item_Count_After_MGMC
+archstudio,True,57,583,866,15,418
+bash,True,14,373,2508,3,234
+chromium,True,69,18724,773150,24,17565
+hadoop,True,67,772,1661,10,469
+itk,True,13,7657,50814,35,7016
+lucene,False,NaN,1611,13340,8,1611
+nutch,False,NaN,977,5419,11,977
+openjpa,False,NaN,3114,35827,12,3114
+struts2,False,NaN,738,4559,7,738

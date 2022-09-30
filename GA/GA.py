@@ -25,7 +25,7 @@ def GA(inputdata):
     population=[]
     for i in range(nPop):
         # Get the solution of DP-RL
-        pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
+        pop = [np.random.randint(0,nClusters) for i in range(nModules)]
         modularity = myCost(pop,inputdata)
     
         #Update the population
@@ -75,4 +75,6 @@ def GA(inputdata):
         # print(BestCost)
         with open('GA_graph' + str(nClusters), 'a+') as f:
             f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
+        if time.time()-tic > 9000:
+            break
     return(BestCost, sortedPopulation[0][0])

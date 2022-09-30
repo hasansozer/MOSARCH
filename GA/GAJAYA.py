@@ -95,5 +95,7 @@ def GAJAYA(inputdata):
         BestCost=BestSol[1]
         # print(BestCost)
         with open('GAJAYA_graph' + str(nClusters), 'a+') as f:
-            f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n') 
+            f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
+        if time.time()-tic > 9000:
+            break 
     return(BestCost, sortedPopulation[0][0])

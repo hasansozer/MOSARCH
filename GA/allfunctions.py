@@ -63,7 +63,7 @@ def Crossover(parent1,parent2,inputdata):
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     offspring1=copy.deepcopy(parent1)
     offspring2=copy.deepcopy(parent2)
-    c=np.random.randint(1,len(parent1[0])-1)
+    c=np.random.randint(1,len(parent1[0]))
     x11=offspring1[0][0:c+1]
     x12=offspring1[0][c+1:]
    
@@ -90,7 +90,7 @@ def Mutation(parent,inputdata):
     offspring = [[],0]
     if np.random.random()<1.00001: # relaxed providing random solutions
         child = [[], 0]
-        pop = [np.random.randint(0,nClusters-1) for i in range(nModules)]
+        pop = [np.random.randint(0,nClusters) for i in range(nModules)]
         child[0] = np.array(pop)
     else:
         place2Mutate=np.random.choice(range(nModules),1)
@@ -99,8 +99,8 @@ def Mutation(parent,inputdata):
         RAND=np.random.random()
         if RAND<-0.2: # relaxed insertion
             child[0]=np.delete(parent[0],place2Mutate)
-            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters-1,1)[0])
-        elif 22.2<=RAND<25.4: # relaxed flipping
+            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters))
+        elif 22.2<=RAND<25.4:
             child[0] = np.flip(parent[0])
         elif 0.00004<=RAND<0.6:
             nn=len(parent[0])
@@ -129,7 +129,7 @@ def CrossoverJAYA(parent1,parent2,inputdata):
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     offspring1=copy.deepcopy(parent1)
     offspring2=copy.deepcopy(parent2)
-    c=np.random.randint(1,len(parent1[0])-1)
+    c=np.random.randint(1,len(parent1[0]))
     x11=offspring1[0][0:c+1]
     x12=offspring1[0][c+1:]
    
@@ -165,7 +165,7 @@ def MutationJAYA(parent,inputdata):
         RAND=np.random.random()
         if RAND<0.2:
             child[0]=np.delete(parent[0],place2Mutate)
-            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters-1,1)[0])
+            child[0]=np.insert(child[0],np.random.choice(len(child[0])),np.random.randint(0, nClusters))
         elif 1.2<=RAND<22.4:
             child[0] = np.flip(parent[0])
         elif 0.3<=RAND<10.6:
@@ -406,7 +406,7 @@ def Jaya(parent,inputdata,best,worst):
     MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
     child = [[],0]
     for i in range(len(parent[0])):
-        child[0].append (parent[0][i] + r1 * (best[0][i] - abs(parent[0][i])) - r2 * (worst[0][i] - abs(parent[0][i])) )
+        child[0].append (parent[0][i] + r1 * (best[0][i] - abs(parent[0][i])) - r2 * (worst[0][i] - abs(parent[0][i])))
     modularity = myCostJaya(child[0],inputdata)
     child[1] = modularity
     return(child)

@@ -5,7 +5,6 @@ Created on Wed Aug  4 17:54:58 2021
 @author: Milad
 """
 #import pandas as pd
-from tblib import Code
 from GA import GA
 from GAKH import GAKH
 from GAJAYA import GAJAYA

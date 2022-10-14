@@ -10,7 +10,7 @@ import copy
 import time
 def GAKH(inputdata):
     tic = time.time()
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, outFileName = inputdata
     objective = 0
     clusters = []
     
@@ -23,9 +23,9 @@ def GAKH(inputdata):
     '''
     
     population=[]
-    for i in range(nPop):
+    for iteration in range(nPop):
         # Get the solution of DP-RL
-        pop = [np.random.randint(0,nClusters) for i in range(nModules)]
+        pop = [np.random.randint(0,nClusters) for _ in range(nModules)]
         modularity = myCost(pop,inputdata)
     
         #Update the population
@@ -36,7 +36,8 @@ def GAKH(inputdata):
     sortedPopulation.sort(key=lambda x: x[1], reverse = 1)
     population = sortedPopulation
     #%% Main Loop
-    for iter in range(MaxIt):
+    for _ in range(MaxIt):
+        tic_iter = time.time()
         Newpop=[]
         # Selecet Elite Parents and move them to next generation
         nElite=int(nPop*elitismProb)
@@ -57,7 +58,7 @@ def GAKH(inputdata):
         chbest = population[0]
         chworst = population[-1]
             
-        for k in range(crossNumber):
+        for _ in range(crossNumber):
             chi=population[RouletteWheelSelection(P)]
             chj=population[RouletteWheelSelection(P)]            
             chibest = chi
@@ -74,7 +75,7 @@ def GAKH(inputdata):
             Newpop.append(Z)
             
         # Mutation (Local Movement)
-        for k in range(muteNumber):
+        for _ in range(muteNumber):
             chi=population[RouletteWheelSelection(P)]
             offspring=Mutation(chi,inputdata)
             Newpop.append(offspring)
@@ -92,8 +93,9 @@ def GAKH(inputdata):
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
         # print(BestCost)
-        with open('GAKH_graph' + str(nClusters), 'a+') as f:
-            f.write( str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
-        if time.time()-tic > 9000:
+        with open(outFileName + "-GAKH.csv", 'a+') as f:
+            toc_iter = time.time()
+            f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
+        if time.time()-tic > MaxDuration:
             break
     return(BestCost, sortedPopulation[0][0])

@@ -10,7 +10,7 @@ from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, my
 import copy
 def GAJAYA(inputdata):
     tic = time.time()
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, outFileName = inputdata
     objective = 0
     miyu = 10
     clusters = []
@@ -26,7 +26,7 @@ def GAJAYA(inputdata):
     '''
     
     population=[]
-    for i in range(nPop):
+    for _ in range(nPop):
         # Get the solution of DP-RL
         pop = [np.random.random() for _ in range(nModules+nClusters-1)]
         modularity = myCostJaya(pop,inputdata)
@@ -41,7 +41,8 @@ def GAJAYA(inputdata):
     gBest = sortedPopulation[0]
     gWorst = sortedPopulation[-1]
     #%% Main Loop
-    for iter in range(MaxIt):
+    for iteration in range(MaxIt):
+        tic_iter = time.time()
         Newpop=[]
         # Selecet Elite Parents and move them to next generation
         nElite=int(nPop*elitismProb)
@@ -58,7 +59,7 @@ def GAJAYA(inputdata):
              temp.append(P[i]/sum(P))
         P=temp
         # Crossover
-        for k in range(crossNumber):
+        for _ in range(crossNumber):
             parent1=population[RouletteWheelSelection(P)]
             parent2=population[RouletteWheelSelection(P)]            
             offspring1, offspring2=CrossoverJAYA(parent1,parent2,inputdata)
@@ -68,7 +69,7 @@ def GAJAYA(inputdata):
             Newpop.append(offspring1)
             Newpop.append(offspring2)
         # Mutation
-        for k in range(muteNumber):
+        for _ in range(muteNumber):
             parent=population[RouletteWheelSelection(P)]
             offspring=MutationJAYA(parent,inputdata)
             Newpop.append(offspring)
@@ -94,8 +95,9 @@ def GAJAYA(inputdata):
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
         # print(BestCost)
-        with open('GAJAYA_graph' + str(nClusters), 'a+') as f:
-            f.write(str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
-        if time.time()-tic > 9000:
+        with open(outFileName + "-GAJAYA.csv", 'a+') as f:
+            toc_iter = time.time()
+            f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
+        if time.time()-tic > MaxDuration:
             break 
     return(BestCost, sortedPopulation[0][0])

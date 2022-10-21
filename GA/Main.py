@@ -11,11 +11,12 @@ from GAJAYA import GAJAYA
 from GA_Parser_Class import *
 import time
 import numpy as np
+import sys
 np.random.seed(519)
 #%% Input information for Simulation
 
 '''GA-related'''
-MaxIts = [5]                                # Number of iterations
+MaxIts = [1]                                # Number of iterations
 MaxDurations = [9000]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
 
 
@@ -30,8 +31,8 @@ betas = [0.0005]                              # Rollette wheel ratio
 
 
 '''Problem-related'''
-nClusters = [3, 5, 10, 15, 20]                               #Number of Clusters
-dependencyFile = "bash-dependency.rsf"
+nClusters = [1]                               #Number of Clusters
+dependencyFile = sys.argv[1]
 
 parser = RSFParser()
 parser.parse_dependency_input_file(dependencyFile)
@@ -73,48 +74,50 @@ for MaxIt in MaxIts:
                             for elitismProb in elitisimProbs:
                                 for beta in betas:
                                     for nCluster in nClusters:
-                                        outFileSuffix = str(MaxIt) + "-" + str(nPop) + "-" + str(crossProb) + "-" + str(crossRate) + "-" + str(muteProb) + "-" + str(muteRate) + "-" + str(elitismProb) + "-" + str(beta) + "-" + str(nCluster)
-                                        inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, outFilePrefix + "-" + outFileSuffix 
-                                        objectiveGA = 0
-                                        cpuGA = 0
-                                        objectiveGAKH = 0 
-                                        cpuGAKH = 0
-                                        
-                                        
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "w+")
-                                        q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                        q.flush()
-                                        q.close()
-                                        start = time.time()
-                                        objectiveGA, clusters = GA(inputdata)
-                                        cpuGA = time.time() - start
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+")
-                                        q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
-                                        q.flush()
-                                        q.close()
+                                        for metric in ["directed", "undirected"]:
 
-                                        
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "w+")
-                                        q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                        q.flush()
-                                        q.close()
-                                        start = time.time()
-                                        objectiveGAKH, clusters = GAKH(inputdata)
-                                        cpuGAKH = time.time() - start
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+")
-                                        q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
-                                        q.flush()
-                                        q.close()
-                                        
-                                        
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-GAJAYA.csv", "w+")
-                                        q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                        q.flush()
-                                        q.close()
-                                        start = time.time()
-                                        objectiveGAJAYA, clusters = GAJAYA(inputdata)
-                                        cpuGAJAYA = time.time()-start
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-GAJAYA.csv", "a+")
-                                        q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
-                                        q.flush()
-                                        q.close()
+                                            outFileSuffix = str(nCluster) + "clusters-" + metric
+                                            inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, metric, outFilePrefix + "-" + outFileSuffix 
+                                            objectiveGA = 0
+                                            cpuGA = 0
+                                            objectiveGAKH = 0 
+                                            cpuGAKH = 0
+                                            
+                                            
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "w+")
+                                            q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
+                                            q.flush()
+                                            q.close()
+                                            start = time.time()
+                                            objectiveGA, clusters = GA(inputdata)
+                                            cpuGA = time.time() - start
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+")
+                                            q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
+                                            q.flush()
+                                            q.close()
+
+                                            
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "w+")
+                                            q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
+                                            q.flush()
+                                            q.close()
+                                            start = time.time()
+                                            objectiveGAKH, clusters = GAKH(inputdata)
+                                            cpuGAKH = time.time() - start
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+")
+                                            q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
+                                            q.flush()
+                                            q.close()
+                                            
+                                            
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-GAJAYA.csv", "w+")
+                                            q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
+                                            q.flush()
+                                            q.close()
+                                            start = time.time()
+                                            objectiveGAJAYA, clusters = GAJAYA(inputdata)
+                                            cpuGAJAYA = time.time()-start
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-GAJAYA.csv", "a+")
+                                            q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
+                                            q.flush()
+                                            q.close()

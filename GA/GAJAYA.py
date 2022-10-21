@@ -10,7 +10,7 @@ from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, my
 import copy
 def GAJAYA(inputdata):
     tic = time.time()
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, outFileName = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, metric, outFileName = inputdata
     objective = 0
     miyu = 10
     clusters = []

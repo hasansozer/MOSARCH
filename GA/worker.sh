@@ -1,4 +1,4 @@
-deps="archstudio bash hadoop"
+deps="archstudio bash hadoop lucene nutch openjpa struts2"
 
 for file in $deps
 do

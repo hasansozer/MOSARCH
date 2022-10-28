@@ -10,7 +10,7 @@ from alloldfunctions import myCost, RouletteWheelSelection, Crossover, Mutation,
 import copy
 def HYGARI(inputdata):
     tic = time.time()
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, outFileName = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     objective = 0
     clusters = []
     

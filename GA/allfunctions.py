@@ -8,47 +8,77 @@ import numpy as np
 import copy
 #%% Modularity
 def myCost(pop,inputdata):
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, outFileName  = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     modularity = 0
     modulesOnClusters = []
     
-    for l in range(nClusters):
-        temp =[]
-        for k in range(len(pop)):
-            if pop[k] == l:
-                temp.append(k)
-        modulesOnClusters.append(temp)
-        for i in modulesOnClusters[l]:
-            for j in modulesOnClusters[l]:
-                if i!=j:
-                    modularity += (DependencyMatrix[0][i][j]-(dOutArray[0][i]*dInArray[0][j]/nDependecies[0]))/nDependecies[0]
+    if isDirected == "directed":
+        for l in range(nClusters):
+            temp =[]
+            for k in range(len(pop)):
+                if pop[k] == l:
+                    temp.append(k)
+            modulesOnClusters.append(temp)
+            for i in modulesOnClusters[l]:
+                for j in modulesOnClusters[l]:
+                    if i!=j:
+                        modularity += (DependencyMatrix[0][i][j]-(dOutArray[0][i]*dInArray[0][j]/nDependecies[0]))/nDependecies[0]
+    else:
+        m = 0.5 * np.sum(d_i) + 0.00000001
+        for l in range(nClusters):
+            temp =[]
+            for k in range(len(pop)):
+                if pop[k] == l:
+                    temp.append(k)
+            modulesOnClusters.append(temp)
+            for i in modulesOnClusters[l]:
+                for j in modulesOnClusters[l]:
+                    if i!=j:
+                        modularity += w_ij[i][j] - d_i[i]*d_i[j]/(2*m)
+        modularity = 1/(2*m) * modularity
 
-    
     return modularity
 
 #%% Modularity for JAYA
 def myCostJaya(pop,inputdata):
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray,  outFileName  = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     modularity = 0
     modulesOnClusters = []
     sortedpop = np.argsort(pop)
     modulesOnClusters=[]
     temp = []
     
-    for i in sortedpop:
-        if i < nModules:
-            temp.append(i)
-        else:
+    if isDirected == "directed":
+        for i in sortedpop:
+            if i < nModules:
+                temp.append(i)
+            else:
+                modulesOnClusters.append(temp)
+                temp = []
+        if sortedpop[-1]<nModules:
             modulesOnClusters.append(temp)
-            temp = []
-    if sortedpop[-1]<nModules:
-        modulesOnClusters.append(temp)
 
-    for l in range(len(modulesOnClusters)):
-        for i in modulesOnClusters[l]:
-            for j in modulesOnClusters[l]:
-                if i!=j:
-                    modularity += (DependencyMatrix[0][i][j]-(dOutArray[0][i]*dInArray[0][j]/nDependecies[0]))/nDependecies[0]
+        for l in range(len(modulesOnClusters)):
+            for i in modulesOnClusters[l]:
+                for j in modulesOnClusters[l]:
+                    if i!=j:
+                        modularity += (DependencyMatrix[0][i][j]-(dOutArray[0][i]*dInArray[0][j]/nDependecies[0]))/nDependecies[0]
+    else:
+        for i in sortedpop:
+            if i < nModules:
+                temp.append(i)
+            else:
+                modulesOnClusters.append(temp)
+                temp = []
+        if sortedpop[-1]<nModules:
+            modulesOnClusters.append(temp)
+        m = 0.5 * np.sum(d_i) + 0.00000001
+        for l in range(len(modulesOnClusters)):
+            for i in modulesOnClusters[l]:
+                for j in modulesOnClusters[l]:
+                    if i!=j:
+                        modularity += w_ij[i][j] - d_i[i]*d_i[j]/(2*m)
+        modularity = 1/(2*m) * modularity
     return modularity
 
 
@@ -64,7 +94,7 @@ def RouletteWheelSelection(P):
      return(i)
 #%% Crossover
 def Crossover(parent1,parent2,inputdata):
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray,  outFileName  = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     offspring1=copy.deepcopy(parent1)
     offspring2=copy.deepcopy(parent2)
     c=np.random.randint(1,len(parent1[0]))
@@ -89,7 +119,7 @@ def Crossover(parent1,parent2,inputdata):
     return(offspring1,offspring2)
 #%% Mutation
 def Mutation(parent,inputdata):
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray,  outFileName  = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     offspring = [[],0]
     if np.random.random()<1.00001: # relaxed providing random solutions
         child = [[], 0]
@@ -129,7 +159,7 @@ def Mutation(parent,inputdata):
 
 #%% CrossoverJAYA
 def CrossoverJAYA(parent1,parent2,inputdata):
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray,  outFileName  = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     offspring1=copy.deepcopy(parent1)
     offspring2=copy.deepcopy(parent2)
     c=np.random.randint(1,len(parent1[0]))
@@ -155,7 +185,7 @@ def CrossoverJAYA(parent1,parent2,inputdata):
 #%% Mutation
 def MutationJAYA(parent,inputdata):
     
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray,  outFileName  = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     offspring = [[],0]
     if np.random.random()<0.00001:
         child = [[], 0]
@@ -195,7 +225,7 @@ def MutationJAYA(parent,inputdata):
 #%% Cumulative Motion
 
 def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputdata):
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray,  outFileName  = inputdata    
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata    
     # Calculate X
     if np.random.random() < crossRate:
         offspring1, offspring2=Crossover(chi,chj,inputdata)
@@ -406,7 +436,7 @@ def Cumulative(chi,chj,chibest,chiworst,chjbest,chjworst,chbest,chworst, inputda
 def Jaya(parent,inputdata,best,worst):
     r1 = 0.4
     r2 = 0.4
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray,  outFileName = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     child = [[],0]
     for i in range(len(parent[0])):
         child[0].append (parent[0][i] + r1 * (best[0][i] - abs(parent[0][i])) - r2 * (worst[0][i] - abs(parent[0][i])))

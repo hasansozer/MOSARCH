@@ -10,7 +10,7 @@ from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, my
 import copy
 def HYGARII(inputdata):
     tic = time.time()
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, outFileName = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName = inputdata
     objective = 0
     miyu = 10
     clusters = []
@@ -99,5 +99,6 @@ def HYGARII(inputdata):
             toc_iter = time.time()
             f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
         if time.time()-tic > MaxDuration:
-            break 
+            break
+    
     return(BestCost, sortedPopulation[0][0])

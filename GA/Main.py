@@ -15,7 +15,7 @@ np.random.seed(519)
 #%% Input information for Simulation
 
 '''GA-related'''
-MaxIts = [10000]                                # Number of iterations
+MaxIts = [100000]                                # Number of iterations
 MaxDurations = [9000]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
 
 
@@ -73,36 +73,36 @@ for MaxIt in MaxIts:
                             for elitismProb in elitisimProbs:
                                 for beta in betas:
                                     for nCluster in nClusters:
-                                        outFileSuffix = str(nCluster) + "clusters"
-                                        oldinputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, outFilePrefix + "-" + outFileSuffix
-                                        inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, outFilePrefix + "-" + outFileSuffix 
-                                        objectiveGA = 0
-                                        cpuGA = 0
-                                        objectiveGAKH = 0 
-                                        cpuGAKH = 0
-                                        
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "w+")
-                                        q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                        q.flush()
-                                        q.close()
-                                        start = time.time()
-                                        objectiveGAJAYA, clusters = HYGARI(oldinputdata)
-                                        cpuGAJAYA = time.time()-start
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
-                                        q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
-                                        q.flush()
-                                        q.close()
+                                        for isDirected in ["directed", "undirected"]:
+                                            outFileSuffix = str(nCluster) + "clusters" + "-" + isDirected
+                                            inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFilePrefix + "-" + outFileSuffix 
+                                            objectiveGA = 0
+                                            cpuGA = 0
+                                            objectiveGAKH = 0 
+                                            cpuGAKH = 0
+                                            
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "w+")
+                                            q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
+                                            q.flush()
+                                            q.close()
+                                            start = time.time()
+                                            objectiveHYGARI, clusters = HYGARI(inputdata)
+                                            cpuHYGARI = time.time()-start
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
+                                            q.write("Final,," + str(cpuHYGARI) + "," + str(objectiveHYGARI) + '\n')
+                                            q.flush()
+                                            q.close()
 
-                                        
-                                        
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "w+")
-                                        q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                        q.flush()
-                                        q.close()
-                                        start = time.time()
-                                        objectiveGAJAYA, clusters = HYGARII(inputdata)
-                                        cpuGAJAYA = time.time()-start
-                                        q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
-                                        q.write("Final,," + str(cpuGA) + "," + str(objectiveGA) + '\n')
-                                        q.flush()
-                                        q.close()
+                                            
+                                            
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "w+")
+                                            q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
+                                            q.flush()
+                                            q.close()
+                                            start = time.time()
+                                            objectiveHYGARII, clusters = HYGARII(inputdata)
+                                            cpuHYGARII = time.time()-start
+                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
+                                            q.write("Final,," + str(cpuHYGARII) + "," + str(objectiveHYGARII) + '\n')
+                                            q.flush()
+                                            q.close()

@@ -1,7 +1,7 @@
 ### [MOSARCH Home](./) | [Contributors](./people.html) | Publications | [Toolset](./toolset.html)
 -  M. Elyasi, M.E. Simitcioglu, A. Saydemir, A. Ekici, and H. Sozer. HYGAR: A hybrid genetic
 algorithm for software architecture recovery. In Proceedings of the 37th ACM Symposium on
-Applied Computing, pages 1417–1424, Virtual Event, 2022. 
+Applied Computing, pages 1417–1424, Virtual Event, 2022. [:page_with_curl:](https://dl.acm.org/doi/pdf/10.1145/3477314.3507020)
 - E. Ersoy and H. Sozer. Effort estimation for architectural refactoring of data tier software. In
 Proceedings of the 19th IEEE International Conference on Software Architecture, pages 80–89,
 Virtual Event, 2022. [:page_with_curl:](https://drive.google.com/file/d/1wlqPSalEa96GVBKB6NoCJPtJyu8Giel4/view)

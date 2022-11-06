@@ -7,6 +7,7 @@ Created on Wed Aug  4 17:54:58 2021
 #import pandas as pd
 from HYGARII import HYGARII
 from HYGARI import HYGARI
+from HYGARIII import HYGARIII
 from GA_Parser_Class import *
 import time
 import numpy as np
@@ -32,13 +33,13 @@ betas = [0.0005]                              # Rollette wheel ratio
 '''Problem-related'''
 nClusters = [3,5,10,15]                               #Number of Clusters
 dependencyFile = sys.argv[1]
+mgmc_clustering_file = sys.argv[1].strip().split("-")[0] + "-mgmc-clustered.rsf"
 
 parser = RSFParser()
 parser.parse_dependency_input_file(dependencyFile)
 
 w_ij = np.array(parser.dsm).astype(int)
 d_i = parser.ID2name
-clustered_items = parser.clustered_items
 
 
 nModules = len(w_ij)
@@ -106,3 +107,18 @@ for MaxIt in MaxIts:
                                             q.write("Final,," + str(cpuHYGARII) + "," + str(objectiveHYGARII) + '\n')
                                             q.flush()
                                             q.close()
+
+
+                                            if isDirected == "undirected":
+                                                jaya_list = parser.get_jaya_random_list(mgmc_clustering_file)
+                                                q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARIII.csv", "w+")
+                                                q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
+                                                q.flush()
+                                                q.close()
+                                                start = time.time()
+                                                objectiveHYGARII, clusters = HYGARIII(inputdata, jaya_list)
+                                                cpuHYGARII = time.time()-start
+                                                q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARIII.csv", "a+")
+                                                q.write("Final,," + str(cpuHYGARII) + "," + str(objectiveHYGARII) + '\n')
+                                                q.flush()
+                                                q.close()

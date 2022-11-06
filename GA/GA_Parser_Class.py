@@ -62,6 +62,7 @@ class RSFParser:
         try:
             self.clustered_items = []
             self.cluster_names = {}
+            cluster_index = 0
             with open(clustering_file, "r+") as f:
                 for line in f:
                     tokens = line.strip().split()
@@ -86,7 +87,7 @@ class RSFParser:
         jaya_initial_list = []
         with open(clustering_file, "r+") as f:
             for line in f:
-                tokens = line.split()
+                tokens = line.strip().split()
                 cluster = tokens[1]
                 cluster_index = self.cluster_names[cluster]
                 

@@ -8,9 +8,9 @@ import numpy as np
 import time
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, myCostJaya, CrossoverJAYA, MutationJAYA, Jaya
 import copy
-def HYGARIII(inputdata):
+def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
     tic = time.time()
-    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName, mgmc_init_pop  = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName  = inputdata
     objective = 0
     miyu = 10
     clusters = []
@@ -24,15 +24,31 @@ def HYGARIII(inputdata):
         use arg sort
         The reason I am using this representation is that JAYA is a continuous algorithm
     '''
-    # TODO : Initialize the population
+    # modularity = myCostJaya(mgmc_init_pop,inputdata)
+    # population=[[mgmc_init_pop,modularity]]
+    
     population=[]
     for _ in range(nPop):
-        # Get the solution of DP-RL
-        
+        pop_rand = [np.random.random() for _ in range(nModules + nClusters - 1)]
+        pop_rand.sort()
+        pop = [0.0 for _ in range(nModules + nClusters - 1)]
+        cluster_ids = np.arange(0, nClusters).tolist()
+        np.random.shuffle(cluster_ids)
+        cluster_start_index = 0
+        cluster_stop_index = -1
+        while cluster_ids:
+            c = cluster_ids.pop()
+            cluster_start_index = cluster_stop_index + 1
+            cluster_stop_index = cluster_start_index + len(clustered_items[c])
+            for i in range(len(clustered_items[c])):
+                pop[name2ID[clustered_items[c][i]]] = pop_rand[cluster_start_index + i]
+            if len(cluster_ids) > 0:
+                pop[nModules+nClusters-len(cluster_ids)-1] = pop_rand[cluster_stop_index]
         modularity = myCostJaya(pop,inputdata)
-    
-        #Update the population
-        population.append([pop,modularity])
+        population.append([pop, modularity])
+
+    print(len(population))
+    print(population[0])
              
     # Sort the Population
     sortedPopulation=copy.deepcopy(population)

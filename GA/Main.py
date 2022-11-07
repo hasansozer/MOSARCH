@@ -16,8 +16,8 @@ np.random.seed(519)
 #%% Input information for Simulation
 
 '''GA-related'''
-MaxIts = [20]                                # Number of iterations
-MaxDurations = [120]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
+MaxIts = [100000]                                # Number of iterations
+MaxDurations = [9000]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
 
 
 nPops = [70]                                  # Number of population
@@ -74,8 +74,8 @@ for MaxIt in MaxIts:
                         for muteRate in muteRates:
                             for elitismProb in elitisimProbs:
                                 for beta in betas:
-                                    for isDirected in ["directed", "undirected"]:
-                                        for nCluster in nClusters:
+                                    for nCluster in nClusters:
+                                        for isDirected in ["directed", "undirected"]:
                                             outFileSuffix = str(nCluster) + "clusters" + "-" + isDirected
                                             inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFilePrefix + "-" + outFileSuffix 
                                             objectiveGA = 0

@@ -14,6 +14,7 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
     objective = 0
     miyu = 10
     clusters = []
+    nClusters = len(clustered_items)
     
     #%% Initialization
     '''
@@ -24,11 +25,20 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
         use arg sort
         The reason I am using this representation is that JAYA is a continuous algorithm
     '''
-    # modularity = myCostJaya(mgmc_init_pop,inputdata)
-    # population=[[mgmc_init_pop,modularity]]
     
-    population=[]
+    modularity = myCostJaya(mgmc_init_pop,inputdata)
+    population=[[mgmc_init_pop,modularity]]
+    
+    # population=[]
     for _ in range(nPop):
+        # Get the solution of DP-RL
+        pop = [np.random.random() for _ in range(nModules+nClusters-1)]
+        modularity = myCostJaya(pop,inputdata)
+    
+        #Update the population
+        population.append([pop,modularity])
+
+    for _ in range(9):
         pop_rand = [np.random.random() for _ in range(nModules + nClusters - 1)]
         pop_rand.sort()
         pop = [0.0 for _ in range(nModules + nClusters - 1)]
@@ -47,9 +57,8 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
         modularity = myCostJaya(pop,inputdata)
         population.append([pop, modularity])
 
-    print(len(population))
-    print(population[0])
-             
+    nPop = len(population)
+
     # Sort the Population
     sortedPopulation=copy.deepcopy(population)
     sortedPopulation.sort(key=lambda x: x[1], reverse = 1)
@@ -78,10 +87,10 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
         for _ in range(crossNumber):
             parent1=population[RouletteWheelSelection(P)]
             parent2=population[RouletteWheelSelection(P)]            
-            offspring1, offspring2=CrossoverJAYA(parent1,parent2,inputdata)
+            offspring1, offspring2 = CrossoverJAYA(parent1,parent2,inputdata)
             Newpop.append(offspring1)
             Newpop.append(offspring2)
-            offspring1, offspring2 = Jaya(offspring1, inputdata, gBest, gWorst),Jaya(offspring2, inputdata, gBest, gWorst)
+            offspring1, offspring2 = Jaya(offspring1, inputdata, gBest, gWorst), Jaya(offspring2, inputdata, gBest, gWorst)
             Newpop.append(offspring1)
             Newpop.append(offspring2)
         # Mutation
@@ -111,7 +120,7 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
         # print(BestCost)
-        with open(outFileName + "-HYGARII.csv", 'a+') as f:
+        with open(outFileName + "-HYGARIII.csv", 'a+') as f:
             toc_iter = time.time()
             f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
         if time.time()-tic > MaxDuration:

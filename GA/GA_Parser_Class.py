@@ -95,7 +95,7 @@ class RSFParser:
                 random_number = random.uniform(cluster_index / self.total_item_count + bias, (cluster_index+1)/self.total_item_count - bias)
                 jaya_initial_list.append(random_number)
 
-        for i in range(len(self.clustered_items)):
+        for i in range(len(self.clustered_items) - 1):
             jaya_initial_list.append((i+1) / self.total_item_count)
 
         return jaya_initial_list

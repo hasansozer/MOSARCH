@@ -1,12 +1,13 @@
-deps="bash"
+deps="archstudio bash hadoop lucene nutch openjpa struts2"
 
 for file in $deps
 do
     filename="${file}-dependency.rsf"
     echo $filename
-    python Main.py $filename
+    python Main.py $filename &
 done
 
+wait
 
 for file in $deps
 do

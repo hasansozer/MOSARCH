@@ -33,9 +33,6 @@ def HYGARII(inputdata):
     
         #Update the population
         population.append([pop,modularity])
-    
-    print(len(population))
-    print(population[0])
 
     # Sort the Population
     sortedPopulation=copy.deepcopy(population)

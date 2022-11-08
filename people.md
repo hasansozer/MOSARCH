@@ -7,7 +7,7 @@
 - [Taha Varol](https://tr.linkedin.com/in/tahavarol) (Ph.D. Student), [Ozyegin University](https://www.ozyegin.edu.tr/)
 
 ## Other Contributors
-- [Esad Simitcioglu](https://github.com/EsadSimitcioglu), [Ozyegin University](https://www.ozyegin.edu.tr/)
-- [Abdullah Saydemir](https://github.com/Saydemr), [Ozyegin University](https://www.ozyegin.edu.tr/)
-- [Milad Elyasi](http://www.miladelyasi.com/), [Ozyegin University](https://www.ozyegin.edu.tr/)
-- [Ersin Ersoy](https://github.com/ersinersoy/), [Turkcell Technology](http://www.turkcellteknoloji.com.tr/language/en/)
+- [Abdullah Saydemir](https://github.com/Saydemr), B.Sc., [Ozyegin University](https://www.ozyegin.edu.tr/), currently at [The Technical University of Munich](https://www.tum.de/en/), Munich, Germany
+- [Esad Simitcioglu](https://github.com/EsadSimitcioglu), B.Sc., [Ozyegin University](https://www.ozyegin.edu.tr/), currently at [Koc University](https://www.ku.edu.tr/), Istanbul, Turkiye
+- [Milad Elyasi](http://www.miladelyasi.com/), Ph.D., [Ozyegin University](https://www.ozyegin.edu.tr/), currently at [IMT Atlantique](https://www.imt-atlantique.fr/en), Nantes, France
+- [Ersin Ersoy](https://github.com/ersinersoy/), Ph.D., [Ozyegin University](https://www.ozyegin.edu.tr/), currently at [Turkcell Technology](http://www.turkcellteknoloji.com.tr/language/en/), Istanbul, Turkiye

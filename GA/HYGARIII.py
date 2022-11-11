@@ -15,6 +15,7 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
     miyu = 10
     clusters = []
     nClusters = len(clustered_items)
+    inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName
     
     #%% Initialization
     '''

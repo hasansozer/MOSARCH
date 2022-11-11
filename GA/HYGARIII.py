@@ -28,6 +28,9 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
     
     modularity = myCostJaya(mgmc_init_pop,inputdata)
     population=[[mgmc_init_pop,modularity]]
+
+    # with open(outFileName + "-HYGARIII.csv", 'a+') as f:
+    #     f.write("MGMC Modularity"+ ',' + "0.0" + "," + "0.0" + ',' + str(modularity) + '\n')
     
     # population=[]
     for _ in range(nPop):
@@ -120,9 +123,9 @@ def HYGARIII(inputdata, mgmc_init_pop, clustered_items, name2ID):
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
         # print(BestCost)
-        with open(outFileName + "-HYGARIII.csv", 'a+') as f:
-            toc_iter = time.time()
-            f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
+        # with open(outFileName + "-HYGARIII.csv", 'a+') as f:
+        #     toc_iter = time.time()
+        #     f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
         if time.time()-tic > MaxDuration:
             break
     

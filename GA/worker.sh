@@ -4,7 +4,7 @@ for file in $deps
 do
     filename="${file}-dependency.rsf"
     echo $filename
-    python MainGAMGMC.py $filename &
+    python Main.py $filename &
 done
 
 wait

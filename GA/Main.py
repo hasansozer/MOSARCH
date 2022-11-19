@@ -7,7 +7,8 @@ Created on Wed Aug  4 17:54:58 2021
 #import pandas as pd
 from HYGARII import HYGARII
 from HYGARI import HYGARI
-from HYGARIII import HYGARIII
+from GA import GA
+from GAKH import GAKH
 from GA_Parser_Class import *
 import time
 import numpy as np
@@ -16,8 +17,8 @@ np.random.seed(519)
 #%% Input information for Simulation
 
 '''GA-related'''
-MaxIts = [100000]                                # Number of iterations
-MaxDurations = [9000]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
+MaxIts = [100]                                # Number of iterations
+MaxDurations = [50]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
 
 
 nPops = [70]                                  # Number of population
@@ -50,7 +51,8 @@ for i in range(nModules):
     for j in range(nModules):
         d_i[i] += w_ij[i][j]
 
-
+isDirected = "undirected"
+numRuns = 10
 
 CodeList = parser.name2ID.keys()
 Dependencies = [] # Unnecessary, never used
@@ -61,6 +63,38 @@ dOutArray = [parser.d_out]
 
 outFilePrefix = dependencyFile.split("-")[0]
 hygar3flag = False
+
+
+parser.parse_clustering_input_file(mgmc_clustering_file)
+jaya_list = parser.get_jaya_random_list(mgmc_clustering_file)
+clustered_items = parser.clustered_items
+name2ID = parser.name2ID
+nCluster = len(clustered_items)
+outFileSuffix = str(nCluster) + "clusters" + "-" + isDirected + "-" + str(numRuns) + "runs"
+                                        
+'''
+1- For specific cluster number taken from MGMC clustering file, run GA, GAKH, HYGARI, and HYGARII, 10 times each and save the results & averages in a file .
+2- For 3-15 clusters, run GA, GAKH, and HYGARI
+'''
+
+
+
+q = open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+")
+q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.close()
+
+q = open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+")
+q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.close()
+
+q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
+q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.close()
+
+q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
+q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.close()
+
 
 #%% Main Loop
 for MaxIt in MaxIts:
@@ -74,58 +108,61 @@ for MaxIt in MaxIts:
                         for muteRate in muteRates:
                             for elitismProb in elitisimProbs:
                                 for beta in betas:
+                                    for runNo in range(numRuns):
+                                        inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFilePrefix + "-" + outFileSuffix 
+                                        objectiveGA = 0
+                                        cpuGA = 0
+                                        objectiveGAKH = 0 
+                                        cpuGAKH = 0
+
+
+                                        start = time.time()
+                                        objectiveGA, _ = GA(inputdata)
+                                        cpuGA = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveGA) + "," + str(cpuGA) + '\n')
+                                        
+
+                                        start = time.time()
+                                        objectiveGAKH, _ = GAKH(inputdata)
+                                        cpuGAKH = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
+
+
+                                        start = time.time()
+                                        objectiveHYGARI, _ = HYGARI(inputdata)
+                                        cpuHYGARI = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                        
+
+                                        start = time.time()
+                                        objectiveHYGARII, _ = HYGARII(inputdata, jaya_list, clustered_items, name2ID)
+                                        cpuHYGARII = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveHYGARII) + "," + str(cpuHYGARII) + '\n')
+                                    
+
+
                                     for nCluster in nClusters:
-                                        for isDirected in ["directed", "undirected"]:
-                                            outFileSuffix = str(nCluster) + "clusters" + "-" + isDirected
-                                            inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFilePrefix + "-" + outFileSuffix 
-                                            objectiveGA = 0
-                                            cpuGA = 0
-                                            objectiveGAKH = 0 
-                                            cpuGAKH = 0
-                                            
-                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "w+")
-                                            q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                            q.flush()
-                                            q.close()
-                                            start = time.time()
-                                            objectiveHYGARI, clusters = HYGARI(inputdata)
-                                            cpuHYGARI = time.time()-start
-                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
-                                            q.write("Final,," + str(cpuHYGARI) + "," + str(objectiveHYGARI) + '\n')
-                                            q.flush()
-                                            q.close()
+                                        start = time.time()
+                                        objectiveGA, _ = GA(inputdata)
+                                        cpuGA = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveGA) + "," + str(cpuGA) + '\n')
+                                        
 
-                                            
-                                            
-                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "w+")
-                                            q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                            q.flush()
-                                            q.close()
-                                            start = time.time()
-                                            objectiveHYGARII, clusters = HYGARII(inputdata)
-                                            cpuHYGARII = time.time()-start
-                                            q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
-                                            q.write("Final,," + str(cpuHYGARII) + "," + str(objectiveHYGARII) + '\n')
-                                            q.flush()
-                                            q.close()
+                                        start = time.time()
+                                        objectiveGAKH, _ = GAKH(inputdata)
+                                        cpuGAKH = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
 
 
-                                            if isDirected == "undirected" and not hygar3flag:
-                                                parser.parse_clustering_input_file(mgmc_clustering_file)
-                                                jaya_list = parser.get_jaya_random_list(mgmc_clustering_file)
-                                                clustered_items = parser.clustered_items
-                                                name2ID = parser.name2ID
-                                                q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARIII.csv", "w+")
-                                                q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
-                                                q.flush()
-                                                q.close()
-                                                start = time.time()
-
-                                                objectiveHYGARIII, clusters = HYGARIII(inputdata, jaya_list, clustered_items, name2ID)
-                                                cpuHYGARIII = time.time()-start
-                                                q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARIII.csv", "a+")
-                                                q.write("Final,," + str(cpuHYGARIII) + "," + str(objectiveHYGARIII) + '\n')
-                                                q.flush()
-                                                q.close()
-
-                                                hygar3flag = True
+                                        start = time.time()
+                                        objectiveHYGARI, _ = HYGARI(inputdata)
+                                        cpuHYGARI = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                        

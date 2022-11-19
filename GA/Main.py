@@ -110,11 +110,6 @@ for MaxIt in MaxIts:
                                 for beta in betas:
                                     for runNo in range(numRuns):
                                         inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFilePrefix + "-" + outFileSuffix 
-                                        objectiveGA = 0
-                                        cpuGA = 0
-                                        objectiveGAKH = 0 
-                                        cpuGAKH = 0
-
 
                                         start = time.time()
                                         objectiveGA, _ = GA(inputdata)
@@ -146,6 +141,7 @@ for MaxIt in MaxIts:
 
 
                                     for nCluster in nClusters:
+                                        outFileSuffix = str(nCluster) + "clusters" + "-" + isDirected + "-regular"
                                         inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFilePrefix + "-" + outFileSuffix 
                                         start = time.time()
                                         objectiveGA, _ = GA(inputdata)

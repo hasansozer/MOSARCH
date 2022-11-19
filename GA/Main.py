@@ -146,6 +146,7 @@ for MaxIt in MaxIts:
 
 
                                     for nCluster in nClusters:
+                                        inputdata = MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFilePrefix + "-" + outFileSuffix 
                                         start = time.time()
                                         objectiveGA, _ = GA(inputdata)
                                         cpuGA = time.time()-start

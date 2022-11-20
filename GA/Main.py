@@ -17,8 +17,8 @@ np.random.seed(519)
 #%% Input information for Simulation
 
 '''GA-related'''
-MaxIts = [100]                                # Number of iterations
-MaxDurations = [50]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
+MaxIts = [100000]                                # Number of iterations
+MaxDurations = [9000]                            # Max duration in seconds. Duration has precedence over iterations: If the duration is reached, the algorithm stops even if the iterations are not finished.
 
 
 nPops = [70]                                  # Number of population

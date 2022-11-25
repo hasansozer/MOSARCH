@@ -1,4 +1,4 @@
-deps="archstudio bash hadoop lucene nutch openjpa struts2"
+deps="chromium"
 
 for file in $deps
 do

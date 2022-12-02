@@ -5,6 +5,7 @@
 - [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/) (Researcher)
 - [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/) (Researcher)
 - [Taha Varol](https://tr.linkedin.com/in/tahavarol) (Ph.D. Student)
+- [Taha Huzeyfe Aktas](https://tr.linkedin.com/in/taha-huzeyfe-aktas) (M.Sc. Student)
 
 ## Other Contributors
 - [Abdullah Saydemir](https://github.com/Saydemr), OzU B.Sc. graduate (currently @ [TUM](https://www.tum.de/en/), Munich, Germany)

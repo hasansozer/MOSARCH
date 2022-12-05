@@ -87,13 +87,13 @@ q = open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+")
 q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
 q.close()
 
-q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
-q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
-q.close()
+# q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
+# q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+# q.close()
 
-q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
-q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
-q.close()
+# q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
+# q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+# q.close()
 
 
 #%% Main Loop
@@ -125,18 +125,18 @@ for MaxIt in MaxIts:
                                             q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
 
 
-                                        start = time.time()
-                                        objectiveHYGARI, _ = HYGARI(inputdata)
-                                        cpuHYGARI = time.time()-start
-                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
-                                            q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                        # start = time.time()
+                                        # objectiveHYGARI, _ = HYGARI(inputdata)
+                                        # cpuHYGARI = time.time()-start
+                                        # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
+                                        #     q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
                                         
 
-                                        start = time.time()
-                                        objectiveHYGARII, _ = HYGARII(inputdata, jaya_list, clustered_items, name2ID)
-                                        cpuHYGARII = time.time()-start
-                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+") as q:
-                                            q.write(str(runNo) + "," + str(objectiveHYGARII) + "," + str(cpuHYGARII) + '\n')
+                                        # start = time.time()
+                                        # objectiveHYGARII, _ = HYGARII(inputdata, jaya_list, clustered_items, name2ID)
+                                        # cpuHYGARII = time.time()-start
+                                        # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+") as q:
+                                        #     q.write(str(runNo) + "," + str(objectiveHYGARII) + "," + str(cpuHYGARII) + '\n')
                                     
 
 
@@ -157,9 +157,9 @@ for MaxIt in MaxIts:
                                             q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
 
 
-                                        start = time.time()
-                                        objectiveHYGARI, _ = HYGARI(inputdata)
-                                        cpuHYGARI = time.time()-start
-                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
-                                            q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                        # start = time.time()
+                                        # objectiveHYGARI, _ = HYGARI(inputdata)
+                                        # cpuHYGARI = time.time()-start
+                                        # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
+                                        #     q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
                                         

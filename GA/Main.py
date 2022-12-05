@@ -121,7 +121,7 @@ for MaxIt in MaxIts:
                                         start = time.time()
                                         objectiveGAKH, _ = GAKH(inputdata)
                                         cpuGAKH = time.time()-start
-                                        with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+") as q:
                                             q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
 
 
@@ -153,7 +153,7 @@ for MaxIt in MaxIts:
                                         start = time.time()
                                         objectiveGAKH, _ = GAKH(inputdata)
                                         cpuGAKH = time.time()-start
-                                        with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+") as q:
                                             q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
 
 

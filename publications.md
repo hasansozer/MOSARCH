@@ -12,4 +12,4 @@ software architecture recovery. In Proceedings of the 15th Turkish National Soft
 Symposium, pages 1–11, Virtual Event, Izmir, Turkey, 2021. (:trophy: **best paper award**). [:page_with_curl:](https://drive.google.com/file/u/0/d/1X-qxxgmCIv_Yol5XEFd-D6fjhzSSwqyi/view)
 
 ## Theses
-- Ersin Ersoy. Automated Maintenance Support for Data-Tier Software. Ph.D. Thesis. Ozyegin University, İstanbul, Turkey, 2022.
+- Ersin Ersoy. Automated Maintenance Support for Data-Tier Software. Ph.D. Thesis. Ozyegin University, İstanbul, Turkey, 2022. [:page_with_curl:](https://tez.yok.gov.tr/UlusalTezMerkezi/TezGoster?key=RsTBl6RWK25OBMIKtIgYYaU24in1iZ3e82x9bXifG-nLmzwlyu124QSdxuOui6RA)

@@ -81,18 +81,22 @@ outFileSuffix = str(nCluster) + "clusters" + "-" + isDirected + "-" + str(numRun
 
 q = open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+")
 q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.flush()
 q.close()
 
 q = open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+")
-q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")
+q.flush()
 q.close()
 
 # q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
 # q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+# q.flush()
 # q.close()
 
 # q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
 # q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+# q.flush()
 # q.close()
 
 
@@ -116,6 +120,7 @@ for MaxIt in MaxIts:
                                         cpuGA = time.time()-start
                                         with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
                                             q.write(str(runNo) + "," + str(objectiveGA) + "," + str(cpuGA) + '\n')
+                                            q.flush()
                                         
 
                                         start = time.time()
@@ -123,6 +128,7 @@ for MaxIt in MaxIts:
                                         cpuGAKH = time.time()-start
                                         with open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+") as q:
                                             q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
+                                            q.flush()
 
 
                                         # start = time.time()
@@ -130,6 +136,7 @@ for MaxIt in MaxIts:
                                         # cpuHYGARI = time.time()-start
                                         # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
                                         #     q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                        #     q.flush()
                                         
 
                                         # start = time.time()
@@ -137,6 +144,8 @@ for MaxIt in MaxIts:
                                         # cpuHYGARII = time.time()-start
                                         # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+") as q:
                                         #     q.write(str(runNo) + "," + str(objectiveHYGARII) + "," + str(cpuHYGARII) + '\n')
+                                        #     q.flush()
+                                        
                                     
 
 
@@ -148,6 +157,8 @@ for MaxIt in MaxIts:
                                         cpuGA = time.time()-start
                                         with open(outFilePrefix + "-" + outFileSuffix + "-GA.csv", "a+") as q:
                                             q.write(str(runNo) + "," + str(objectiveGA) + "," + str(cpuGA) + '\n')
+                                            q.flush()
+                                        
                                         
 
                                         start = time.time()
@@ -155,6 +166,8 @@ for MaxIt in MaxIts:
                                         cpuGAKH = time.time()-start
                                         with open(outFilePrefix + "-" + outFileSuffix + "-GAKH.csv", "a+") as q:
                                             q.write(str(runNo) + "," + str(objectiveGAKH) + "," + str(cpuGAKH) + '\n')
+                                            q.flush()
+                                        
 
 
                                         # start = time.time()
@@ -162,4 +175,6 @@ for MaxIt in MaxIts:
                                         # cpuHYGARI = time.time()-start
                                         # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
                                         #     q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                        #     q.flush()
+                                        
                                         

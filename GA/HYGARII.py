@@ -31,6 +31,7 @@ def HYGARII(inputdata, mgmc_init_pop, clustered_items, name2ID):
     with open(outFileName + "-iters-HYGARII.csv", "a+") as q:
         q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
         q.write("MGMC Modularity"+ ',' + "0.0" + "," + "0.0" + ',' + str(modularity) + '\n')
+        q.flush()
     
     # population=[]
     for _ in range(nPop):
@@ -126,6 +127,7 @@ def HYGARII(inputdata, mgmc_init_pop, clustered_items, name2ID):
         with open(outFileName + "-iters-HYGARII.csv", 'a+') as f:
             toc_iter = time.time()
             f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
+            f.flush()
         if time.time()-tic > MaxDuration:
             break
     

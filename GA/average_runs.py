@@ -1,6 +1,5 @@
 from HYGARII import HYGARII
 from HYGARI import HYGARI
-from HYGARIII import HYGARIII
 from GA_Parser_Class import *
 from allfunctions import *
 import time
@@ -56,7 +55,7 @@ dOutArray = [parser.d_out]
 outFilePrefix = dependencyFile.split("-")[0]
 hygar3flag = False
 
-q = open(outFilePrefix + "-HYGARIII.csv", "a+")
+q = open(outFilePrefix + "-HYGARII.csv", "a+")
 q.write("RUN #,INITIAL MODULARITY,FINAL MODULARITY,TIME TAKEN\n")    
 q.close()
 
@@ -89,12 +88,12 @@ for MaxIt in MaxIts:
                                             modularity = myCostJaya(jaya_list,inputdata)
 
                                             start = time.time()
-                                            objectiveHYGARIII, clusters = HYGARIII(inputdata, jaya_list, clustered_items, name2ID)
-                                            cpuHYGARIII = time.time()-start
-                                            q = open(outFilePrefix + "-HYGARIII.csv", "a+")
-                                            q.write(str(i) + "," + str(modularity) + "," + str(objectiveHYGARIII) + "," + str(cpuHYGARIII) + '\n')
+                                            objectiveHYGARII, clusters = HYGARII(inputdata, jaya_list, clustered_items, name2ID)
+                                            cpuHYGARII = time.time()-start
+                                            q = open(outFilePrefix + "-HYGARII.csv", "a+")
+                                            q.write(str(i) + "," + str(modularity) + "," + str(objectiveHYGARII) + "," + str(cpuHYGARII) + '\n')
                                             q.flush()
                                             q.close()
 
-                                            final_modularities.append(objectiveHYGARIII)
-                                            runtime.append(cpuHYGARIII)
+                                            final_modularities.append(objectiveHYGARII)
+                                            runtime.append(cpuHYGARII)

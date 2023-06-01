@@ -1,5 +1,5 @@
 """
-Helper functions for HYGARIII 
+Helper functions for HYGARII 
 """
 
 import numpy as np

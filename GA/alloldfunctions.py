@@ -1,5 +1,5 @@
 """
-Helper functions for HYGARI, HYGARII before refactoring for HYGARIII
+Helper functions for HYGARI
 """
 
 import numpy as np

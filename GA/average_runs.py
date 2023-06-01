@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug  4 17:54:58 2021
-
-@author: Milad
-"""
-#import pandas as pd
 from HYGARII import HYGARII
 from HYGARI import HYGARI
 from HYGARIII import HYGARIII
@@ -33,7 +26,6 @@ betas = [0.0005]                              # Rollette wheel ratio
 
 dependencyFile = sys.argv[1]
 mgmc_clustering_file = sys.argv[1].strip().split("-")[0] + "-clustering.rsf"
-print(mgmc_clustering_file)
 
 parser = RSFParser()
 parser.parse_dependency_input_file(dependencyFile)

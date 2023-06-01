@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 """
-Created on Thu Aug  5 01:48:27 2021
+Helper functions for HYGARI, HYGARII before refactoring for HYGARIII
+"""
 
-@author: Milad
-"""
 import numpy as np
 import copy
 #%% Modularity

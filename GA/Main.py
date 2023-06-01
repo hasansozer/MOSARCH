@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-Created on Wed Aug  4 17:54:58 2021
-
-@author: Milad
+@author: Milad-Abdullah-Esad
 """
 #import pandas as pd
 from HYGARII import HYGARII
@@ -35,7 +32,6 @@ betas = [0.0005]                              # Rollette wheel ratio
 nClusters = [3,5,10,15]                               #Number of Clusters
 dependencyFile = sys.argv[1]
 mgmc_clustering_file = sys.argv[1].strip().split("-")[0] + "-clustering.rsf"
-print(mgmc_clustering_file)
 
 parser = RSFParser()
 parser.parse_dependency_input_file(dependencyFile)
@@ -89,15 +85,17 @@ q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")
 q.flush()
 q.close()
 
-# q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
-# q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
-# q.flush()
-# q.close()
 
-# q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
-# q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
-# q.flush()
-# q.close()
+
+q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+")
+q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.flush()
+q.close()
+
+q = open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+")
+q.write("RUN #,FINAL MODULARITY,TIME TAKEN\n")    
+q.flush()
+q.close()
 
 
 #%% Main Loop
@@ -131,20 +129,20 @@ for MaxIt in MaxIts:
                                             q.flush()
 
 
-                                        # start = time.time()
-                                        # objectiveHYGARI, _ = HYGARI(inputdata)
-                                        # cpuHYGARI = time.time()-start
-                                        # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
-                                        #     q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
-                                        #     q.flush()
+                                        start = time.time()
+                                        objectiveHYGARI, _ = HYGARI(inputdata)
+                                        cpuHYGARI = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                            q.flush()
                                         
 
-                                        # start = time.time()
-                                        # objectiveHYGARII, _ = HYGARII(inputdata, jaya_list, clustered_items, name2ID)
-                                        # cpuHYGARII = time.time()-start
-                                        # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+") as q:
-                                        #     q.write(str(runNo) + "," + str(objectiveHYGARII) + "," + str(cpuHYGARII) + '\n')
-                                        #     q.flush()
+                                        start = time.time()
+                                        objectiveHYGARII, _ = HYGARII(inputdata, jaya_list, clustered_items, name2ID)
+                                        cpuHYGARII = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARII.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveHYGARII) + "," + str(cpuHYGARII) + '\n')
+                                            q.flush()
                                         
                                     
 
@@ -170,11 +168,11 @@ for MaxIt in MaxIts:
                                         
 
 
-                                        # start = time.time()
-                                        # objectiveHYGARI, _ = HYGARI(inputdata)
-                                        # cpuHYGARI = time.time()-start
-                                        # with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
-                                        #     q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
-                                        #     q.flush()
+                                        start = time.time()
+                                        objectiveHYGARI, _ = HYGARI(inputdata)
+                                        cpuHYGARI = time.time()-start
+                                        with open(outFilePrefix + "-" + outFileSuffix + "-HYGARI.csv", "a+") as q:
+                                            q.write(str(runNo) + "," + str(objectiveHYGARI) + "," + str(cpuHYGARI) + '\n')
+                                            q.flush()
                                         
                                         

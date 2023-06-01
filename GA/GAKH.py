@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug  4 19:28:59 2021
-
-@author: Milad
-"""
 import numpy as np
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, Cumulative
 import copy

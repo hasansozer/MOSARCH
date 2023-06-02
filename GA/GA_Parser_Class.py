@@ -62,6 +62,7 @@ class RSFParser:
         try:
             self.clustered_items = []
             self.cluster_names = {}
+            cluster_index = 0
             with open(clustering_file, "r+") as f:
                 for line in f:
                     tokens = line.strip().split()
@@ -86,7 +87,7 @@ class RSFParser:
         jaya_initial_list = []
         with open(clustering_file, "r+") as f:
             for line in f:
-                tokens = line.split()
+                tokens = line.strip().split()
                 cluster = tokens[1]
                 cluster_index = self.cluster_names[cluster]
                 
@@ -94,7 +95,7 @@ class RSFParser:
                 random_number = random.uniform(cluster_index / self.total_item_count + bias, (cluster_index+1)/self.total_item_count - bias)
                 jaya_initial_list.append(random_number)
 
-        for i in range(len(self.clustered_items)):
+        for i in range(len(self.clustered_items) - 1):
             jaya_initial_list.append((i+1) / self.total_item_count)
 
         return jaya_initial_list

@@ -1,16 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug  4 19:28:59 2021
-
-@author: Milad
-"""
 import numpy as np
 from allfunctions import myCost, RouletteWheelSelection, Crossover, Mutation, Cumulative
 import copy
 import time
 def GAKH(inputdata):
     tic = time.time()
-    MaxIt, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray = inputdata
+    MaxIt, MaxDuration, nPop, crossNumber, muteNumber, muteRate, elitismProb, beta, nClusters, nModules, w_ij, d_i, crossRate, Dependencies, CodeList, DependencyMatrix, nDependecies, dInArray, dOutArray, isDirected, outFileName  = inputdata
     objective = 0
     clusters = []
     
@@ -21,6 +15,11 @@ def GAKH(inputdata):
         length: number of modules
         number in between: The cluster that module is asssigned too
     '''
+    
+    with open(outFileName + "-iters-GAKH.csv", "a+") as q:
+        q.write("Iteration,Iteration_CPU_Time,Total_CPU_Time,Objective\n")
+        q.flush()
+                                        
     
     population=[]
     for i in range(nPop):
@@ -36,7 +35,8 @@ def GAKH(inputdata):
     sortedPopulation.sort(key=lambda x: x[1], reverse = 1)
     population = sortedPopulation
     #%% Main Loop
-    for iter in range(MaxIt):
+    for iteration in range(MaxIt):
+        tic_iter = time.time()
         Newpop=[]
         # Selecet Elite Parents and move them to next generation
         nElite=int(nPop*elitismProb)
@@ -92,8 +92,10 @@ def GAKH(inputdata):
         BestSol=sortedPopulation[0]
         BestCost=BestSol[1]
         # print(BestCost)
-        with open('GAKH_graph' + str(nClusters), 'a+') as f:
-            f.write( str(iter)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\n')
-        if time.time()-tic > 9000:
+        with open(outFileName + "-iters-GAKH.csv", 'a+') as f:
+            toc_iter = time.time()
+            f.write(str(iteration)+ ',' + str(toc_iter-tic_iter) + "," + str(toc_iter-tic) + ',' + str(BestCost) + '\n')
+            f.flush()
+        if time.time()-tic > MaxDuration:
             break
     return(BestCost, sortedPopulation[0][0])

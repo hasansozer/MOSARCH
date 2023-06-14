@@ -1,4 +1,3 @@
-from GAJAYA import GAJAYA
 from GA_Parser_Class_New import *
 import time
 import numpy as np
@@ -10,9 +9,6 @@ from tqdm import tqdm
 import math 
 import pandas as pd
 import numpy as np
-from docplex.mp.model import Model
-from docplex.mp.solution import SolveSolution
-import cplex
 import sys
 import pickle
 import itertools
@@ -35,7 +31,7 @@ MaxIts = [1000]
                  #Number of iterations
 
 
-nPops = [32*1]                                  #Number of population
+nPops = [32*6]                                  #Number of population
 crossRates = [0.2]                             #Crossover rate  
 muteRates = [0.70]                            #Mutation Rate
 
@@ -53,7 +49,7 @@ nClusters = [5]                               #Number of Clusters
 
 #software_list = ["camel","chromium","cxf","itk"]
 
-software_list = ["itk"]
+software_list = ["bash"]
 
 algoModes = ["parallel","sequential"]
 
@@ -328,6 +324,7 @@ def ParallelMutation():
     pool.join()
     
     gc.collect()
+    
     return df_mut
 
 
@@ -468,7 +465,7 @@ def GA():
         old_best = BestCost
         
         #print(iter, BestCost, delta, non_improved_iter_count)
-        with open('results_Undirected/GA_{}_graph'.format(software) + "_" + algoMode + "_" + str(nCluster), 'a+') as f:
+        with open('GA_{}_graph'.format(software) + "_" + algoMode + "_" + str(nCluster), 'a+') as f:
             f.write(str(iternum)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\t' + str(delta) + '\t' + str(non_improved_iter_count) + '\n')
         #if time.time()-tic > 750:
             #break 
@@ -576,7 +573,7 @@ def HYGAR():
         old_best = BestCost
         
         #print(iter, BestCost, delta, non_improved_iter_count)
-        with open('results_Undirected/HYGAR_{}_graph'.format(software) + "_" + algoMode + "_" + str(nCluster), 'a+') as f:
+        with open('HYGAR_{}_graph'.format(software) + "_" + algoMode + "_" + str(nCluster), 'a+') as f:
             f.write(str(iternum)+'\t' + str(time.time()-tic) + '\t' + str(BestCost) + '\t' + str(delta) + '\t' + str(non_improved_iter_count) + '\n')
         #if time.time()-tic > 750:
             #break 
@@ -865,14 +862,14 @@ if __name__ == "__main__":
                                                     if algorithm == "GA":
                                                         objectiveGAJAYA, clusters = GA()
                                                         cpuGAJAYA = time.time()-start
-                                                        q=open("results_Undirected/Results_{}.csv".format(software), "a+")
+                                                        q=open("Results_{}.csv".format(software), "a+")
                                                         q.write(algoMode +" "+ algorithm +" "+str(objectiveGAJAYA) + ' ' + str(cpuGAJAYA) + '\n')
                                                         q.write(str(nPop) + ',' +str(crossProb) + ',' +str(crossRate) + ',' +str(muteProb) + ',' +str(muteRate) + ',' +str(elitismProb) + ',' +str(beta) + ',' + str(objectiveGAJAYA) + ',' + str(cpuGAJAYA) + '\n')
                                                         q.close()
                                                     if algorithm == "HYGAR":
                                                         objectiveGAJAYA, clusters = HYGAR()
                                                         cpuGAJAYA = time.time()-start
-                                                        q=open("results_Undirected/Results_{}.csv".format(software), "a+")
+                                                        q=open("Results_Undirected/Results_{}.csv".format(software), "a+")
                                                         q.write(algoMode +" "+ algorithm +" "+ str(objectiveGAJAYA) + ' ' + str(cpuGAJAYA) + '\n')
                                                         q.write(str(nPop) + ',' +str(crossProb) + ',' +str(crossRate) + ',' +str(muteProb) + ',' +str(muteRate) + ',' +str(elitismProb) + ',' +str(beta) + ',' + str(objectiveGAJAYA) + ',' + str(cpuGAJAYA) + '\n')
                                                         q.close()

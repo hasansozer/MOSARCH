@@ -10,6 +10,7 @@ gc.collect()
 import Algorithms
 
 import globals
+globals.initialize()
 
 '''GA-related'''
 
@@ -37,7 +38,7 @@ algoModes = ["parallel","sequential"]
 
 algorithms = ["GA","HYGAR"]
 
-runInitialHeuristic = True
+
 
 def runHeuristics(file_name):
     
@@ -76,9 +77,20 @@ def runHeuristics(file_name):
     return n_clust
 
 
+runInitialHeuristic = False
+
+if runInitialHeuristic:
+    globals.logging_directory = globals.logging_directory+ "/Heuristic"
+    os.makedirs(globals.logging_directory, exist_ok=True)
+    if os.path.exists(globals.logging_directory):
+        print(f"Directory '{globals.logging_directory}' created successfully or already exists.")
+    else:
+        print(f"Failed to create directory '{globals.logging_directory}'.")
+
+
+
 
 if __name__ == "__main__":
-    globals.initialize()
     for globals.nPop in nPops:
         for crossProb in crossProbs:
             globals.crossNumber = 2*int(crossProb*globals.nPop/2)
@@ -139,13 +151,7 @@ if __name__ == "__main__":
                                                     print("Initial clustering algorithm is running....")
                                                     globals.nCluster = runHeuristics(globals.software)
                                                     print("Initial clustering algorithm found {} clusters".format(globals.nCluster))
-                                                    globals.logging_directory = globals.logging_directory+ "/Heuristic"
-                                                    os.makedirs(globals.logging_directory, exist_ok=True)
-                                                    if os.path.exists(globals.logging_directory):
-                                                        print(f"Directory '{globals.logging_directory}' created successfully or already exists.")
-                                                    else:
-                                                        print(f"Failed to create directory '{globals.logging_directory}'.")
-
+                                                    
                                                 if algorithm == "GA":
                                                     objectiveGAJAYA, clusters = Algorithms.GA()
                                                     cpuGAJAYA = time.time()-start

@@ -1,5 +1,9 @@
 ### [MOSARCH Home](./) | [Contributors](./people.html) | Publications | [Toolset](./toolset.html)
 
+## Journal Articles
+-  M. Elyasi, M.E. Simitcioglu, A. Saydemir, A. Ekici, O.O. Ozener, and H. Sozer. Genetic Algorithms and Heuristics Hybridized for Software
+Architecture Recovery. Automated Software Engineering, Vol. 30 No. 19, 2023. [:page_with_curl:](https://doi.org/10.1007/s10515-023-00384-y)
+
 ## Refereed Conference and Workshop Publications
 -  M. Elyasi, M.E. Simitcioglu, A. Saydemir, A. Ekici, and H. Sozer. HYGAR: A hybrid genetic
 algorithm for software architecture recovery. In Proceedings of the 37th ACM Symposium on

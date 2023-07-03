@@ -14,6 +14,7 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
  - `metrics` contains metrics used for measuring the quality of SAR. It includes modularity, directed modularity and TurboMQ.
  - `repo_mining` contains files for reproducing the experiments provided in UYMS paper.
  - `results` contains the results published to the papers.
+ - `ParallelAlgorithms` contains the following: (i): parallel versions of the algorithms presented in the papers, (ii): integrated implementation of greedy clustering algorithm and parallel algorithms as a single pipeline.
 
 
 ## External Tools

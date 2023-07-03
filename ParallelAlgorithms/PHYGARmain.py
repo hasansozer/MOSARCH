@@ -13,9 +13,6 @@ import globals
 globals.initialize()
 
 '''GA-related'''
-
-
-                                #Number of population
 crossRates = [0.2]                             #Crossover rate  
 muteRates = [0.70]                            #Mutation Rate
 
@@ -28,11 +25,10 @@ betas = [0.0005]                              #Rollette wheel ratio
 globals.tolerance = 1e-6
 globals.patience = 50
 
-'''Problem-related'''
 nClusters = [5]                               #Number of Clusters
 
-nPops = [192,192,128,128,128,128,32,32]
-software_list = ["archstudio", "bash", "hadoop","lucene","nutch","struts2","openjpa","itk"]
+nPops = [192,192,128,128,128,128,32,32]       #Population sizes are different for each software to avoid computational barriers
+software_list = ["bash","archstudio", "hadoop","lucene","nutch","struts2","openjpa","itk"]
 
 algoModes = ["parallel","sequential"]
 
@@ -41,16 +37,15 @@ algorithms = ["GA","HYGAR"]
 
 
 def runHeuristics(file_name):
-    
+    os.chdir('./ParallelAlgorithms')
     instance_name = file_name
-
     command_1 = "java -jar rsf2txt.jar"
 
     command_2 = "java -jar clustering.jar"
 
     command_3 = "java -jar txt2rsf.jar"
 
-    input_1 = "dataset/{}/{}-dependency.rsf".format(instance_name,instance_name)
+    input_1 = "../dataset/{}/{}-dependency.rsf".format(instance_name,instance_name)
     output_1 = "dep.txt"
 
     input_2 = output_1
@@ -63,16 +58,21 @@ def runHeuristics(file_name):
     cmd1 = command_1 + " " + input_1 + " " + output_1
     cmd2 = command_2 + " " + input_2 + " " + output_2
     cmd3 = command_3 + " " + input_3 + " " + output_3
-    
-    a = subprocess.check_output(cmd1, shell=True,  cwd='experiments/')
-    a = subprocess.check_output(cmd2, shell=True,  cwd='experiments/')
-    a = subprocess.check_output(cmd3, shell=True,  cwd='experiments/')
-    
-    target_path = "experiments/" + output_3
+
+
+    a = subprocess.check_output(cmd1, shell=True,  cwd='../experiments/')
+
+    a = subprocess.check_output(cmd2, shell=True,  cwd='../experiments/')
+
+    a = subprocess.check_output(cmd3, shell=True,  cwd='../experiments/')
+
+    target_path = "../experiments/" + output_3
 
     with open(target_path, 'r') as f:
         last_line = f.readlines()[-1]
     n_clust = int(last_line.split(" ")[1]) + 1
+
+    os.chdir('../')
     
     return n_clust
 
@@ -83,7 +83,7 @@ if runInitialHeuristic:
     globals.logging_directory = globals.logging_directory+ "/Heuristic"
     os.makedirs(globals.logging_directory, exist_ok=True)
     if os.path.exists(globals.logging_directory):
-        print(f"Directory '{globals.logging_directory}' created successfully or already exists.")
+        print(f"Directory '{globals.logging_directory}' created successfully")
     else:
         print(f"Failed to create directory '{globals.logging_directory}'.")
 

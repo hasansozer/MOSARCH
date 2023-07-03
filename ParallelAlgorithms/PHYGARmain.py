@@ -77,7 +77,7 @@ def runHeuristics(file_name):
     return n_clust
 
 
-runInitialHeuristic = False
+runInitialHeuristic = True
 
 if runInitialHeuristic:
     globals.logging_directory = globals.logging_directory+ "/Heuristic"

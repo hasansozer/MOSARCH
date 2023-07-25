@@ -1,5 +1,5 @@
 class RSFParser:
-
+    
     def __init__(self, filename):
         self.filename = filename
         self.clustered_items = []

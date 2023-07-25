@@ -1,6 +1,7 @@
 from GA_Parser_Class_New import *
 import time
 import copy
+import pickle 
 import numpy as np
 from sys import getsizeof
 import gc
@@ -34,11 +35,12 @@ algoModes = ["parallel","sequential"]
 
 algorithms = ["GA","HYGAR"]
 
-
-
 def runHeuristics(file_name):
+
     os.chdir('./ParallelAlgorithms')
+
     instance_name = file_name
+
     command_1 = "java -jar rsf2txt.jar"
 
     command_2 = "java -jar clustering.jar"
@@ -46,13 +48,13 @@ def runHeuristics(file_name):
     command_3 = "java -jar txt2rsf.jar"
 
     input_1 = "../dataset/{}/{}-dependency.rsf".format(instance_name,instance_name)
-    output_1 = "dep.txt"
+    output_1 = "{}_dep.txt".format(globals.software)
 
     input_2 = output_1
-    output_2 = "c.txt"
+    output_2 = "{}_c.txt".format(globals.software)
 
     input_3 = output_2
-    output_3 = "c.rsf"
+    output_3 = "{}_c.rsf".format(globals.software)
     
     
     cmd1 = command_1 + " " + input_1 + " " + output_1
@@ -86,6 +88,19 @@ if runInitialHeuristic:
         print(f"Directory '{globals.logging_directory}' created successfully")
     else:
         print(f"Failed to create directory '{globals.logging_directory}'.")
+
+globals.injectMGMC = True
+
+if globals.injectMGMC:
+    globals.nMGMC = 10
+    print("Population injection using MGMC clustering...")
+    globals.logging_directory = globals.logging_directory+ "/MGMCInjection"
+    os.makedirs(globals.logging_directory, exist_ok=True)
+    if os.path.exists(globals.logging_directory):
+        print(f"Directory '{globals.logging_directory}' created successfully")
+    else:
+        print(f"Failed to create directory '{globals.logging_directory}'.")
+
 
 
 
@@ -137,6 +152,10 @@ if __name__ == "__main__":
                                             print("modularity graph memory usage: ", round(getsizeof(globals.modMat) / 1024 / 1024,2))
 
                                             globals.CodeList = list(parser.name2ID.keys())
+                                            globals.CodeDict = parser.name2ID
+                                            print(parser.name2ID)
+                                            print(parser.ID2name)
+                                            
                                             globals.DependencyMatrix = [parser.dsm]
                                             globals.nDependecies = [parser.dependency_count]
                                             #dInArray = [parser.d_in]
@@ -158,6 +177,7 @@ if __name__ == "__main__":
                                                 q.write(globals.algoMode +" "+ algorithm +" "+str(objectiveGAJAYA) + ' ' + str(cpuGAJAYA) + '\n')
                                                 q.write(str(globals.nPop) + ',' +str(crossProb) + ',' +str(globals.crossRate) + ',' +str(muteProb) + ',' +str(globals.muteRate) + ',' +str(globals.elitismProb) + ',' +str(globals.beta) + ',' + str(objectiveGAJAYA) + ',' + str(cpuGAJAYA) + '\n')
                                                 q.close()
+
                                             if algorithm == "HYGAR":
                                                 objectiveGAJAYA, clusters = Algorithms.HYGAR()
                                                 cpuGAJAYA = time.time()-start

@@ -1,10 +1,10 @@
 import os
 
 def initialize():
-    global  nPop, crossNumber, muteNumber, muteRate, \
+    global  nPop, nMGMC, injectMGMC, crossNumber, muteNumber, muteRate, \
         elitismProb, beta, nCluster, nModules, w_ij, d_i, crossRate, \
-        Dependencies, CodeList, DependencyMatrix, nDependecies,\
-        algoMode, software, modMat, m, timeLimit, tolerance,logging_directory
+        Dependencies, CodeList, CodeDict, DependencyMatrix, nDependecies,\
+        algoMode, software, modMat, m, timeLimit, tolerance, logging_directory
 
     tolerance = 1e-6
     

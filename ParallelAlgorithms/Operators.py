@@ -85,6 +85,49 @@ def single(_):
     return [pop, myCostJaya(pop)]
 
 
+def inject_population_from_MGMC(_):
+
+    os.chdir('./ParallelAlgorithms')
+
+    target_path = "../experiments/{}_c.txt".format(globals.software)
+
+    with open(target_path, "r") as f:
+        lines = f.readlines()
+        dct = {}
+        for line in lines:
+            dct[line.split("\t")[0]] = int(line.split("\t")[1][:-1])
+        
+    os.chdir('../')
+
+    cluster_dict = {}
+    for i in range(globals.nCluster):
+        cluster_dict[i] = []
+
+    for key in globals.CodeDict:
+        cluster_dict[dct[key]].append(globals.CodeDict[key])
+
+    for key in cluster_dict:
+        if key < globals.nCluster - 1:
+            cluster_dict[key].append(key+globals.nModules)
+
+    np.random.seed(int.from_bytes(os.urandom(4), byteorder='little'))
+
+    random_chromosome = np.random.random(globals.nModules + globals.nCluster - 1)
+
+    sorted_random_chromosome = np.sort(random_chromosome)
+
+    empty_chromosome = np.zeros(len(random_chromosome)).tolist()
+
+    index_list = []
+
+    for k1 in cluster_dict:
+        index_list = index_list + cluster_dict[k1]
+
+    for idx,item in enumerate(index_list):
+        empty_chromosome[item] = sorted_random_chromosome[idx]
+
+    return [empty_chromosome, myCostJaya(empty_chromosome)]
+
 def singleCrossOverOperator(offspring1,offspring2):
     
     
@@ -195,6 +238,7 @@ def SingleJAYAOperator(parent):
 
 
 def SingleJAYA(_):
+
     from Algorithms import population
     
     np.random.seed(int.from_bytes(os.urandom(4), byteorder='little'))
@@ -221,14 +265,35 @@ def SPM(operator_name):
 
     if operator_name == "initial_population":
 
-        pool = Pool(cores)
+        if not globals.injectMGMC:
 
-        df_SPM = pool.map(single,range(globals.nPop))
+            pool = Pool(cores)
 
-        pool.close()
-        
-        pool.join()
-    
+            df_SPM = pool.map(single,range(globals.nPop))
+
+            pool.close()
+            
+            pool.join()
+
+        if globals.injectMGMC:
+
+            pool = Pool(cores)
+
+            df_SPM_1 = pool.map(inject_population_from_MGMC,range(globals.nMGMC))
+
+            pool.close()
+            
+            pool.join()
+          
+            pool = Pool(cores)
+
+            df_SPM_2 = pool.map(single,range(globals.nPop-globals.nMGMC))
+
+            pool.close()
+            
+            pool.join()
+
+            df_SPM = df_SPM_1 + df_SPM_2
 
     if operator_name == "crossover":
 

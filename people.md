@@ -6,10 +6,10 @@
 - [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/) (Researcher)
 - [Taha Varol](https://tr.linkedin.com/in/tahavarol) (Ph.D. Student)
 
-## Students Supported by the Project and their Affiliations as of February 2024
+## Supported Students and their Affiliations as of 2024
 - [Taha Huzeyfe Aktas](https://tr.linkedin.com/in/taha-huzeyfe-aktas), M.Sc. student (currently @ [UVA](https://www.uva.nl/), Amsterdam, The Netherlands)
 
-## Other/Previous Contributors and their Affiliations as of February 2024
+## Other Contributors and their Affiliations as of 2024
 - [Abdullah Saydemir](https://github.com/Saydemr), OzU B.Sc. graduate (currently @ [TUM](https://www.tum.de/en/), Munich, Germany)
 - [Esad Simitcioglu](https://github.com/EsadSimitcioglu), OzU B.Sc. graduate (currently @ [Koc University](https://www.ku.edu.tr/), Istanbul, Turkiye)
 - [Milad Elyasi](http://www.miladelyasi.com/), OzU Ph.D. graduate (currently @ [IMT Atlantique](https://www.imt-atlantique.fr/en), Nantes, France)

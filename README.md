@@ -5,7 +5,7 @@ This is the repository of the project titled "Recovery of **MO**dular **S**oftwa
 - Host Institution: [Ozyegin University](https://www.ozyegin.edu.tr/)
 - Industrial partner: [Turkcell Technology](http://www.turkcellteknoloji.com.tr/language/en/)
 - Start date: 15.03.2021
-- End date: 15.03.2024
+- End date: 15.06.2024
 
 ## Repo Navigation
  - `dataset` contains dependency and clustering (for some) files for respective systems. Files are obtained from [here](https://softarch.usc.edu/~lemduc/Recovered_files/ICSA_2018/).

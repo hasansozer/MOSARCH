@@ -4,6 +4,6 @@ Welcome to the Web page of the MOSARCH project that focuses on automated **softw
 
 This project aims at developing **a generic, scalable and integrated SAR platform** that can employ **both exact optimization methods and heuristics** to utilize **various types of module interdependency data** based on **multi-objective optimization criteria**.
 
-The MOSARCH project is funded by [The Scientific and Technological Research Council of Turkey](https://tubitak.gov.tr/en) (grant #120E488). It is hosted by [Ozyegin University](https://www.ozyegin.edu.tr/). The project is also supported by [Turkcell Technology](https://www.turkcell.com.tr/) to conduct industrial case studies.
+The MOSARCH project is funded by [The Scientific and Technological Research Council of Turkey](https://tubitak.gov.tr/en) (grant #120E488). It is hosted by [Ozyegin University](https://www.ozyegin.edu.tr/) and carried out by the [Software Research Lab](https://srl.ozyegin.edu.tr/). The project is also supported by [Turkcell Technology](https://www.turkcell.com.tr/) to conduct industrial case studies.
 
 You can find software tools, source code, datasets and other relevant artifacts at the [GitHub repository](https://github.com/hasansozer/MOSARCH) of the project.

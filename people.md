@@ -1,13 +1,11 @@
 ### [MOSARCH Home](./) | Contributors | [Publications](./publications.html) | [Toolset](./toolset.html)
 
-## Current Project Members @ [Ozyegin University (OzU)](https://www.ozyegin.edu.tr/)
+## Project Members @ [Ozyegin University](https://www.ozyegin.edu.tr/)
 - [Hasan Sozer](https://faculty.ozyegin.edu.tr/hsozer/) (Principal Investigator) 
 - [Okan Orsan Ozener](https://faculty.ozyegin.edu.tr/orsano/) (Researcher)
 - [Ali Ekici](https://faculty.ozyegin.edu.tr/aliekici/) (Researcher)
-
-## Previous Project Members @ [OzU](https://www.ozyegin.edu.tr/)
-- [Taha Huzeyfe Aktas](https://tr.linkedin.com/in/taha-huzeyfe-aktas) (former M.Sc. student)
-- [Taha Varol](https://tr.linkedin.com/in/tahavarol) (former Ph.D. Student)
+- [Taha Huzeyfe Aktas](https://tr.linkedin.com/in/taha-huzeyfe-aktas) (M.Sc. student)
+- [Taha Varol](https://tr.linkedin.com/in/tahavarol) (Ph.D. Student)
 
 ## Other Contributors and their Affiliations as of 2024
 - [Abdullah Saydemir](https://github.com/Saydemr), OzU B.Sc. graduate, @ [TUM](https://www.tum.de/en/), Munich, Germany

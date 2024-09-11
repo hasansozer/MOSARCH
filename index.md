@@ -7,3 +7,5 @@ This project aims at developing **a generic, scalable and integrated SAR platfor
 The MOSARCH project is funded by [The Scientific and Technological Research Council of Turkey](https://tubitak.gov.tr/en) (grant #120E488). It is hosted by [Ozyegin University](https://www.ozyegin.edu.tr/) and carried out by the [Software Research Lab](https://srl.ozyegin.edu.tr/). The project is also supported by [Turkcell Technology](https://www.turkcell.com.tr/) to conduct industrial case studies.
 
 You can find software tools, source code, datasets and other relevant artifacts at the [GitHub repository](https://github.com/hasansozer/MOSARCH) of the project.
+
+**This project is completed in July 2024.**

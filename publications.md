@@ -1,6 +1,7 @@
 ### [MOSARCH Home](./) | [Contributors](./people.html) | Publications | [Toolset](./toolset.html)
 
 ## Journal Articles
+-  T. Varol, M. Elyasi, T. Huzeyfe, O.O. Ozener, and H. Sozer. Parallelization of Genetic Algorithms for Software Architecture Recovery. Automated Software Engineering, To Appear, 2024. [:page_with_curl:](https://rdcu.be/d3AwE)
 -  M. Elyasi, M.E. Simitcioglu, A. Saydemir, A. Ekici, O.O. Ozener, and H. Sozer. Genetic Algorithms and Heuristics Hybridized for Software
 Architecture Recovery. Automated Software Engineering, Vol. 30 No. 19, 2023. [:page_with_curl:](https://doi.org/10.1007/s10515-023-00384-y)
 

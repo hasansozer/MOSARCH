@@ -17,3 +17,4 @@ Architecture Recovery. Automated Software Engineering, Vol. 30 No. 19, 2023. [:p
 
 ## Patents
 - H. Sozer, O.O. Ozener, A. Ekici, Modüler Yazılım Mimarisinin Geri Kazanımını Sağlamak için bir Yöntem. Ozyegin University, İstanbul, Turkey, Turk Patent ve Marka Kurumu, TR 2022 013118 B, 2024. 
+- H. Sozer, O.O. Ozener, A. Ekici, Method for Providing Recovery of Modular Software Architecture. Ozyegin University, İstanbul, Turkey, United States Patent, US 12493461 B2, 2025. 

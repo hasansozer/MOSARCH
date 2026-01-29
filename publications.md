@@ -16,5 +16,6 @@ Architecture Recovery. Automated Software Engineering, Vol. 30 No. 19, 2023. [:p
 - Ersin Ersoy. Automated Maintenance Support for Data-Tier Software. Ph.D. Thesis. Ozyegin University, İstanbul, Turkey, 2022. [:page_with_curl:](https://tez.yok.gov.tr/UlusalTezMerkezi/TezGoster?key=RsTBl6RWK25OBMIKtIgYYaU24in1iZ3e82x9bXifG-nLmzwlyu124QSdxuOui6RA)
 
 ## Patents
-- H. Sozer, O.O. Ozener, A. Ekici, Modüler Yazılım Mimarisinin Geri Kazanımını Sağlamak için bir Yöntem. Ozyegin University, İstanbul, Turkey, Turk Patent ve Marka Kurumu, TR 2022 013118 B, 2024. 
 - H. Sozer, O.O. Ozener, A. Ekici, Method for Providing Recovery of Modular Software Architecture. Ozyegin University, İstanbul, Turkey, United States Patent, US 12493461 B2, 2025. 
+- H. Sozer, O.O. Ozener, A. Ekici, Modüler Yazılım Mimarisinin Geri Kazanımını Sağlamak için bir Yöntem. Ozyegin University, İstanbul, Turkey, Turk Patent ve Marka Kurumu, TR 2022 013118 B, 2024. 
+
